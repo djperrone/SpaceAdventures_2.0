@@ -1,6 +1,7 @@
 #pragma once
-#include "game.h"
+//#include "game.h"
 #include <unordered_map>
+#include "SDL.h"
 
 
 class TextureManager

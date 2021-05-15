@@ -1,5 +1,5 @@
 #pragma once
-#include "Pawn.h"
+#include "ObjectTemplates/Pawn.h"
 #include "Vector2D.h"
 #include "SDL.h"
 

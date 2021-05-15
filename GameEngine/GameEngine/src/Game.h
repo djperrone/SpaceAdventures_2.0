@@ -6,7 +6,7 @@
 #include <vector>
 #include<stdlib.h>
 #include <random>
-#include "GameManager.h"
+#include "GameManagers/GameManager.h"
 
 class Game
 {

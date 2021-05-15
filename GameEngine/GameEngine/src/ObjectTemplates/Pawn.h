@@ -27,8 +27,6 @@ public:
 
 private:
 
-	/*TransformComponent* m_TransformComponent;
-	TextureComponent* m_TextureComponent;
-	std::unique_ptr<ComponentManager> m_ComponentManager;	*/
+	
 };
 

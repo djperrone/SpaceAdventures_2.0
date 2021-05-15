@@ -5,7 +5,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
-#include "GameObject.h"
+#include "ObjectTemplates/GameObject.h"
 
 //class GameObject;
 

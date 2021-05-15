@@ -1,8 +1,8 @@
 #pragma once
 #include <list>
 
-#include "GameObject.h"
-#include "Asteroid.h"
+#include "ObjectTemplates/GameObject.h"
+#include "MyObjects/Asteroid.h"
 #include "Dimensions.h"
 #include <time.h>
 

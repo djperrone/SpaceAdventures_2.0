@@ -1,6 +1,6 @@
 #pragma once
 #include "SDL.h"
-#include "Player.h"
+#include "MyObjects/Player.h"
 
 class GameObject;
 class KeyboardController

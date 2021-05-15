@@ -13,8 +13,7 @@ Pawn::Pawn()
 }
 
 Pawn::Pawn(const std::string& texturesheet, int x, int y)
-{
-	
+{	
 	
 }
 
@@ -40,8 +39,7 @@ void Pawn::Update()
 	m_TransformComponent->Update();
 	m_TextureComponent->Update();
 
-
-	
+	std::cout <<"col "<< IsCollidable() << std::endl;
 	
 }
 

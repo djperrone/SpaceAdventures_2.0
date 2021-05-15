@@ -1,5 +1,5 @@
 #include "ObjectManager.h"
-#include "Asteroid.h"
+
 
 ObjectManager::ObjectManager(SDL_Event* event)
 	: m_Event(event)

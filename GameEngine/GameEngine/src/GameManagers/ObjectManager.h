@@ -3,9 +3,10 @@
 #include <vector>
 #include <list>
 
-#include "Player.h"
-#include "KeyboardController.h"
-#include "Spawner.h"
+#include "MyObjects/Player.h"
+#include "MyObjects/Asteroid.h"
+#include "ECS/KeyboardController.h"
+#include "GameManagers/Spawner.h"
 #include "Renderer.h"
 
 //class Player;

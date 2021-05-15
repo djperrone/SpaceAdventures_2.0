@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Vector2D.h"
-#include "ECS//ComponentManager.h"
+#include "ECS/ComponentManager.h"
 #include "SDL.h"
 
 class GameObject
@@ -12,6 +12,8 @@ public:
 
 	virtual void InitComponents() {}
 	virtual void InitComponents(int x, int y) {}
+	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel) {}
+
 
 	virtual void Update() = 0;	
 
