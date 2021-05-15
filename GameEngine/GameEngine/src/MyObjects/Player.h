@@ -27,6 +27,7 @@ public:
 
 
 private:
+	Team Friend;
 
 	/*TransformComponent* m_TransformComponent;
 	TextureComponent* m_TextureComponent;

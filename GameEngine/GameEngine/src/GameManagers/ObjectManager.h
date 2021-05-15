@@ -11,6 +11,7 @@
 
 //class Player;
 class GameObject;
+class Actor;
 
 class ObjectManager
 {
@@ -28,11 +29,10 @@ private:
 	std::unique_ptr<KeyboardController> m_InputController;
 	std::unique_ptr<Spawner> m_Spawner;
 
-	std::list<std::shared_ptr<GameObject>> m_ObjectList;
-	std::list<GameObject*> m_ObjectList_raw;
+	std::list<std::shared_ptr<Actor>> m_ObjectList;
+	//std::list<GameObject*> m_ObjectList_raw;
 
-	Asteroid* testA;
-	std::shared_ptr<Asteroid> testB;
+	
 
 };
 

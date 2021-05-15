@@ -4,6 +4,13 @@
 #include "ECS/ComponentManager.h"
 #include "SDL.h"
 
+enum class Team
+{
+	None = 0,
+	Friend,
+	Enemy
+};
+
 class GameObject
 {
 public:

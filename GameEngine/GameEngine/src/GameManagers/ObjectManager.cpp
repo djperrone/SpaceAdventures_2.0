@@ -1,33 +1,32 @@
 #include "ObjectManager.h"
 
 
+
 ObjectManager::ObjectManager(SDL_Event* event)
 	: m_Event(event)
 {
 	std::cout << "constructed objmanager!\n";
 	m_Player = std::make_shared<Player>();
 	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
-	//m_ObjectList.push_back(m_Player);
-
-	m_ObjectList_raw.push_back(m_Player.get());
 	
-	//testA = new Asteroid(0,0);
-	//testB = std::make_shared<Asteroid>();
-	//m_Spawner = std::make_unique<Spawner>(&m_ObjectList);
-	m_Spawner = std::make_unique<Spawner>(&m_ObjectList_raw);
+
+	m_ObjectList.push_back(m_Player);
+	
+	
+	m_Spawner = std::make_unique<Spawner>(&m_ObjectList);
 }
 
 void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 {
 	//renderer->Render(testB.get());
 	//renderer->Render(m_Player.get());
-	for (auto& obj : m_ObjectList_raw)
+	for (auto& obj : m_ObjectList)
 	{
-		renderer->Render(obj);
+		renderer->Render(obj.get());
 		//std::cout << obj->GetImageName() << std::endl;
 		
 	}
-	std::cout << m_ObjectList_raw.size() << std::endl;
+	std::cout << m_ObjectList.size() << std::endl;
 }
 
 Player* ObjectManager::GetPlayer() const
@@ -48,7 +47,7 @@ void ObjectManager::Tick()
 
 void ObjectManager::Update()
 {
-	for (auto& obj : m_ObjectList_raw)
+	for (auto& obj : m_ObjectList)
 	{
 		obj->Update();
 	}

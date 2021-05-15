@@ -2,7 +2,7 @@
 
 Actor::Actor()
 {
-	collidable = true;
+	//collidable = true;
 }
 
 Actor::Actor(int x, int y)
@@ -44,6 +44,7 @@ void Actor::InitComponents(float xPos, float yPos, int width, int height, float 
 	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
 	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
 	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
+	//m_ComponentManager->AddComponent<ColliderComponent>(GetXPosition(), GetYPosition(), GetWidth(), GetHeight(), GetScale());
 }
 
 void Actor::Update()

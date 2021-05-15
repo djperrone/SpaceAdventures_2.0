@@ -6,6 +6,7 @@
 #include <memory>
 #include "TransformComponent.h"
 #include "TextureComponent.h"
+#include "ColliderComponent.h"
 #include <bitset>
 
 //class TextureComponent;

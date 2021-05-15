@@ -28,7 +28,7 @@ public:
 	
 
 private:
-	
+	Team Enemy;
 
 };
 

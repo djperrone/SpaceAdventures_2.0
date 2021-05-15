@@ -26,10 +26,33 @@ public:
 
 	//virtual void InitComponents(const std::string& texturesheet, int x, int y, float width, float height, float scale, float speed) override;
 
-	inline bool IsCollidable() const { return collidable; }
+	//inline bool IsCollidable() const { return collidable; }
+	
+	/*float GetLeftBound()
+	{
+		return m_ComponentManager->GetComponent<ColliderComponent>().GetLeftBound();
+	}
+	float GetRightBound()
+	{
+		return m_ComponentManager->GetComponent<ColliderComponent>().GetRightBound();
 
+	}
+
+	float GetUpperBound()
+	{
+		return m_ComponentManager->GetComponent<ColliderComponent>().GetUpperBound();
+
+	}
+
+	float GetLowerBound()
+	{
+		return m_ComponentManager->GetComponent<ColliderComponent>().GetLowerBound();
+	}*/
 protected:
-	bool collidable;
+	//bool collidable;
+
+	//float m_Health;
+
 private:
 	//collision component
 	

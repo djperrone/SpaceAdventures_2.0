@@ -39,7 +39,7 @@ void Pawn::Update()
 	m_TransformComponent->Update();
 	m_TextureComponent->Update();
 
-	std::cout <<"col "<< IsCollidable() << std::endl;
+	//std::cout <<"col "<< IsCollidable() << std::endl;
 	
 }
 
