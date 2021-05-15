@@ -22,7 +22,7 @@ SDL_Texture* TextureManager::LoadTexture(const char* filename)
 	//
 
 
-	//SDL_Texture* tex = nullptr;
+	SDL_Texture* tex = nullptr;
 	//tex = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
 	////if (!tex)
 	//	//std::cout << "failed to load texture" << texture << "\n";
@@ -30,7 +30,7 @@ SDL_Texture* TextureManager::LoadTexture(const char* filename)
 	//SDL_FreeSurface(tempSurface);
 
 
-	//return tex;
+	return tex;
 }
 
 void TextureManager::Draw(SDL_Texture* tex, SDL_Rect src, SDL_Rect dest)

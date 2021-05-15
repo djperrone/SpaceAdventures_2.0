@@ -1,9 +1,7 @@
 #pragma once
 #include "ObjectTemplates/Pawn.h"
-#include "Vector2D.h"
-#include "SDL.h"
 
-#include "ECS/ComponentManager.h"
+
 #define PI 3.14159265358979323846
 
 
@@ -21,13 +19,13 @@ public:
 	//float GetAngle(int x1, int y1, int x2, int y2);
 	//void Rotate(SDL_Texture* texture, int x, int y, float angle);
 
-	void InitComponents() override;
-	void InitComponents(int x, int y) override;
+	//void InitComponents() override;
+	//void InitComponents(int x, int y) override;
 
 
 
 private:
-	Team Friend;
+	
 
 	/*TransformComponent* m_TransformComponent;
 	TextureComponent* m_TextureComponent;

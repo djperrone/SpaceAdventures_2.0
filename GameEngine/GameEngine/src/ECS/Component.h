@@ -5,7 +5,8 @@ enum class ComponentType
 	None = 0,
 	TransformComponent,
 	TextureComponent,
-	ColliderComponent
+	ColliderComponent,
+	CombatComponent
 };
 
 #define COMPONENT_CLASS_TYPE(type) static ComponentType GetStaticType() {return ComponentType::##type;}\

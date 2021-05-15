@@ -6,7 +6,7 @@ Pawn::Pawn()
 {
 	std::cout << "Pawn!\n";
 
-	InitComponents();
+	//InitComponents();
 
 	m_ImageName = "D:/Dev/Asteroid_old/GameEngine/GameEngine/assets/ship.png";
 	
@@ -28,6 +28,23 @@ void Pawn::InitComponents()
 	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
 	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
 
+}
+
+void Pawn::InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage)
+{
+	m_ComponentManager = std::make_unique<ComponentManager>();
+
+	m_ComponentManager->AddComponent<TransformComponent>(xPos, yPos, width, height, scale, speed, xVel, yVel);
+	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
+
+	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
+	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
+
+	m_ComponentManager->AddComponent<ColliderComponent>(m_TransformComponent);
+	m_ColliderComponent = &m_ComponentManager->GetComponent<ColliderComponent>();
+
+	m_ComponentManager->AddComponent<CombatComponent>(health, damage);
+	m_CombatComponent = &m_ComponentManager->GetComponent<CombatComponent>();
 }
 
 void Pawn::Update()

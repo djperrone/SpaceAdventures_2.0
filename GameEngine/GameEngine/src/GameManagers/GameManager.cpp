@@ -1,7 +1,5 @@
 #include "GameManager.h"
 
-
-
 GameManager::GameManager(SDL_Renderer* renderer, SDL_Event* event)
 	: m_Event(event)
 {

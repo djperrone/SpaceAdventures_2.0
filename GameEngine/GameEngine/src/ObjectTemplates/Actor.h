@@ -1,12 +1,9 @@
 #pragma once
 #include "GameObject.h"
 #include "ECS/ComponentManager.h"
-#include "Vector2D.h"
-#include "SDL.h"
-
+#include "ECS/ColliderComponent.h"
+#include "ECS/CombatComponent.h"
 #define PI 3.14159265358979323846
-
-
 
 class Actor : public GameObject
 {
@@ -22,33 +19,31 @@ public:
 
 	void Update() override;	
 	virtual void InitComponents() override;
-	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel) override;
+	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) override;
 
 	//virtual void InitComponents(const std::string& texturesheet, int x, int y, float width, float height, float scale, float speed) override;
 
 	//inline bool IsCollidable() const { return collidable; }
 	
-	/*float GetLeftBound()
-	{
-		return m_ComponentManager->GetComponent<ColliderComponent>().GetLeftBound();
-	}
-	float GetRightBound()
-	{
-		return m_ComponentManager->GetComponent<ColliderComponent>().GetRightBound();
+	float GetLeftBound() const;	
+	float GetRightBound()const;
+	float GetUpperBound()const;
+	float GetLowerBound()const;
+	
+	inline float GetHealth() const { return m_CombatComponent->GetHealth(); }
+	inline float GetDamage() const { return m_CombatComponent->GetDamage(); }
 
-	}
+	inline void TakeDamage(float damage) { m_CombatComponent->TakeDamage(damage); }
+	inline void Attack(Actor* actor) { actor->TakeDamage(GetDamage()); }
 
-	float GetUpperBound()
-	{
-		return m_ComponentManager->GetComponent<ColliderComponent>().GetUpperBound();
+	inline Team GetTeam()const { return team; }
 
-	}
+	inline bool IsAlive() const { return GetHealth() > 0; }
 
-	float GetLowerBound()
-	{
-		return m_ComponentManager->GetComponent<ColliderComponent>().GetLowerBound();
-	}*/
 protected:
+
+	CombatComponent* m_CombatComponent;
+	Team team = Team::None;
 	//bool collidable;
 
 	//float m_Health;

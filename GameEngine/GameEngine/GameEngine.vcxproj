@@ -97,7 +97,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SDL2_image-2.0.1\include;$(SolutionDir)Dependencies\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\SDL2_image-2.0.1\include;$(SolutionDir)Dependencies\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -184,6 +184,7 @@
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ECS\CombatComponent.h" />
     <ClInclude Include="src\GameManagers\CollisionManager.h" />
     <ClInclude Include="src\MyObjects\Ship.h" />
     <ClInclude Include="src\ObjectTemplates\Actor.h" />

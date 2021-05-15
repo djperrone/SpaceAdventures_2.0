@@ -6,39 +6,53 @@ Player::Player()
 {
 	std::cout << "player!\n";
 
-	m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/ship.png";
-	InitComponents();
+	m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/Spaceship.png";
+
+	team = Team::Friend;
+	// x,y,w,h,sc,speed,vx,vy,health, damage
+
+	InitComponents(100, 100, 32, 32, 4, 5, 0, 0, 5, 1);
+	//InitComponents();
 }
 
 Player::Player(std::string imageFile, int x, int y)
 {
 	std::cout << "player!\n";
+	m_ImageName = "D:/Dev/Asteroid_old/GameEngine/GameEngine/assets/Spaceship.png";
 
-	InitComponents();
+	//InitComponents();
+	// x,y,w,h,sc,speed,vx,vy,health, damage
+	InitComponents(0, 0, 32, 32, 1, 3, 0, 1, 3, 1);
 
-	m_ImageName = "D:/Dev/Asteroid_old/GameEngine/GameEngine/assets/ship.png";
 
 }
 
 Player::~Player() {}
 
-void Player::InitComponents()
-{
-	m_ComponentManager = std::make_unique<ComponentManager>();
-	m_ComponentManager->AddComponent<TransformComponent>(0, 0, 32, 32, 4, 5);
-	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
-	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
-	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
-}
-
-void Player::InitComponents(int x, int y)
-{
-	m_ComponentManager = std::make_unique<ComponentManager>();
-	m_ComponentManager->AddComponent<TransformComponent>(x, y, 32, 32, 1, 5);
-	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
-	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
-	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
-}
+//void Player::InitComponents()
+//{
+//	m_ComponentManager = std::make_unique<ComponentManager>();
+//	m_ComponentManager->AddComponent<TransformComponent>(0, 0, 32, 32, 4, 5);
+//
+//	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
+//	m_ComponentManager->AddComponent<ColliderComponent>(m_TransformComponent);
+//
+//	m_ComponentManager->AddComponent<CombatComponent>();
+//	m_CombatComponent = &m_ComponentManager->GetComponent<CombatComponent>();
+//
+//	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
+//	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
+//
+//}
+//
+//void Player::InitComponents(int x, int y)
+//{
+//	m_ComponentManager = std::make_unique<ComponentManager>();
+//	m_ComponentManager->AddComponent<TransformComponent>(x, y, 32, 32, 1, 5);
+//	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
+//	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
+//	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
+//}
 
 //void Player::Update()
 //{

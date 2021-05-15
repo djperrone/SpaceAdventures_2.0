@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Vector2D.h"
+
 #include "ECS/ComponentManager.h"
 #include "SDL.h"
 
@@ -19,7 +19,7 @@ public:
 
 	virtual void InitComponents() {}
 	virtual void InitComponents(int x, int y) {}
-	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel) {}
+	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) {}
 
 
 	virtual void Update() = 0;	
@@ -58,6 +58,7 @@ protected:
 	std::string m_ImageName;	
 	TransformComponent* m_TransformComponent;
 	TextureComponent* m_TextureComponent;
+	ColliderComponent* m_ColliderComponent;
 	std::unique_ptr<ComponentManager> m_ComponentManager;
 
 private:

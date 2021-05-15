@@ -1,11 +1,8 @@
 #pragma once
 
 #include "SDL.h"
-#include "SDL_image.h"
-#include <iostream>
-#include <vector>
-#include<stdlib.h>
-#include <random>
+//#include "SDL_image.h"
+
 #include "GameManagers/GameManager.h"
 
 class Game

@@ -1,7 +1,7 @@
 #pragma once
 #include "ObjectTemplates/Actor.h"
-#include "Vector2D.h"
-#include "SDL.h"
+
+
 
 #define PI 3.14159265358979323846
 

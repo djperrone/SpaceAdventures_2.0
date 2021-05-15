@@ -1,14 +1,13 @@
 #pragma once
 #include <memory>
 
-//#include "TextureManager.h"
 #include "Renderer.h"
-//#include "GamePlayManager.h"
 #include "ObjectManager.h"
 #include "SDL.h"
 
-class GameObject;
-class Player;
+//class GameObject;
+//class ObjectManager;
+//class Player;
 //class TextureManager;
 
 //class AsteroidModel;

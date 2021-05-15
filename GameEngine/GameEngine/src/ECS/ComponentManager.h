@@ -15,42 +15,6 @@
 using Group = std::size_t;
 using ComponentID = std::size_t;
 
-//#define GetComponentTypeID() template <typename T> ComponentType GetType(){return ComponentType::##T;}
-
-//inline ComponentID getNewComponentTypeID()
-//{
-//	//static ComponentID lastID = 0u;
-//	//return lastID++;
-//}
-//
-//template <typename T> inline ComponentID getComponentTypeID() noexcept
-//{
-//	//static ComponentID typeID = getNewComponentTypeID();
-//	//return typeID;
-//	//return ComponentType::##T;
-//}
-
-constexpr std::size_t maxComponents = 32;
-constexpr std::size_t maxGroups = 32;
-
-using ComponentBitSet = std::bitset<maxComponents>;
-using GroupBitSet = std::bitset<maxGroups>;
-using ComponentArray = std::array<Component*, maxComponents>;
-
-
-//using ComponentID = std::size_t;
-//
-//inline ComponentID getNewComponentTypeID()
-//{
-//	static ComponentID lastID = 0u;
-//	return lastID++;
-//}
-//
-//template <typename T> inline ComponentID getComponentTypeID() noexcept
-//{
-//	static ComponentID typeID = getNewComponentTypeID();
-//	return typeID;
-//}
 
 class ComponentManager
 {
@@ -67,7 +31,7 @@ public:
 	template <typename T, typename... Args>
 	void AddComponent(Args&&... args)
 	{
-		std::cout << "testing " << static_cast<int>(T::GetStaticType()) << std::endl;
+		//std::cout << "testing " << static_cast<int>(T::GetStaticType()) << std::endl;
 
 		std::shared_ptr<T> component = std::make_shared<T>(std::forward<Args>(args)...);
 		//T* component = new T(std::forward<Args>(args)...);
@@ -86,7 +50,7 @@ public:
 	template <typename T>
 	T& GetComponent()
 	{
-		std::cout <<"testing2 " << static_cast<int>(T::GetStaticType() )<< std::endl;
+		//std::cout <<"testing2 " << static_cast<int>(T::GetStaticType() )<< std::endl;
 		auto ptr = componentArray[static_cast<int>(T::GetStaticType())];
 		//auto ptr(componentArray[getComponentTypeID<T>()]);
 

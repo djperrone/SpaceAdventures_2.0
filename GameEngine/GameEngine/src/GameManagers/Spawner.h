@@ -4,12 +4,14 @@
 #include "ObjectTemplates/GameObject.h"
 #include "MyObjects/Asteroid.h"
 #include "Dimensions.h"
-#include <time.h>
+
+class Actor;
+class Asteroid;
 
 class Spawner
 {
 public:
-	Spawner(std::list<GameObject*>* objList);
+	//Spawner(std::list<GameObject*>* objList);
 	Spawner(std::list<std::shared_ptr<Actor>>* objList);
 
 	void SpawnAsteroid();

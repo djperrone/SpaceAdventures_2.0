@@ -11,6 +11,7 @@ public:
 	void Tick();
 	bool IsColliding(Actor* current, Actor* other);
 	void HandleCollisionEvent(Actor* current, Actor* other);
+	bool IsOnSameTeam(Actor* current, Actor* other);
 
 
 protected:
