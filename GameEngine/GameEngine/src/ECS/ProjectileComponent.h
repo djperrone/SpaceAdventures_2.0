@@ -17,10 +17,13 @@ public:
 
 	void FireGun()
 	{
-		m_ProjectileList.emplace_back(new Projectile(m_TransformComponent->GetPositionVec(),
-									m_TransformComponent->GetVelocityVec(),m_Team));
-		m_ProjectileList.emplace_back(std::make_shared<Projectile>(m_TransformComponent->GetPositionVec(),
-			m_TransformComponent->GetVelocityVec(), m_Team));
+		/*m_ProjectileList.emplace_back(new Projectile(m_TransformComponent->GetPositionVec(),
+									m_TransformComponent->GetVelocityVec(),m_Team));*/
+		m_ProjectileList.emplace_back(std::move(std::make_shared<Projectile>(m_TransformComponent->GetPositionVec(),
+			m_TransformComponent->GetVelocityVec(), m_Team)));
+
+		//std::cout << "projectilecomponent fire gun list size: "<<m_ProjectileList.size()<<"~\n";
+
 	}
 	void ClearGun()
 	{

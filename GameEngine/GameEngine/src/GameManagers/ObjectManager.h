@@ -9,6 +9,7 @@
 #include "Renderer.h"
 #include "CollisionManager.h"
 #include "Dimensions.h"
+#include "ProjectileManager.h"
 
 class GameObject;
 class Actor;
@@ -24,6 +25,8 @@ public:
 	void Tick();
 	void Update();
 	void CleanList();
+	void LoadAllProjectiles();
+
 	bool IsWithinBounds(Actor* actor);
 	Player* GetPlayer() const ;
 
@@ -35,7 +38,10 @@ private:
 	std::unique_ptr<Spawner> m_Spawner;
 	Dimensions dimensions;
 	std::list<std::shared_ptr<Actor>> m_ObjectList;
+	std::list <std::shared_ptr<Ship>> m_ShipList;
 	//std::list<GameObject*> m_ObjectList_raw;
+
+	std::unique_ptr<ProjectileManager> m_ProjectileManager;
 
 	
 

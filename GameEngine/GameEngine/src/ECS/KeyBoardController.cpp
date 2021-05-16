@@ -79,4 +79,23 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 			break;
 		}
 	}
+
+	if (e.type == SDL_MOUSEBUTTONDOWN)
+	{
+		if (!clicked)
+		{
+			clicked = true;
+			std::cout << "clicked~\n";
+
+			m_Player->FireGun();
+		}
+		
+	}
+
+	if (e.type == SDL_MOUSEBUTTONUP)
+	{
+		//std::cout << "Unclicked~\n";
+		clicked = false;
+	}
+
 }

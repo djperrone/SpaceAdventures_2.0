@@ -20,7 +20,7 @@ public:
 
 
 
-	~Projectile();
+	virtual ~Projectile();
 
 
 protected:

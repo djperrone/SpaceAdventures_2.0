@@ -15,7 +15,7 @@ public:
 	virtual void InitComponents(int x, int y) override;
 
 
-	~Actor();
+	virtual ~Actor();
 
 	void Update() override;	
 	virtual void InitComponents() override;
@@ -43,11 +43,14 @@ public:
 
 	inline Team GetTeam()const { return m_Team; }
 
+	inline Tag GetTag() const { return m_Tag; }
+
 
 protected:
 
 	CombatComponent* m_CombatComponent;
 	Team m_Team = Team::None;
+	Tag m_Tag = Tag::None;
 	//bool collidable;
 
 	//float m_Health;

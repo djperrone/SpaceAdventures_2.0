@@ -12,7 +12,7 @@ class Pawn : public Actor
 public:	
 	Pawn();
 	Pawn(const std::string& texturesheet, int x, int y);
-	~Pawn();
+	virtual ~Pawn();
 
 	void Update();
 	

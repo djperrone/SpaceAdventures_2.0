@@ -4,6 +4,13 @@
 #include "ECS/ComponentManager.h"
 #include "SDL.h"
 
+enum class Tag
+{
+	None = 0,
+	Asteroid,
+	Ship
+};
+
 enum class Team
 {
 	None = 0,
@@ -52,6 +59,9 @@ public:
 	inline float GetScale() const { return m_TransformComponent->GetScale(); }
 	inline float SetScale(float scale) { m_TransformComponent->SetScale(scale); }
 
+	inline Vector2D GetPositionVec() const { return m_TransformComponent->GetPositionVec(); }
+	inline Vector2D GetVelocityVec() const { return m_TransformComponent->GetVelocityVec(); }
+
 	template <typename T>
 	T& GetComponent()
 	{
@@ -64,6 +74,8 @@ protected:
 	TextureComponent* m_TextureComponent;
 	ColliderComponent* m_ColliderComponent;
 	std::unique_ptr<ComponentManager> m_ComponentManager;
+
+	
 
 private:
 	

@@ -8,6 +8,7 @@ Asteroid::Asteroid()
 	// x,y,w,h,sc,speed,vx,vy,health, damage
 	InitComponents(randx,0,32,32,2,3,0,1,1,1);	
 	//InitComponents(0, 0, 32, 32, 2, 3, 0, 1, 1, 1);
+	m_Team = Team::Enemy;
 }
 
 Asteroid::Asteroid(int x, int y)

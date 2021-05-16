@@ -22,8 +22,12 @@ Player::Player()
 
 }
 
+
+
 Player::Player(std::string imageFile, int x, int y)
 {
+	m_Team = Team::Friend;
+
 	std::cout << "player!\n";
 	m_ImageName = "D:/Dev/Asteroid_old/GameEngine/GameEngine/assets/Spaceship.png";
 
@@ -34,3 +38,37 @@ Player::Player(std::string imageFile, int x, int y)
 
 Player::~Player() { std::cout << "destroyed player\n"; }
 
+void Player::Update()
+{
+	//std::cout <<"player gun size "<< m_Gun->GetProjectileList().size() << std::endl;;
+
+	Vector2D oldPos = m_TransformComponent->GetPositionVec();
+	m_TransformComponent->Update();
+	Vector2D currentPos = m_TransformComponent->GetPositionVec();
+
+	if (currentPos.x < -15)
+	{
+		m_TransformComponent->SetXPosition(oldPos.x);		
+	}
+
+	if (currentPos.x > dimensions.WIDTH +15 - m_TransformComponent->GetWidth() * m_TransformComponent->GetScale())
+	{
+		m_TransformComponent->SetXPosition(oldPos.x);
+
+	}
+
+	if (currentPos.y < -15)
+	{
+		m_TransformComponent->SetYPosition(oldPos.y);
+	}
+
+	if (currentPos.y > dimensions.HEIGHT + 15 - m_TransformComponent->GetHeight() * m_TransformComponent->GetScale())
+	{
+		m_TransformComponent->SetYPosition(oldPos.y);
+
+	}
+
+
+	m_TextureComponent->Update();
+	
+}

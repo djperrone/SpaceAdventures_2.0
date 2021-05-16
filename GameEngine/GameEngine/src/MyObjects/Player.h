@@ -1,17 +1,21 @@
 #pragma once
-#include "ObjectTemplates/Pawn.h"
+#include "MyObjects/Ship.h"
+#include "Dimensions.h"
+#include <string>
 
 
 #define PI 3.14159265358979323846
 
 
 
-class Player : public Pawn
+class Player : public Ship
 {
 
 public:	
 	Player();
 	Player(std::string imageFile, int x, int y);
+
+	void Update() override;
 
 	~Player();
 
@@ -25,7 +29,7 @@ public:
 
 
 private:
-	
+	Dimensions dimensions;
 
 	/*TransformComponent* m_TransformComponent;
 	TextureComponent* m_TextureComponent;
