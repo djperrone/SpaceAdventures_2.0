@@ -21,7 +21,8 @@ void Spawner::SpawnAsteroid()
 		//std::cout << "spawning asteroid\n";
 		//Asteroid* tmp = new Asteroid(randx, 0);
 		//m_ObjList_raw.push_back(tmp);
-		std::shared_ptr<Asteroid> ast = std::make_shared<Asteroid>(randx, 0);
+		std::shared_ptr<Asteroid> ast = std::make_shared<Asteroid>();
+		//std::shared_ptr<Asteroid> ast = std::make_shared<Asteroid>(randx, 0);
 		//Asteroid* test = new Asteroid(1, 1);
 		m_ObjList->push_back(ast);
 		previousTime = currentTime;

@@ -3,6 +3,7 @@
 
 #include "MyObjects/Player.h"
 #include "MyObjects/Asteroid.h"
+#include "MyObjects/ShipProjectile.h"
 #include "ECS/KeyboardController.h"
 #include "GameManagers/Spawner.h"
 #include "Renderer.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "Vector3D.h"
 #include "ECS/ComponentManager.h"
 #include "SDL.h"
 
@@ -20,6 +20,10 @@ public:
 	virtual void InitComponents() {}
 	virtual void InitComponents(int x, int y) {}
 	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) {}
+	//virtual void InitComponents(Vector2D position, int width, int height, float scale, float speed, Vector2D velocity, float health, float damage) {}
+	//virtual void InitComponents(Vector2D position, Vector3D<int,int,float> dimensions, Vector3D<int, int, float> velocity, float health, float damage) {}
+	//virtual void InitComponents(Vector2D&& position, Vector3D<int, int, float>&& dimensions, Vector3D<int, int, float>&& velocity, float health, float damage) {}
+
 
 
 	virtual void Update() = 0;	

@@ -7,6 +7,7 @@
 #include "TransformComponent.h"
 #include "TextureComponent.h"
 #include "ColliderComponent.h"
+#include "CombatComponent.h"
 #include <bitset>
 
 //class TextureComponent;

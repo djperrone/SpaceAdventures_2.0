@@ -21,6 +21,10 @@ public:
 	virtual void InitComponents() override;
 	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) override;
 
+	//virtual void InitComponents(Vector2D position, Vector3D<int, int, float> dimensions, Vector3D<int, int, float> velocity, float health, float damage) override;
+	//virtual void InitComponents(Vector2D&& position, Vector3D<int, int, float>&& dimensions, Vector3D<int, int, float>&& velocity, float health, float damage) override;
+
+
 	//virtual void InitComponents(const std::string& texturesheet, int x, int y, float width, float height, float scale, float speed) override;
 
 	//inline bool IsCollidable() const { return collidable; }
@@ -34,16 +38,16 @@ public:
 	inline float GetDamage() const { return m_CombatComponent->GetDamage(); }
 
 	inline void TakeDamage(float damage) { m_CombatComponent->TakeDamage(damage); }
-	inline void Attack(Actor* actor) { actor->TakeDamage(GetDamage()); }
-
-	inline Team GetTeam()const { return team; }
-
+	inline void Attack(Actor* actor) { m_CombatComponent->Attack(actor); } 
 	inline bool IsAlive() const { return GetHealth() > 0; }
+
+	inline Team GetTeam()const { return m_Team; }
+
 
 protected:
 
 	CombatComponent* m_CombatComponent;
-	Team team = Team::None;
+	Team m_Team = Team::None;
 	//bool collidable;
 
 	//float m_Health;

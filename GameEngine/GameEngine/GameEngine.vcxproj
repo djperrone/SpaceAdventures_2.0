@@ -165,6 +165,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\MyObjects\ShipProjectile.cpp" />
+    <ClCompile Include="src\ObjectTemplates\Projectile.cpp" />
+    <ClCompile Include="src\ECS\CombatComponent.cpp" />
     <ClCompile Include="src\GameManagers\CollisionManager.cpp" />
     <ClCompile Include="src\MyObjects\Ship.cpp" />
     <ClCompile Include="src\ObjectTemplates\Actor.cpp" />
@@ -184,7 +187,10 @@
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\MyObjects\ShipProjectile.h" />
+    <ClInclude Include="src\ObjectTemplates\Projectile.h" />
     <ClInclude Include="src\ECS\CombatComponent.h" />
+    <ClInclude Include="src\ECS\ProjectileComponent.h" />
     <ClInclude Include="src\GameManagers\CollisionManager.h" />
     <ClInclude Include="src\MyObjects\Ship.h" />
     <ClInclude Include="src\ObjectTemplates\Actor.h" />
@@ -195,6 +201,7 @@
     <ClInclude Include="src\ECS\ComponentManager.h" />
     <ClInclude Include="src\ECS\TextureComponent.h" />
     <ClInclude Include="src\ECS\TransformComponent.h" />
+    <ClInclude Include="src\ObjectTemplates\ObjectDimensions.h" />
     <ClInclude Include="src\ObjectTemplates\Pawn.h" />
     <ClInclude Include="src\GameManagers\Spawner.h" />
     <ClInclude Include="src\Renderer.h" />

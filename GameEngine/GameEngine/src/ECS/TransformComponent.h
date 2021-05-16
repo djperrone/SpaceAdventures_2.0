@@ -1,6 +1,8 @@
 #pragma once
 #include "Component.h"
 #include "../Vector2D.h"
+#include "../Vector3D.h"
+#include "../ObjectTemplates/ObjectDimensions.h"
 
 class TransformComponent : public Component
 {
@@ -8,6 +10,10 @@ private:
 
 	Vector2D m_Position;
 	Vector2D m_Velocity;
+	//Vector3D<int,int,float> m_Dimensions;
+	//Vector3D<int, int, float> m_Velocity;
+
+	//ObjectDimensions m_ObjectDimensions;
 
 	int m_Height;
 	int m_Width;
@@ -21,18 +27,27 @@ public:
 
 		//static ComponentType GetStaticType() { return ComponentType::TransformComponent; }
 		//ComponentType GetComponentType() const override {return GetStaticType();}
-	
 
-	TransformComponent(float x, float y, int w, int h, float sc, int speed) 
+
+		TransformComponent(float x, float y, int w, int h, float sc, int speed)
 		:m_Position{ x,y }, m_Height(h), m_Width(w), m_Scale(sc), m_Speed(speed)
-		
+
 	{
-		std::cout << "transform component!\n"; 
+		std::cout << "transform component!\n";
 	}
 
-	TransformComponent(float x, float y, int w, int h, float sc, int speed,float vx, float vy)
+	//TransformComponent(Vector2D pos, Vector3D<int, int, float> dimensions, Vector3D<int, int, float> velocity)
+	//	:m_Position(pos), m_Dimensions(dimensions), m_Velocity(velocity)
+	//{
+	//	m_Speed = velocity.z;
+	//	m_Width = dimensions.x;
+	//	m_Height = dimensions.y;
+	//	m_Scale = dimensions.z;
+	//}
+
+	TransformComponent(float x, float y, int w, int h, float sc, int speed, float vx, float vy)
 		:m_Position{ x,y }, m_Height(h), m_Width(w), m_Scale(sc),
-		m_Speed(speed), m_Velocity(vx, vy){}
+		m_Velocity{vx, vy}, m_Speed(speed){}
 	~TransformComponent()
 	{
 		std::cout << "Deleted transform component\n";
@@ -64,5 +79,8 @@ public:
 
 	inline float GetScale() const { return m_Scale; }
 	inline float SetScale(float scale) { m_Scale = scale; }
+
+	inline Vector2D GetPositionVec() const { return m_Position; }
+	inline Vector2D GetVelocityVec() const { return m_Velocity; }
 
 };

@@ -15,6 +15,13 @@ public:
 	Spawner(std::list<std::shared_ptr<Actor>>* objList);
 
 	void SpawnAsteroid();
+	template <typename T>
+	void Spawn()
+	{
+		std::shared_ptr<T> temp = std::make_shared<T>();
+
+		m_ObjList->push_back(std::move(temp));
+	}
 
 private:
 	std::list <std::shared_ptr<Actor>>* m_ObjList;

@@ -10,7 +10,7 @@ ObjectManager::ObjectManager(SDL_Event* event)
 	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
 	
 
-	m_ObjectList.push_back(m_Player);
+	m_ObjectList.emplace_back((m_Player));
 	
 	m_CollisionManager = std::make_unique<CollisionManager>(&m_ObjectList);
 	m_Spawner = std::make_unique<Spawner>(&m_ObjectList);
@@ -37,8 +37,19 @@ Player* ObjectManager::GetPlayer() const
 
 void ObjectManager::Tick()
 {
-	//std::cout << "test in objmanager" << m_ObjectList.size() << std::endl;
-	m_Spawner->SpawnAsteroid();
+	if (!m_Player->IsAlive())
+	{
+		std::cout << "player dead!\n";
+		//exit;
+	}
+	//m_Spawner->SpawnAsteroid();
+	if (m_ObjectList.size() == 1)
+	{
+	std::cout << "test in objmanager" << m_ObjectList.size() << std::endl;
+		std::cout << "player health " << m_Player.get()->GetHealth() << std::endl;
+
+	m_Spawner->Spawn<ShipProjectile>();
+	}
 	m_CollisionManager->Tick();
 	m_InputController->UpdateLocation(*m_Event);
 	
@@ -60,6 +71,8 @@ void ObjectManager::CleanList()
 	{
 		if (!it->get()->IsAlive() || !IsWithinBounds(it->get()))
 		{
+			//it->~shared_ptr();
+			
 			it = m_ObjectList.erase(it);
 		}
 		else
@@ -71,10 +84,10 @@ void ObjectManager::CleanList()
 
 bool ObjectManager::IsWithinBounds(Actor* tempObject)
 {
-	if (tempObject->GetXPosition() < 0 || tempObject->GetYPosition() > dimensions.HEIGHT +200 ||
+	if (tempObject->GetXPosition() < -100 || tempObject->GetYPosition() > dimensions.HEIGHT +200 ||
 		tempObject->GetXPosition() > dimensions.WIDTH  || tempObject->GetYPosition() < -200)
 	{
-		std::cout<<("Destroyed asteroid/projectile\n");
+		std::cout<<(tempObject->GetImageName());
 		//tempObject.setHealth(0);
 		return false;
 	}

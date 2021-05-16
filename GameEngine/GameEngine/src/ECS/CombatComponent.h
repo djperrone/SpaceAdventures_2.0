@@ -1,6 +1,8 @@
 #pragma once
 //#include "ObjectTemplates/Actor.h"
-//class Actor;
+class Actor;
+#include "Component.h"
+
 class CombatComponent : public Component
 {
 public:
@@ -10,7 +12,7 @@ public:
 
 	CombatComponent(float health, float damage)
 		: m_Health(health), m_Damage(damage) {
-		std::cout << "combat comp\n";
+		//std::cout << "combat comp\n";
 	}
 
 
@@ -18,13 +20,10 @@ public:
 	{
 		m_Health -= damage;
 	}
-
-	//inline void Attack(Actor* actor)
-	//{
-	//	actor->TakeDamage(GetDamage());
-	//}
-
 	COMPONENT_CLASS_TYPE(CombatComponent)
+
+	void Attack(Actor* actor);	
+
 
 	inline float GetHealth() const { return m_Health; }
 	inline float GetDamage() const { return m_Damage; }
@@ -34,3 +33,4 @@ public:
 private:
 	float m_Health, m_Damage;
 };
+

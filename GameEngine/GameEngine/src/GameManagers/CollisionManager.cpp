@@ -17,7 +17,7 @@ void CollisionManager::Tick()
 			if (IsColliding(it->get(), otherIt->get()) && !IsOnSameTeam(it->get(), otherIt->get()))
 			{
 				HandleCollisionEvent(it->get(), otherIt->get());
-				//std::cout << "collision!\n";
+				std::cout << "collision!\n";
 			}
 		}	
 		
@@ -35,7 +35,7 @@ void CollisionManager::HandleCollisionEvent(Actor* current, Actor* other)
 {
 	std::cout << "collission detected!\n";
 	current->Attack(other);
-	other->Attack(current);
+	//other->Attack(current);
 }
 
 bool CollisionManager::IsOnSameTeam(Actor* current, Actor* other)
