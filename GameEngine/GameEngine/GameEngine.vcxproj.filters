@@ -173,6 +173,12 @@
     <ClInclude Include="src\MyObjects\UFO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\ECS\MouseController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObjectTemplates\MouseCursor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">

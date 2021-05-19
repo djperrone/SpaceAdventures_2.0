@@ -17,7 +17,7 @@ class Spawner
 {
 public:
 	//Spawner(std::list<GameObject*>* objList);
-	Spawner(std::list<std::shared_ptr<Actor>>* objectList, std::list<std::shared_ptr<Ship>>* shipList);
+	Spawner(std::list<std::shared_ptr<Actor>>* objectList, std::list<std::shared_ptr<Ship>>* shipList, std::list<std::unique_ptr<Asteroid>>* asteroidList);
 
 	void SpawnAsteroid();
 	void SpawnUFO();
@@ -26,16 +26,18 @@ public:
 	template <typename T>
 	void Spawn()
 	{
-		std::shared_ptr<T> temp = std::make_shared<T>();
-		T* temp1 = new T();
+		
+		//T* temp1 = new T();
 
-		//if (temp.get()->GetTag() == Tag::Ship)
-		//{
-		//	m_ShipList->push_back((temp));
+	
+	/*	std::shared_ptr<T> temp = std::make_shared<T>();
+		if (temp.get()->GetTag() == Tag::Ship)
+		{
+			m_ShipList->push_back((temp));
 
-		//}
+		}
 
-		m_ObjList->push_back(std::move(temp));
+		m_ObjList->push_back(std::move(temp));*/
 
 
 	}
@@ -43,11 +45,16 @@ public:
 private:
 	std::list <std::shared_ptr<Actor>>* m_ObjList;
 	std::list <std::shared_ptr<Ship>>* m_ShipList;
+	std::list <std::unique_ptr<Asteroid>>* m_AsteroidList;
 	//std::list <GameObject*>* m_ObjList_raw;
 	Dimensions m_Dimensions;
 
 	time_t currentTime;
 	time_t previousTime;
+
+	time_t ufoCurrentTime;
+	time_t ufoPreviousTime;
+	double UFO_SPAWN_RATE = 5000;
 
 	double ASTEROID_SPAWN_RATE = 1000;
 };

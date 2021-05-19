@@ -22,14 +22,19 @@ class GameObject
 {
 public:
 	//GameObject() {}	
-	virtual ~GameObject() {}
+	virtual ~GameObject() { std::cout << "destroyed gameobject\n"; }
 
 	virtual void InitComponents() {}
 	virtual void InitComponents(int x, int y) {}
-	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) {}
+	//virtual void InitComponents(float xPos, float yPos, float direction, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) {}
+	//virtual void InitComponents(float xPos, float yPos, float direction, int width, int height, float scale,float angle, float speed, float xVel, float yVel, float health, float damage) {}
+	//virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) {}
 	//virtual void InitComponents(Vector2D position, int width, int height, float scale, float speed, Vector2D velocity, float health, float damage) {}
 	//virtual void InitComponents(Vector2D position, Vector3D<int,int,float> dimensions, Vector3D<int, int, float> velocity, float health, float damage) {}
 	//virtual void InitComponents(Vector2D&& position, Vector3D<int, int, float>&& dimensions, Vector3D<int, int, float>&& velocity, float health, float damage) {}
+	//virtual void InitComponents(float xPos, float yPos, float rotation, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage);
+	virtual void InitComponents(int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage) {}
+	//void Actor::InitComponents(float xPos, float yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage)
 
 
 
@@ -44,23 +49,33 @@ public:
 	inline void SetXVelocity(float xVelocity) { m_TransformComponent->SetXVelocity(xVelocity); }
 	inline void SetYVelocity(float yVelocity) { m_TransformComponent->SetYVelocity(yVelocity); }
 
-	inline float GetXPosition() const { return m_TransformComponent->GetXPosition(); }
-	inline float GetYPosition() const { return m_TransformComponent->GetYPosition(); }
-	inline void SetXPosition(float xPos) { m_TransformComponent->SetXPosition(xPos); }
-	inline void SetYPosition(float yPos) { m_TransformComponent->SetYPosition(yPos); }
+	virtual inline int GetXPosition() const { return m_TransformComponent->GetXPosition(); }
+	virtual inline int GetYPosition() const { return m_TransformComponent->GetYPosition(); }
+	virtual inline void SetXPosition(int xPos) { m_TransformComponent->SetXPosition(xPos); }
+	virtual inline void SetYPosition(int yPos) { m_TransformComponent->SetYPosition(yPos); }
 
 	inline int GetWidth() const { return m_TransformComponent->GetWidth(); }
 	inline int GetHeight() const { return m_TransformComponent->GetHeight(); }
 	inline void SetWidth(int width) { m_TransformComponent->SetWidth(width); }
 	inline void SetHeight(int height) { m_TransformComponent->SetHeight(height); }
 	inline float GetSpeed() const { return m_TransformComponent->GetSpeed(); }
-	inline float SetSpeed(float speed) { m_TransformComponent->SetSpeed(speed); }
+	inline void SetSpeed(float speed) { m_TransformComponent->SetSpeed(speed); }
 
 	inline float GetScale() const { return m_TransformComponent->GetScale(); }
-	inline float SetScale(float scale) { m_TransformComponent->SetScale(scale); }
+	inline void SetScale(float scale) { m_TransformComponent->SetScale(scale); }
 
 	inline Vector2D GetPositionVec() const { return m_TransformComponent->GetPositionVec(); }
 	inline Vector2D GetVelocityVec() const { return m_TransformComponent->GetVelocityVec(); }
+
+	inline float GetDirection() const { return m_TransformComponent->GetDirection(); }
+
+	inline float GetAngle() const { return m_TransformComponent->GetAngle(); }
+	inline void SetAngle(float angle) { m_TransformComponent->SetAngle(angle); }
+
+	
+
+	//SDL_Point GetCenter() { return { tempw, temph }; }
+
 
 	template <typename T>
 	T& GetComponent()

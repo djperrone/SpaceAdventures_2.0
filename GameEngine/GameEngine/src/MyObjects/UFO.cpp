@@ -7,8 +7,8 @@ UFO::UFO()
 	std::cout << "UFO!\n";
 	int randx = rand() % 800;
 	m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/UFO.png";
-	InitComponents(randx, 0, 32, 32, 2, 3, 0, 0, 1, 1);
-
+	InitComponents(randx, 0, 32, 32, 2.0f, 1.0f, 3.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+	time(&previousTime);
 }
 
 UFO::~UFO()
@@ -16,12 +16,28 @@ UFO::~UFO()
 	std::cout << "destroyed ufo\n";
 }
 
-UFO::UFO(float x, float y)
+UFO::UFO(int x, int y)
 {
 	m_Tag = Tag::Ship;
 	m_Team = Team::Enemy;
 	std::cout << "Asteroid!" << static_cast<std::size_t>(m_Team) << std::endl;
 
 	m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/UFO.png";
-	InitComponents(x, y, 32, 32, 2, 3, 0,0, 1, 1);
+	//float xPos, float yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage
+
+	InitComponents(x, y,32, 32, 2.5f, 45.0f, 3.0f, 0.0f,0.0f, 1.0f, 1.0f);
+}
+
+void UFO::Update()
+{
+	m_TransformComponent->Update();
+	m_TextureComponent->Update();
+
+	time(&currentTime);
+	if (currentTime - previousTime >= 2)
+	{
+		
+		FireGun();
+		previousTime = currentTime;
+	}
 }

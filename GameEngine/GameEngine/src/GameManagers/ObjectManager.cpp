@@ -6,15 +6,17 @@ ObjectManager::ObjectManager(SDL_Event* event)
 	: m_Event(event)
 {
 	std::cout << "constructed objmanager!\n";
-	m_Player = std::make_shared<Player>();
-	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
 	
+	m_MouseController = std::make_unique<MouseCursor>(*m_Event);
+	
+	m_Player = std::make_shared<Player>(m_MouseController.get());
+	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
 
 	m_ObjectList.push_back((m_Player));
 	m_ShipList.push_back(m_Player);
 	
-	m_CollisionManager = std::make_unique<CollisionManager>(&m_ObjectList);
-	m_Spawner = std::make_unique<Spawner>(&m_ObjectList, &m_ShipList);
+	m_CollisionManager = std::make_unique<CollisionManager>(&m_ObjectList, &m_AsteroidList);
+	m_Spawner = std::make_unique<Spawner>(&m_ObjectList, &m_ShipList,&m_AsteroidList);
 
 	m_ProjectileManager = std::make_unique<ProjectileManager>();
 }
@@ -30,6 +32,21 @@ void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 		//std::cout << obj->GetImageName() << std::endl;
 		
 	}
+
+	for (auto& obj : m_AsteroidList)
+	{
+		//if(obj.get()->GetHealth()>0)
+		renderer->Render(obj.get());
+		//std::cout << obj->GetImageName() << std::endl;
+	}
+	for (auto& obj : m_ShipList)
+	{
+		//if(obj.get()->GetHealth()>0)
+		renderer->Render(obj.get());
+		//std::cout << obj->GetImageName() << std::endl;
+	}
+
+	renderer->Render(m_MouseController.get());
 	//std::cout << m_ObjectList.size() << std::endl;
 }
 
@@ -45,27 +62,42 @@ void ObjectManager::Tick()
 		//std::cout << "player dead!\n";
 		//exit;
 	}
-	LoadAllProjectiles();
+	
 
-	//m_Spawner->SpawnAsteroid();
-	if (m_ObjectList.size() <5)
+	m_Spawner->SpawnAsteroid();
+	m_Spawner->SpawnUFO();
+	if (m_ShipList.size() <2)
 	{
-	std::cout << "test in objmanager" << m_ObjectList.size() << std::endl;
+
+		//m_AsteroidList.emplace_back(std::move(std::make_unique<Asteroid>()));
+	//std::cout << "test in objmanager" << m_ObjectList.size() << std::endl;
 		//std::cout << "player health " << m_Player.get()->GetHealth() << std::endl;
 
-	//m_Spawner->Spawn<ShipProjectile>();
+		//m_Spawner->Spawn<Asteroid>();
 		//m_Spawner->SpawnUFO();
 	}
 	m_CollisionManager->Tick();
 	m_InputController->UpdateLocation(*m_Event);
+	m_MouseController->Tick();
 	
 	Update();
+	LoadAllProjectiles();
+
 }
 
 void ObjectManager::Update()
 {
 	CleanList();
 	for (auto& obj : m_ObjectList)
+	{
+		obj->Update();
+	}
+
+	for (auto& obj : m_AsteroidList)
+	{
+		obj->Update();
+	}
+	for (auto& obj : m_ShipList)
 	{
 		obj->Update();
 	}
@@ -78,6 +110,18 @@ void ObjectManager::CleanList()
 		if (!it->get()->IsAlive() || !IsWithinBounds(it->get()))
 		{			
 			it = m_ObjectList.erase(it);
+		}
+		else
+		{
+			it++;
+		}
+	}
+
+	for (auto it = m_AsteroidList.begin(); it != m_AsteroidList.end(); )
+	{
+		if (!it->get()->IsAlive() || !IsWithinBounds(it->get()))
+		{
+			it = m_AsteroidList.erase(it);
 		}
 		else
 		{

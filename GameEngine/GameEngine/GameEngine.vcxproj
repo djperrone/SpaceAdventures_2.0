@@ -189,8 +189,10 @@
     <ClCompile Include="src\MyObjects\UFO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ECS\MouseController.h" />
     <ClInclude Include="src\GameManagers\ProjectileManager.h" />
     <ClInclude Include="src\MyObjects\ShipProjectile.h" />
+    <ClInclude Include="src\ObjectTemplates\MouseCursor.h" />
     <ClInclude Include="src\ObjectTemplates\Projectile.h" />
     <ClInclude Include="src\ECS\CombatComponent.h" />
     <ClInclude Include="src\ECS\ProjectileComponent.h" />

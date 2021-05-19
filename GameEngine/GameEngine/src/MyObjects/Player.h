@@ -2,7 +2,7 @@
 #include "MyObjects/Ship.h"
 #include "Dimensions.h"
 #include <string>
-
+#include "ObjectTemplates/MouseCursor.h"
 
 #define PI 3.14159265358979323846
 
@@ -12,7 +12,7 @@ class Player : public Ship
 {
 
 public:	
-	Player();
+	Player(MouseCursor* mouseCursor);
 	Player(std::string imageFile, int x, int y);
 
 	void Update() override;
@@ -30,6 +30,7 @@ public:
 
 private:
 	Dimensions dimensions;
+	MouseCursor* m_MouseCursor;
 
 	/*TransformComponent* m_TransformComponent;
 	TextureComponent* m_TextureComponent;

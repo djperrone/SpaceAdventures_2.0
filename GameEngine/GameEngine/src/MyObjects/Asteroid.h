@@ -17,8 +17,7 @@ public:
 	~Asteroid();
 
 	//void Update();
-	void Render();
-	void EventDispatch(SDL_Event& e);
+
 	//void InitComponents() override;
 	//void InitComponents(int x, int y) override;
 	//void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel) override;

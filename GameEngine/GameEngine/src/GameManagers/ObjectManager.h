@@ -10,6 +10,7 @@
 #include "CollisionManager.h"
 #include "Dimensions.h"
 #include "ProjectileManager.h"
+#include "ObjectTemplates/MouseCursor.h"
 
 class GameObject;
 class Actor;
@@ -35,10 +36,12 @@ private:
 	std::shared_ptr<Player> m_Player;
 	SDL_Event* m_Event;
 	std::unique_ptr<KeyboardController> m_InputController;
+	std::unique_ptr<MouseCursor> m_MouseController;
 	std::unique_ptr<Spawner> m_Spawner;
 	Dimensions dimensions;
 	std::list<std::shared_ptr<Actor>> m_ObjectList;
 	std::list <std::shared_ptr<Ship>> m_ShipList;
+	std::list <std::unique_ptr<Asteroid>> m_AsteroidList;
 	//std::list<GameObject*> m_ObjectList_raw;
 
 	std::unique_ptr<ProjectileManager> m_ProjectileManager;

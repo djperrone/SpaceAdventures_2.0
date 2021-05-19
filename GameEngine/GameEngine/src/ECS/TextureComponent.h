@@ -36,7 +36,7 @@ public:
 		
 	}
 
-	void Update() override
+	virtual void Update() override
 	{		
 		
 		m_SrcRect.x = m_Transform->GetXPosition();

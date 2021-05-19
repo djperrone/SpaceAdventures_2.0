@@ -20,7 +20,7 @@ public:
 	//void Rotate(SDL_Texture* texture, int x, int y, float angle);
 
 	virtual void InitComponents();	
-	virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) override;
+	//virtual void InitComponents(float xPos, float yPos, float direction,int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) override;
 
 
 

@@ -1,11 +1,11 @@
 #include "Ship.h"
 
 
-void Ship::InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage)
+void Ship::InitComponents(int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage)
 {
 	m_ComponentManager = std::make_unique<ComponentManager>();
 
-	m_ComponentManager->AddComponent<TransformComponent>(xPos, yPos, width, height, scale, speed, xVel, yVel);
+	m_ComponentManager->AddComponent<TransformComponent>(xPos, yPos, width, height, scale,angle, speed, xVel, yVel);
 	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
 
 	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);

@@ -26,6 +26,9 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 			s = true;
 			m_Player->SetYVelocity(1);
 			break;
+		case SDLK_r:
+			//if(!m_Player->GetComponent<ProjectileComponent>().reloading)
+			m_Player->GetComponent<ProjectileComponent>().Reload();
 		default:
 			break;
 		}
@@ -35,6 +38,8 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 	{
 		switch (e.key.keysym.sym)
 		{
+		case SDLK_r:
+			break;
 		case SDLK_w:
 			if (s == true)
 				m_Player->SetYVelocity(1);
@@ -74,7 +79,9 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 
 			break;
 		case SDLK_ESCAPE:
-			//Game::isRunning = false;
+			//isRunning = false;
+			SDL_Quit();
+			exit(0);
 		default:
 			break;
 		}

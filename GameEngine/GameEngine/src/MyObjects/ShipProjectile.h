@@ -8,7 +8,7 @@ public:
 	ShipProjectile();
 	~ShipProjectile();
 
-	ShipProjectile(Vector2D position, Vector2D velocity, Team team);
+	ShipProjectile(Vector2D position, float direction, Vector2D velocity, Team team, float angle);
 	
 
 	

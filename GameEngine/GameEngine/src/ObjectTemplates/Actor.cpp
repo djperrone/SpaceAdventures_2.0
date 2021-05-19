@@ -19,7 +19,7 @@ Actor::Actor(const std::string& texturesheet, int x, int y)
 
 }
 
-Actor::~Actor() {}
+Actor::~Actor() { std::cout << "desoyed actor\n"; }
 
 
 void Actor::InitComponents()
@@ -41,12 +41,63 @@ void Actor::InitComponents(int x, int y)
 	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();*/
 
 }
+//
+//void Actor::InitComponents(float xPos, float yPos, float rotation, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage)
+//{
+//	m_ComponentManager = std::make_unique<ComponentManager>();
+//
+//	m_ComponentManager->AddComponent<TransformComponent>(xPos, yPos,rotation, width, height, scale, speed, xVel, yVel);
+//	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
+//
+//	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
+//	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
+//
+//	m_ComponentManager->AddComponent<ColliderComponent>(m_TransformComponent);
+//	m_ColliderComponent = &m_ComponentManager->GetComponent<ColliderComponent>();
+//
+//	m_ComponentManager->AddComponent<CombatComponent>(health,damage);
+//	m_CombatComponent = &m_ComponentManager->GetComponent<CombatComponent>();
+//}
+//
+//void Actor::InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage)
+//{
+//	m_ComponentManager = std::make_unique<ComponentManager>();
+//
+//	m_ComponentManager->AddComponent<TransformComponent>(xPos, yPos, width, height, scale, speed, xVel, yVel);
+//	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
+//
+//	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
+//	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
+//
+//	m_ComponentManager->AddComponent<ColliderComponent>(m_TransformComponent);
+//	m_ColliderComponent = &m_ComponentManager->GetComponent<ColliderComponent>();
+//
+//	m_ComponentManager->AddComponent<CombatComponent>(health, damage);
+//	m_CombatComponent = &m_ComponentManager->GetComponent<CombatComponent>();
+//}
+//
+//void Actor::InitComponents(float xPos, float yPos, float direction, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage)
+//{
+//	m_ComponentManager = std::make_unique<ComponentManager>();
+//
+//	m_ComponentManager->AddComponent<TransformComponent>(xPos, yPos, direction, width, height, scale, speed, xVel, yVel);
+//	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
+//
+//	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
+//	m_TextureComponent = &m_ComponentManager->GetComponent<TextureComponent>();
+//
+//	m_ComponentManager->AddComponent<ColliderComponent>(m_TransformComponent);
+//	m_ColliderComponent = &m_ComponentManager->GetComponent<ColliderComponent>();
+//
+//	m_ComponentManager->AddComponent<CombatComponent>(health, damage);
+//	m_CombatComponent = &m_ComponentManager->GetComponent<CombatComponent>();
+//}
 
-void Actor::InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage)
+void Actor::InitComponents(int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage)
 {
 	m_ComponentManager = std::make_unique<ComponentManager>();
 
-	m_ComponentManager->AddComponent<TransformComponent>(xPos, yPos, width, height, scale, speed, xVel, yVel);
+	m_ComponentManager->AddComponent<TransformComponent>(xPos, yPos, width, height, scale,angle, speed, xVel, yVel);
 	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
 
 	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);
@@ -55,9 +106,12 @@ void Actor::InitComponents(float xPos, float yPos, int width, int height, float 
 	m_ComponentManager->AddComponent<ColliderComponent>(m_TransformComponent);
 	m_ColliderComponent = &m_ComponentManager->GetComponent<ColliderComponent>();
 
-	m_ComponentManager->AddComponent<CombatComponent>(health,damage);
+	m_ComponentManager->AddComponent<CombatComponent>(health, damage);
 	m_CombatComponent = &m_ComponentManager->GetComponent<CombatComponent>();
 }
+
+
+
 
 //void Actor::InitComponents(Vector2D position, Vector3D<int, int, float> dimensions, Vector3D<int, int, float> velocity, float health, float damage) 
 //{

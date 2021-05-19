@@ -1,8 +1,8 @@
 #include "CollisionManager.h"
 
 
-CollisionManager::CollisionManager(std::list<std::shared_ptr<Actor>>* objList)
-	: m_ObjectList(objList)
+CollisionManager::CollisionManager(std::list<std::shared_ptr<Actor>>* objList, std::list<std::unique_ptr<Asteroid>>* asteroidList)
+	: m_ObjectList(objList), m_AsteroidList(asteroidList)
 {
 
 }
@@ -20,7 +20,39 @@ void CollisionManager::Tick()
 				std::cout << "collision!\n";
 			}
 		}	
+
+		for (auto otherIt = std::begin(*m_AsteroidList); otherIt != std::end(*m_AsteroidList); otherIt++)
+		{
+			if (IsColliding(it->get(), otherIt->get()) && !IsOnSameTeam(it->get(), otherIt->get()))
+			{
+				HandleCollisionEvent(it->get(), otherIt->get());
+				std::cout << "collision!\n";
+			}
+		}
 		
+	}
+
+	for (auto it = std::begin(*m_AsteroidList); it != std::end(*m_AsteroidList); it++)
+	{
+		//std::cout << "Asteroidsadasdasdasd\n";
+		for (auto otherIt = std::begin(*m_AsteroidList); otherIt != std::end(*m_AsteroidList); otherIt++)
+		{
+			if (IsColliding(it->get(), otherIt->get()) && !IsOnSameTeam(it->get(), otherIt->get()))
+			{
+				HandleCollisionEvent(it->get(), otherIt->get());
+				std::cout << "collision!\n";
+			}
+		}
+
+		for (auto otherIt = std::begin(*m_ObjectList); otherIt != std::end(*m_ObjectList); otherIt++)
+		{
+			if (IsColliding(it->get(), otherIt->get()) && !IsOnSameTeam(it->get(), otherIt->get()))
+			{
+				HandleCollisionEvent(it->get(), otherIt->get());
+				std::cout << "collision!\n";
+			}
+		}
+
 	}
 
 	/*for (int i = 0; i < m_ObjectList.size(); i++)
