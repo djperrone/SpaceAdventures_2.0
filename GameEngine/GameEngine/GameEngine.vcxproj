@@ -166,7 +166,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\GameManagers\ProjectileManager.cpp" />
-    <ClCompile Include="src\MyObjects\ShipProjectile.cpp" />
     <ClCompile Include="src\ObjectTemplates\Projectile.cpp" />
     <ClCompile Include="src\ECS\CombatComponent.cpp" />
     <ClCompile Include="src\GameManagers\CollisionManager.cpp" />
@@ -191,7 +190,6 @@
   <ItemGroup>
     <ClInclude Include="src\ECS\MouseController.h" />
     <ClInclude Include="src\GameManagers\ProjectileManager.h" />
-    <ClInclude Include="src\MyObjects\ShipProjectile.h" />
     <ClInclude Include="src\ObjectTemplates\MouseCursor.h" />
     <ClInclude Include="src\ObjectTemplates\Projectile.h" />
     <ClInclude Include="src\ECS\CombatComponent.h" />
@@ -209,6 +207,7 @@
     <ClInclude Include="src\ObjectTemplates\ObjectDimensions.h" />
     <ClInclude Include="src\ObjectTemplates\Pawn.h" />
     <ClInclude Include="src\GameManagers\Spawner.h" />
+    <ClInclude Include="src\ObjectTemplates\ReloadIcon.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\GameManagers\ObjectManager.h" />
     <ClInclude Include="src\GameManagers\GamePlayManager.h" />

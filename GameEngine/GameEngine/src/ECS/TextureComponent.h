@@ -25,7 +25,12 @@ public:
 		m_SrcRect.w = m_Transform->GetWidth();		
 
 		m_SrcRect.x = m_Transform->GetXPosition();
-		m_SrcRect.y = m_Transform->GetYPosition();			
+		m_SrcRect.y = m_Transform->GetYPosition();		
+
+		m_DestRect.x = m_Transform->GetXPosition();
+		m_DestRect.y = m_Transform->GetYPosition();
+		m_DestRect.w = m_SrcRect.w * m_Transform->GetScale();
+		m_DestRect.h = m_SrcRect.h * m_Transform->GetScale();
 	}
 
 	void Init() override

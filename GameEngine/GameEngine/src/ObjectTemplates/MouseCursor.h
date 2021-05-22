@@ -7,7 +7,7 @@ class MouseCursor : public Actor
 {
 public:
 
-	MouseCursor(SDL_Event& event)
+	MouseCursor()
 			{
 		//int x, y;
 				SDL_ShowCursor(false);
@@ -21,13 +21,13 @@ public:
 	void Tick()
 	{
 		SDL_GetMouseState(&m_XPosition, &m_YPosition);
-		SDL_GetMouseState(&m_XPosition, &m_YPosition);
+		//SDL_GetMouseState(&m_XPosition, &m_YPosition);
 		SetXPosition(m_XPosition);
 		SetYPosition(m_YPosition);
 		//
 		m_TransformComponent->Update();
 		m_TextureComponent->Update();
-		std::cout << "mouse location: " << m_XPosition << ", " << m_YPosition << std::endl;
+		//std::cout << "mouse location: " << m_XPosition << ", " << m_YPosition << std::endl;
 	}
 
 

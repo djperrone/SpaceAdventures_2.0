@@ -7,24 +7,34 @@ ObjectManager::ObjectManager(SDL_Event* event)
 {
 	std::cout << "constructed objmanager!\n";
 	
-	m_MouseController = std::make_unique<MouseCursor>(*m_Event);
-	
+	m_MouseController = std::make_unique<MouseCursor>();
+	m_ReloadIcon = std::make_unique<ReloadIcon>();
+
 	m_Player = std::make_shared<Player>(m_MouseController.get());
 	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
 
-	m_ObjectList.push_back((m_Player));
+	//m_ObjectList.push_back((m_Player));
 	m_ShipList.push_back(m_Player);
 	
 	m_CollisionManager = std::make_unique<CollisionManager>(&m_ObjectList, &m_AsteroidList);
 	m_Spawner = std::make_unique<Spawner>(&m_ObjectList, &m_ShipList,&m_AsteroidList);
 
 	m_ProjectileManager = std::make_unique<ProjectileManager>();
+
+	
 }
 
 void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 {
 	//renderer->Render(testB.get());
 	//renderer->Render(m_Player.get());
+
+	if (m_Player->IsReloading())
+	{
+		renderer->Render(m_ReloadIcon.get());
+
+	}
+
 	for (auto& obj : m_ObjectList)
 	{
 		//if(obj.get()->GetHealth()>0)
@@ -47,6 +57,7 @@ void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 	}
 
 	renderer->Render(m_MouseController.get());
+
 	//std::cout << m_ObjectList.size() << std::endl;
 }
 
@@ -64,24 +75,28 @@ void ObjectManager::Tick()
 	}
 	
 
-	m_Spawner->SpawnAsteroid();
-	m_Spawner->SpawnUFO();
-	if (m_ShipList.size() <2)
+	//m_Spawner->SpawnAsteroid();
+	//m_Spawner->SpawnUFO();
+	//m_Spawner->SpawnUFO(500, 500);
+	if (m_ShipList.size() <3)
 	{
 
+
 		//m_AsteroidList.emplace_back(std::move(std::make_unique<Asteroid>()));
-	//std::cout << "test in objmanager" << m_ObjectList.size() << std::endl;
+		//std::cout << "test in objmanager" << m_ObjectList.size() << std::endl;
 		//std::cout << "player health " << m_Player.get()->GetHealth() << std::endl;
 
 		//m_Spawner->Spawn<Asteroid>();
-		//m_Spawner->SpawnUFO();
+		//m_Spawner->SpawnUFO(100, 100);
 	}
 	m_CollisionManager->Tick();
 	m_InputController->UpdateLocation(*m_Event);
 	m_MouseController->Tick();
+	m_ReloadIcon->Tick();
 	
 	Update();
 	LoadAllProjectiles();
+	m_Player->Update();
 
 }
 
@@ -99,6 +114,7 @@ void ObjectManager::Update()
 	}
 	for (auto& obj : m_ShipList)
 	{
+		//std::cout << "updating\n";
 		obj->Update();
 	}
 }

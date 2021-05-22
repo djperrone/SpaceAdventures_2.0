@@ -38,13 +38,25 @@ ShipProjectile::ShipProjectile(Vector2D position, float direction, Vector2D velo
 
 	if (m_Team == Team::Enemy)
 	{
-		InitComponents(position.x, position.y, 32, 32, 2.0f,angle, 3.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+		InitComponents(position.x, position.y, 32, 32, 2.0f,angle, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f);
 
 	}
 	else
 	{
-		InitComponents(position.x, position.y, 32, 32, 2.0f, angle, 3.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+		InitComponents(position.x, position.y, 32, 32, 2.0f, angle, 1.0f, 0.0f, -1.0f, 1.0f, 1.0f);
 
 	}
 }
+
+//void Projectile::Update()
+//{
+//
+//	SetXVelocity(cos(GetAngle()));
+//	SetYVelocity((sin(GetAngle())));
+//	//SetXVelocity(GetSpeed()) ;
+//	//SetYVelocity(GetSpeed());
+//	m_TransformComponent->Update();
+//	m_TextureComponent->Update();
+//}
+
 

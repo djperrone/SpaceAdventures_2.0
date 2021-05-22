@@ -25,3 +25,12 @@ void Ship::FireGun()
 {
 	m_Gun->FireGun();
 }
+
+void Ship::Update()
+{
+	std::cout << "updating\n";
+
+	m_TransformComponent->Update();
+	m_TextureComponent->Update();
+	m_Gun->Update();
+}

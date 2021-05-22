@@ -20,10 +20,16 @@ public:
 		return m_Gun->GetProjectileList();
 	}
 
+	inline bool IsReloading() { return m_Gun->reloading; }
+
+	virtual void Update() override;
 
 protected:
 
+
+
 	ProjectileComponent* m_Gun;
+
 
 private:
 

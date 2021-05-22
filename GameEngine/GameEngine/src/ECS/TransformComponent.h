@@ -46,6 +46,14 @@ public:
 		std::cout << "transform component!\n";
 	}
 
+	TransformComponent(int w, int h, float sc, int x, int y)
+		:m_Height(h), m_Width(w), m_Scale(sc), m_Angle(0), m_Position{x,y}
+
+	{
+		std::cout << "transform component! rea\n";
+		std::cout << "x " << m_Position.x << ' ' << m_Position.y << std::endl;
+	}
+
 	//TransformComponent(Vector2D pos, Vector3D<int, int, float> dimensions, Vector3D<int, int, float> velocity)
 	//	:m_Position(pos), m_Dimensions(dimensions), m_Velocity(velocity)
 	//{
@@ -78,7 +86,7 @@ public:
 	void Update() override
 	{
 		m_Position.x += m_Velocity.x * m_Speed;
-		m_Position.y += m_Velocity.y * m_Speed * m_Direction;
+		m_Position.y += m_Velocity.y * m_Speed;
 	}
 	
 

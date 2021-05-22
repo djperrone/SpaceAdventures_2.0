@@ -13,6 +13,7 @@ private:
 	bool a = false;
 	bool s = false;
 	bool d = false;
+	bool r = false;
 	bool clicked = false;
 	Player* m_Player;
 };

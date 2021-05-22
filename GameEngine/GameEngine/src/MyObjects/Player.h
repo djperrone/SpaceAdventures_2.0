@@ -15,7 +15,7 @@ public:
 	Player(MouseCursor* mouseCursor);
 	Player(std::string imageFile, int x, int y);
 
-	void Update() override;
+	virtual void Update() override;
 
 	~Player();
 

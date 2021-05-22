@@ -11,6 +11,8 @@
 #include "Dimensions.h"
 #include "ProjectileManager.h"
 #include "ObjectTemplates/MouseCursor.h"
+#include "ObjectTemplates/ReloadIcon.h"
+
 
 class GameObject;
 class Actor;
@@ -45,6 +47,7 @@ private:
 	//std::list<GameObject*> m_ObjectList_raw;
 
 	std::unique_ptr<ProjectileManager> m_ProjectileManager;
+	std::unique_ptr<ReloadIcon> m_ReloadIcon;
 
 	
 

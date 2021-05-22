@@ -21,7 +21,7 @@ Player::Player(MouseCursor* mouseCursor)
 
 	//InitComponents(position, dimensions, velocity, 5.0f, 1.0f);
 	//InitComponents();
-	InitComponents(100, 100, 32, 32, 3.5f, 1.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
+	InitComponents(0, 0, 32, 32, 3.5f, 1.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
 
 }
 
@@ -51,8 +51,7 @@ void Player::Update()
 	//SetAngle(180);
 	//int x = 400;
 	//int y = 300;
-	float dx = (float)(m_MouseCursor->GetXPosition()- GetXPosition());
-	float dy = (float)(m_MouseCursor->GetYPosition()-GetYPosition()) ;
+	
 
 	//float dx = (float)(GetXPosition()- m_MouseCursor->GetXPosition());
 	//float dy = (float)(GetYPosition()- m_MouseCursor->GetYPosition());
@@ -67,10 +66,25 @@ void Player::Update()
 	//float angle = 270 + atan2(dy, dx) * (180 / PI);
 
 
-	float angle = -270 + atan2(dy, dx) * (180 / PI);
+	//float angle = -270 + atan2(dy, dx) * (180 / PI);
+	/*float angle = atan2(dy, dx);
+	angle = (angle + 180.0f);
+	angle = fmod(angle, 360.0f);
+	angle = 360.0f - angle;*/
+
+	float dx = (float)(m_MouseCursor->GetXPosition() - GetXPosition());
+	float dy = (float)(m_MouseCursor->GetYPosition() - GetYPosition());
+
+	float angle;
+	//dx = 500-0;
+	//dy = (500-0);
+	angle = atan2(dy, dx) * (180 / 3.146f);
+	//angle = (angle + 180.0f);
+	//angle = fmod(angle, 360.0f);
+	//angle = 360.0f - angle; 
 	//angle >= 0 ? angle : 360 + angle;
 
-
+	//angle = 0.0f;
 	SetAngle(angle);
 
 
@@ -102,5 +116,6 @@ void Player::Update()
 
 
 	m_TextureComponent->Update();
-	
+	m_Gun->Update();
+
 }

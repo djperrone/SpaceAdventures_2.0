@@ -72,9 +72,6 @@
     <ClCompile Include="src\ObjectTemplates\Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\MyObjects\ShipProjectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameManagers\ProjectileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -164,9 +161,6 @@
     <ClInclude Include="src\ObjectTemplates\ObjectDimensions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\MyObjects\ShipProjectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameManagers\ProjectileManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -177,6 +171,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\ObjectTemplates\MouseCursor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObjectTemplates\ReloadIcon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

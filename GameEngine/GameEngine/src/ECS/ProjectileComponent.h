@@ -22,35 +22,47 @@ public:
 
 	void Reload()
 	{
-		if(!reloading)
+		if (!reloading)
+		{
+			ReloadStartTime = SDL_GetTicks();
 			reloading = true;
-
-		if (SDL_GetTicks() - previousTime <= m_ReloadTime)
+		}		
+	}
+	
+	virtual void Update() override
+	{
+		if(reloading)
 		{
-			return;
+			if (SDL_GetTicks() - ReloadStartTime <= m_ReloadTime)
+			{
+				//std::cout << "reloading update ovreride pc " << reloading << std::endl;
+			}
+			else
+			{
+				m_UseCount = 0;
+				reloading = false;
+			}
 		}
-		else
-		{
-			m_UseCount = 0;
-			reloading = false;
-		}
+		
 	}
 
 	void FireGun()
 	{
-		if (m_UseCount >= m_MagazineSize)
-		{
-			Reload();
-		}
-
-		if (reloading)
-		{
-			Reload();
-			return;
-		}
-
+		
 		if (!reloading)
 		{
+			if (m_UseCount >= m_MagazineSize)
+			{
+				Reload();
+			}
+
+			//if (reloading)
+			//{
+			//	//Reload();
+			//	return;
+			//}
+
+			
 			currentTime = SDL_GetTicks();
 			if (currentTime - previousTime >= fireRate)
 			{
@@ -61,7 +73,9 @@ public:
 
 				m_UseCount++;
 			}
+			
 		}
+		
 
 		
 		/*m_ProjectileList.emplace_back(new Projectile(m_TransformComponent->GetPositionVec(),
@@ -88,6 +102,7 @@ protected:
 	Team m_Team;
 	Uint32 currentTime;
 	Uint32 previousTime;
+	Uint32 ReloadStartTime;
 	double fireRate = 250;
 
 

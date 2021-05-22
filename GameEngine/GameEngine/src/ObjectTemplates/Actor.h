@@ -17,7 +17,7 @@ public:
 
 	virtual ~Actor();
 
-	void Update() override;	
+	virtual void Update() override;	
 	virtual void InitComponents() override;
 	//virtual void InitComponents(float xPos, float yPos, float rotation, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) override;
 	//virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) override;

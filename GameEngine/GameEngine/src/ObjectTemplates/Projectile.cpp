@@ -76,13 +76,16 @@ Projectile::Projectile(Vector2D position, Vector2D velocity, float direction, Te
 
 	if (m_Team == Team::Enemy)
 	{
-		InitComponents(position.x + width * scale / 2 - 10, position.y + 50, width, height, 1.0f,angle, 3.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+		InitComponents(position.x, position.y + 50, width, height, 1.0f,angle, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f);
 		//(float xPos, float yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage) override;
 
 	}
 	else
 	{
-		InitComponents(position.x + width * scale / 2 + 15, position.y, width, height, 1.0f,angle, 3.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+		
+		InitComponents(position.x, position.y, width, height, 1.0f,angle, 1.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+		SetXVelocity(cos(GetAngle()));
+		SetYVelocity((sin(GetAngle())));
 
 	}
 
@@ -90,11 +93,23 @@ Projectile::Projectile(Vector2D position, Vector2D velocity, float direction, Te
 
 void Projectile::Update()
 {
-	
-	/*SetXVelocity(cos(GetAngle()) * GetSpeed());
-	SetYVelocity((sin(GetAngle()) * GetSpeed()));*/
-	SetXVelocity(1.0f);
+	std::cout << "angle " << GetAngle() << std::endl;
+	//SetXVelocity((cos(GetAngle()*PI/180)));
+	//SetYVelocity(((sin(GetAngle() * PI / 180))));
+
+	float yRad = sin(GetAngle() * PI / 180.0f);
+	float xRad = cos(GetAngle() * PI / 180.0f);
+
 	SetYVelocity(-1.0f);
+	SetXVelocity(xRad);
+
+
+	
+	std::cout <<"sin angle "<< sin(GetAngle() * PI / 180) << std::endl;
+
+	std::cout << "y vel" << GetYVelocity() << std::endl;
+	//SetXVelocity(GetSpeed()) ;
+	//SetYVelocity(GetSpeed());
 	m_TransformComponent->Update();
 	m_TextureComponent->Update();
 }

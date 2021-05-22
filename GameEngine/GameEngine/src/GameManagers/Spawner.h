@@ -21,6 +21,8 @@ public:
 
 	void SpawnAsteroid();
 	void SpawnUFO();
+	void SpawnUFO(int x, int y);
+
 
 
 	template <typename T>
