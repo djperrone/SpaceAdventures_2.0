@@ -29,14 +29,14 @@ Asteroid::Asteroid(int x, int y)
 	m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/Asteroid1.png";
 	if (m_Team == Team::Enemy)
 	{
-		InitComponents(x, y, 32, 32, 2.0f, 0.0f, 3.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+		InitComponents(x, y, 32, 32, 2.0f, 0.0f, 1.5f, 0.0f, 1.0f, 1.0f, 1.0f);
 
 	}
-	else
+	/*else
 	{
 		InitComponents(x, y, 32, 32, 2.0f, 0.0f, 3.0f, 0.0f, 1.0f, 1.0f, 1.0f);
 
-	}
+	}*/
 }
 
 Asteroid::~Asteroid() { std::cout<<"destroyed asteroid\n"; }

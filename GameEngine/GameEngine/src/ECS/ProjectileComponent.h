@@ -93,8 +93,6 @@ public:
 	inline std::vector<std::shared_ptr<Projectile>>& GetProjectileList() { return m_ProjectileList; }
 
 	COMPONENT_CLASS_TYPE(ProjectileComponent)
-
-
 	bool reloading;
 protected:
 	std::vector<std::shared_ptr<Projectile>> m_ProjectileList;
@@ -109,7 +107,7 @@ protected:
 	int m_MagazineSize = 10;
 	int m_UseCount = 0;
 
-	Uint32 m_ReloadTime = 1000;
+	Uint32 m_ReloadTime = 2500;
 	
 
 };

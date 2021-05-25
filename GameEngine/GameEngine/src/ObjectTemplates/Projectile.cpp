@@ -76,14 +76,14 @@ Projectile::Projectile(Vector2D position, Vector2D velocity, float direction, Te
 
 	if (m_Team == Team::Enemy)
 	{
-		InitComponents(position.x, position.y + 50, width, height, 1.0f,angle, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+		InitComponents(position.x, position.y, width, height, 1.0f,angle, 1.5f, 0.0f, 1.0f, 1.0f, 1.0f);
 		//(float xPos, float yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage) override;
 
 	}
 	else
 	{
 		
-		InitComponents(position.x, position.y, width, height, 1.0f,angle, 1.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+		InitComponents(position.x, position.y, width, height, 1.0f,angle, 3.0f, 0.0f, -1.0f, 1.0f, 1.0f);
 		SetXVelocity(cos(GetAngle()));
 		SetYVelocity((sin(GetAngle())));
 
@@ -100,7 +100,7 @@ void Projectile::Update()
 	float yRad = sin(GetAngle() * PI / 180.0f);
 	float xRad = cos(GetAngle() * PI / 180.0f);
 
-	SetYVelocity(-1.0f);
+	SetYVelocity(yRad);
 	SetXVelocity(xRad);
 
 

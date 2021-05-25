@@ -25,7 +25,7 @@ UFO::UFO(int x, int y)
 	m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/UFO.png";
 	//float xPos, float yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage
 
-	InitComponents(x, y,32, 32, 2.5f, 45.0f, 3.0f, 0.0f,0.0f, 1.0f, 1.0f);
+	InitComponents(x, y,32, 32, 2.5f, 90.0f, 3.0f, 0.0f,0.0f, 1.0f, 1.0f);
 }
 
 void UFO::Update()

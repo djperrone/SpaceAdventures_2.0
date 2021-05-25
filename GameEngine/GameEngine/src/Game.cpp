@@ -55,7 +55,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	
 	//player = new Player("D:/Dev/Asteroid_old/GameEngine/GameEngine/assets/ship.png", 0, 0,4);
 	
-	m_GameManager = std::make_unique<GameManager>(renderer, &event);
+	m_GameManager = std::make_unique<GameManager>(this,renderer, &event);
 	
 	
 

@@ -49,8 +49,8 @@ public:
 	inline void SetXVelocity(float xVelocity) { m_TransformComponent->SetXVelocity(xVelocity); }
 	inline void SetYVelocity(float yVelocity) { m_TransformComponent->SetYVelocity(yVelocity); }
 
-	virtual inline int GetXPosition() const { return m_TransformComponent->GetXPosition(); }
-	virtual inline int GetYPosition() const { return m_TransformComponent->GetYPosition(); }
+	virtual inline float GetXPosition() const { return m_TransformComponent->GetXPosition(); }
+	virtual inline float GetYPosition() const { return m_TransformComponent->GetYPosition(); }
 	virtual inline void SetXPosition(int xPos) { m_TransformComponent->SetXPosition(xPos); }
 	virtual inline void SetYPosition(int yPos) { m_TransformComponent->SetYPosition(yPos); }
 

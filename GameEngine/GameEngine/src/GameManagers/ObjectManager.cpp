@@ -13,7 +13,7 @@ ObjectManager::ObjectManager(SDL_Event* event)
 	m_Player = std::make_shared<Player>(m_MouseController.get());
 	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
 
-	//m_ObjectList.push_back((m_Player));
+	m_ObjectList.push_back((m_Player));
 	m_ShipList.push_back(m_Player);
 	
 	m_CollisionManager = std::make_unique<CollisionManager>(&m_ObjectList, &m_AsteroidList);
@@ -52,7 +52,7 @@ void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 	for (auto& obj : m_ShipList)
 	{
 		//if(obj.get()->GetHealth()>0)
-		renderer->Render(obj.get());
+		//renderer->Render(obj.get());
 		//std::cout << obj->GetImageName() << std::endl;
 	}
 
@@ -70,13 +70,14 @@ void ObjectManager::Tick()
 {
 	if (!m_Player->IsAlive())
 	{
-		//std::cout << "player dead!\n";
-		//exit;
+		std::cout << "player dead!\n";
+		
+		exit;
 	}
 	
 
-	//m_Spawner->SpawnAsteroid();
-	//m_Spawner->SpawnUFO();
+	m_Spawner->SpawnAsteroid();
+	m_Spawner->SpawnUFO();
 	//m_Spawner->SpawnUFO(500, 500);
 	if (m_ShipList.size() <3)
 	{
@@ -96,7 +97,7 @@ void ObjectManager::Tick()
 	
 	Update();
 	LoadAllProjectiles();
-	m_Player->Update();
+	//m_Player->Update();
 
 }
 

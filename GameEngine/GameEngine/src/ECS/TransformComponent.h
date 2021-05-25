@@ -96,8 +96,8 @@ public:
 	inline void SetXVelocity(float xVelocity) { m_Velocity.x = xVelocity; }
 	inline void SetYVelocity(float yVelocity) { m_Velocity.y = yVelocity; }
 
-	inline int GetXPosition() const { return m_Position.x; }
-	inline int GetYPosition() const { return m_Position.y; }
+	inline float GetXPosition() const { return m_Position.x; }
+	inline float GetYPosition() const { return m_Position.y; }
 	inline void SetXPosition(int xPos) {m_Position.x = xPos; }
 	inline void SetYPosition(int yPos) { m_Position.y = yPos; }
 

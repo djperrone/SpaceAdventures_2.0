@@ -21,7 +21,7 @@ Player::Player(MouseCursor* mouseCursor)
 
 	//InitComponents(position, dimensions, velocity, 5.0f, 1.0f);
 	//InitComponents();
-	InitComponents(0, 0, 32, 32, 3.5f, 1.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
+	InitComponents(250, 250, 32, 32, 3.5f, 0.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
 
 }
 

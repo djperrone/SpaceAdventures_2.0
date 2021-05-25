@@ -14,7 +14,7 @@ void Spawner::SpawnAsteroid()
 	{
 		int randx = rand() % 800;
 
-		 m_AsteroidList->emplace_back(std::move(std::make_unique<Asteroid>()));
+		 m_AsteroidList->emplace_back(std::move(std::make_unique<Asteroid>(randx,-100)));
 		 std::cout << "asteorielist size " << m_AsteroidList->size() << std::endl;
 		previousTime = currentTime;
 	}
@@ -24,18 +24,18 @@ void Spawner::SpawnAsteroid()
 
 void Spawner::SpawnUFO()
 {
-	//int randx = rand() % 800;
-	//int y = 0;
+	int randx = rand() % 800;
+	int y = 0;
 
-	//time(&ufoCurrentTime);
-	//if ( ufoCurrentTime- ufoPreviousTime >= 5 && m_ShipList->size() < 3)
-	//{
-	//	int randx = rand() % 800;
-	//	std::shared_ptr<UFO> tempUFO = std::make_shared<UFO>(randx,0);
-	//	m_ObjList->push_back(tempUFO);
-	//	m_ShipList->push_back(std::move(tempUFO));
-	//	ufoPreviousTime = ufoCurrentTime;
-	//}
+	time(&ufoCurrentTime);
+	if ( ufoCurrentTime- ufoPreviousTime >= 5 && m_ShipList->size() < 3)
+	{
+		int randx = rand() % 800;
+		std::shared_ptr<UFO> tempUFO = std::make_shared<UFO>(randx,0);
+		m_ObjList->push_back(tempUFO);
+		m_ShipList->push_back(std::move(tempUFO));
+		ufoPreviousTime = ufoCurrentTime;
+	}
 }
 
 void Spawner::SpawnUFO(int x, int y)
