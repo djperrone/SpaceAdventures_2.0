@@ -4,17 +4,22 @@
 Game* game = nullptr;
 
 
+void GameLoop(Game* game);
+
 
 int main(int argc, char** argv)	
-{
-	/*enum test
-	{
-		None = 0,
-		test1 = 1,
-		test2 = 2,
-		test3 = 3
-	};*/
+{	
+	
+	game = new Game();
+	GameLoop(game);
+	//game = new Game();
+	//GameLoop(game);
+	
+	return 0;
+}
 
+void GameLoop(Game* game)
+{
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
 
@@ -24,7 +29,7 @@ int main(int argc, char** argv)
 	game = new Game();
 	game->init("Asteroid", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 	while (game->running())
-	{		
+	{
 		frameStart = SDL_GetTicks();
 		//sound.Play();
 		game->handleEvents();
@@ -40,7 +45,6 @@ int main(int argc, char** argv)
 	}
 
 	game->clean();
-	return 0;
 }
 
 

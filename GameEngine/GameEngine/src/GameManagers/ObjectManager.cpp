@@ -78,7 +78,7 @@ void ObjectManager::Tick()
 
 	m_Spawner->SpawnAsteroid();
 	m_Spawner->SpawnUFO();
-	//m_Spawner->SpawnUFO(500, 500);
+	
 	if (m_ShipList.size() <3)
 	{
 

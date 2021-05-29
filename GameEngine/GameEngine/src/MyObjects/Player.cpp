@@ -45,47 +45,34 @@ Player::~Player() { std::cout << "destroyed player\n"; }
 
 void Player::Update()
 {
-	//std::cout <<"player gun size "<< m_Gun->GetProjectileList().size() << std::endl;;
 
-	//SetAngle(GetAngle() + 1);
-	//SetAngle(180);
-	//int x = 400;
-	//int y = 300;
-	
+	//float dotProduct = m_MouseCursor->GetXPosition() * GetXPosition() + m_MouseCursor->GetYPosition() * GetYPosition();
+	//float playerLength = sqrt(GetXPosition() * GetXPosition() + GetYPosition() * GetYPosition());
+	//float mouseLength = sqrt(m_MouseCursor->GetXPosition() * m_MouseCursor->GetXPosition() + m_MouseCursor->GetYPosition() * m_MouseCursor->GetYPosition());
 
-	//float dx = (float)(GetXPosition()- m_MouseCursor->GetXPosition());
-	//float dy = (float)(GetYPosition()- m_MouseCursor->GetYPosition());
+	//float angle = 1 / cos(dotProduct / playerLength / mouseLength);
 
+	//float normalized = dotProduct / playerLength / mouseLength;
+	//std::cout << "dotProduct " << dotProduct << std::endl;
 
+	//angle += GetAngle() - angle;
 
-	//int dx = (GetXPosition()-x);
-	//int dy = (GetYPosition());
+	//SetAngle(angle);
 
-	//float angle = ((atan2(-dy, -dx)) * (180.0f / 3.416f));
-
-	//float angle = 270 + atan2(dy, dx) * (180 / PI);
-
-
-	//float angle = -270 + atan2(dy, dx) * (180 / PI);
-	/*float angle = atan2(dy, dx);
-	angle = (angle + 180.0f);
-	angle = fmod(angle, 360.0f);
-	angle = 360.0f - angle;*/
-
-	float dx = (float)(m_MouseCursor->GetXPosition() - GetXPosition());
-	float dy = (float)(m_MouseCursor->GetYPosition() - GetYPosition());
-
+	float dx = (m_MouseCursor->GetXPosition() - GetXPosition());
+	float dy = (m_MouseCursor->GetYPosition() - GetYPosition());
 	float angle;
-	//dx = 500-0;
-	//dy = (500-0);
-	angle = atan2(dy, dx) * (180 / 3.146f);
-	//angle = (angle + 180.0f);
-	//angle = fmod(angle, 360.0f);
-	//angle = 360.0f - angle; 
-	//angle >= 0 ? angle : 360 + angle;
-
-	//angle = 0.0f;
+	angle = atan2(dy, dx) * (180 / 3.146f);	
 	SetAngle(angle);
+
+
+	/*float dx = (float)(m_MouseCursor->GetXPosition() - GetXPosition());
+	float dy = (float)(m_MouseCursor->GetYPosition() - GetYPosition());		
+	float angle = atan2(dy, dx) * (180 / 3.146f);
+	SetAngle(angle);
+
+	std::cout << "angle is " << angle << std::endl;*/
+
 
 
 	Vector2D oldPos = m_TransformComponent->GetPositionVec();
