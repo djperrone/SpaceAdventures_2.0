@@ -1,38 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30104.148
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{347D8434-0F4C-44CD-8844-5F9091696973}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "make_exe", "make_exe\make_exe.vdproj", "{551D1EAD-0D39-48FD-B534-572A5B2235C0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{D54F7917-C107-BB64-2A0F-94C016E65555}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{347D8434-0F4C-44CD-8844-5F9091696973}.Debug|x64.ActiveCfg = Debug|x64
-		{347D8434-0F4C-44CD-8844-5F9091696973}.Debug|x64.Build.0 = Debug|x64
-		{347D8434-0F4C-44CD-8844-5F9091696973}.Debug|x86.ActiveCfg = Debug|Win32
-		{347D8434-0F4C-44CD-8844-5F9091696973}.Debug|x86.Build.0 = Debug|Win32
-		{347D8434-0F4C-44CD-8844-5F9091696973}.Release|x64.ActiveCfg = Release|x64
-		{347D8434-0F4C-44CD-8844-5F9091696973}.Release|x64.Build.0 = Release|x64
-		{347D8434-0F4C-44CD-8844-5F9091696973}.Release|x86.ActiveCfg = Release|Win32
-		{347D8434-0F4C-44CD-8844-5F9091696973}.Release|x86.Build.0 = Release|Win32
-		{551D1EAD-0D39-48FD-B534-572A5B2235C0}.Debug|x64.ActiveCfg = Debug
-		{551D1EAD-0D39-48FD-B534-572A5B2235C0}.Debug|x86.ActiveCfg = Debug
-		{551D1EAD-0D39-48FD-B534-572A5B2235C0}.Release|x64.ActiveCfg = Release
-		{551D1EAD-0D39-48FD-B534-572A5B2235C0}.Release|x86.ActiveCfg = Release
-		{551D1EAD-0D39-48FD-B534-572A5B2235C0}.Release|x86.Build.0 = Release
+		{D54F7917-C107-BB64-2A0F-94C016E65555}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D54F7917-C107-BB64-2A0F-94C016E65555}.Debug|Win32.Build.0 = Debug|Win32
+		{D54F7917-C107-BB64-2A0F-94C016E65555}.Release|Win32.ActiveCfg = Release|Win32
+		{D54F7917-C107-BB64-2A0F-94C016E65555}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1A6324F8-594A-453A-ACB9-0E20057B1E27}
 	EndGlobalSection
 EndGlobal
