@@ -22,8 +22,8 @@ project "GameEngine"
 	kind "ConsoleApp"
 	language "C++"
 
-	--targetdir ("bin/%{cfg.buildcfg}")
-	--objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/%{cfg.buildcfg}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
