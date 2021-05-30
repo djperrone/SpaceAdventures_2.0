@@ -1,6 +1,6 @@
 # Binaries
-!vendor/premake/bin/
-**/bin/
+# !vendor/premake/bin/
+# **/bin/
 bin-int/
 
 # Hazel files
