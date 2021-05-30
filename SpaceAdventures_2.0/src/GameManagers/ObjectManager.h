@@ -42,6 +42,7 @@ private:
 	std::unique_ptr<Spawner> m_Spawner;
 	Dimensions dimensions;
 	std::list<std::shared_ptr<Actor>> m_ObjectList;
+	std::list<std::shared_ptr<Actor>> m_ProjectileList;
 	std::list <std::shared_ptr<Ship>> m_ShipList;
 	std::list <std::unique_ptr<Asteroid>> m_AsteroidList;
 	//std::list<GameObject*> m_ObjectList_raw;

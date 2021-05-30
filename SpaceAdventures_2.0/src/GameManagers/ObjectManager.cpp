@@ -38,9 +38,23 @@ void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 	for (auto& obj : m_ObjectList)
 	{
 		//if(obj.get()->GetHealth()>0)
+		/*if (obj->GetTag() == Tag::Player)
+		{
+			continue;
+		}
+		if (obj->GetTag() == Tag::Ship)
+		{
+			continue;
+		}*/
+		//renderer->Render(obj.get());
+		//std::cout << obj->GetImageName() << std::endl;		
+	}
+
+	for (auto& obj : m_ProjectileList)
+	{
+		//if(obj.get()->GetHealth()>0)
 		renderer->Render(obj.get());
 		//std::cout << obj->GetImageName() << std::endl;
-		
 	}
 
 	for (auto& obj : m_AsteroidList)
@@ -52,9 +66,11 @@ void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 	for (auto& obj : m_ShipList)
 	{
 		//if(obj.get()->GetHealth()>0)
-		//renderer->Render(obj.get());
+		renderer->Render(obj.get());
 		//std::cout << obj->GetImageName() << std::endl;
 	}
+
+	//renderer->Render(GetPlayer());
 
 	renderer->Render(m_MouseController.get());
 
@@ -106,6 +122,20 @@ void ObjectManager::Update()
 	CleanList();
 	for (auto& obj : m_ObjectList)
 	{
+		/*if (obj->GetTag() == Tag::Player)
+		{
+			continue;
+		}
+		if (obj->GetTag() == Tag::Ship)
+		{
+			continue;
+		}*/
+		//obj->Update();
+	}
+
+	for (auto& obj : m_ProjectileList)
+	{
+		//std::cout << "updating\n";
 		obj->Update();
 	}
 
@@ -114,7 +144,7 @@ void ObjectManager::Update()
 		obj->Update();
 	}
 	for (auto& obj : m_ShipList)
-	{
+	{		
 		//std::cout << "updating\n";
 		obj->Update();
 	}
@@ -157,6 +187,18 @@ void ObjectManager::CleanList()
 			it++;
 		}
 	}
+
+	for (auto it = m_ProjectileList.begin(); it != m_ProjectileList.end(); )
+	{
+		if (!it->get()->IsAlive() || !IsWithinBounds(it->get()))
+		{
+			it = m_ProjectileList.erase(it);
+		}
+		else
+		{
+			it++;
+		}
+	}
 }
 
 void ObjectManager::LoadAllProjectiles()
@@ -168,6 +210,7 @@ void ObjectManager::LoadAllProjectiles()
 	//m_ObjectList.insert(m_ObjectList.end(), m_ProjectileManager->GetProjectileList().begin(), m_ProjectileManager->GetProjectileList().begin());
 	auto list = m_ProjectileManager->GetProjectileList();
 	std::copy(list.begin(), list.end(), std::back_inserter(m_ObjectList));
+	std::copy(list.begin(), list.end(), std::back_inserter(m_ProjectileList));
 	m_ProjectileManager->ClearProjectileList();
 }
 
