@@ -1,7 +1,7 @@
 #pragma once
 #include "ObjectTemplates/Actor.h"
 #include "ECS/ProjectileComponent.h"
-#include "MyObjects/ShipProjectile.h"
+#include "ObjectTemplates/Projectile.h"
 
 class Ship : public Actor
 {

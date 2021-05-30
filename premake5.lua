@@ -1,4 +1,4 @@
-workspace "GameEngine"
+workspace "SpaceAdventures_2.0"
 	architecture "x86"
 
 	configurations
@@ -17,8 +17,8 @@ IncludeDir["SDL2_image"] = "%{wks.location}/Dependencies/SDL2_image/include"
 --include "Dependencies/SDL2"
 --include "Dependencies/SDL2_image"
 
-project "GameEngine"
-	location "GameEngine"
+project "SpaceAdventures_2.0"
+	location "SpaceAdventures_2.0"
 	kind "ConsoleApp"
 	language "C++"
 

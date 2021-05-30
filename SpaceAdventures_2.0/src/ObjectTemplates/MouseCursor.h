@@ -11,7 +11,7 @@ public:
 			{
 		//int x, y;
 				SDL_ShowCursor(false);
-				m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/mouse_cursor.png";		
+				m_ImageName = "assets/mouse_cursor.png";		
 				InitComponents();
 				SDL_GetMouseState(&m_XPosition, &m_YPosition);
 				SetXPosition(m_XPosition);

@@ -9,7 +9,7 @@ Player::Player(MouseCursor* mouseCursor)
 	//m_MouseCursor = mouseCursor;
 	std::cout << "player!\n";
 
-	m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/Spaceship.png";
+	m_ImageName = "assets/Spaceship.png";
 
 	m_Team = Team::Friend;
 	// x,y,w,h,sc,speed,vx,vy,health, damage

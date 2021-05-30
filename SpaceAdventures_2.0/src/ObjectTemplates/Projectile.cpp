@@ -15,11 +15,11 @@ Projectile::Projectile(Vector2D position, Vector2D velocity, float direction, Te
 {
 	if (team == Team::Friend)
 	{
-		m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/Projectile_64.png";
+		m_ImageName = "assets/Projectile_64.png";
 	}
 	else
 	{
-		m_ImageName = "D:/Dev/SpaceAdventures_2.0/GameEngine/GameEngine/assets/Projectile_64_enemy.png";
+		m_ImageName = "assets/Projectile_64_enemy.png";
 
 	}
 	m_Team = team;
