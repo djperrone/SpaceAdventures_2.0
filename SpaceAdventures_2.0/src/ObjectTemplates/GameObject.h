@@ -8,7 +8,8 @@ enum class Tag
 {
 	None = 0,
 	Asteroid,
-	Ship
+	Ship,
+	Player
 };
 
 enum class Team

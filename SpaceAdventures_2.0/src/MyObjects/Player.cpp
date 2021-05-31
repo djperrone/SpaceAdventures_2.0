@@ -12,6 +12,7 @@ Player::Player(MouseCursor* mouseCursor)
 	m_ImageName = "assets/Spaceship.png";
 
 	m_Team = Team::Friend;
+	m_Tag = Tag::Player;
 	// x,y,w,h,sc,speed,vx,vy,health, damage
 
 	/*Vector2D position{ 100,100 };

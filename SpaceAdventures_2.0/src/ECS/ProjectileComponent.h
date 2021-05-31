@@ -66,7 +66,11 @@ public:
 			currentTime = SDL_GetTicks();
 			if (currentTime - previousTime >= fireRate)
 			{
-				m_ProjectileList.emplace_back(std::move(std::make_shared<Projectile>(m_TransformComponent->GetPositionVec(),
+				Vector2D spawnLoc = { m_TransformComponent->GetPositionVec() };
+				spawnLoc.x += (m_TransformComponent->GetWidth() * m_TransformComponent->GetScale())/2.0f - 10;
+				spawnLoc.y += (m_TransformComponent->GetHeight() * m_TransformComponent->GetScale())/2.0f;
+
+				m_ProjectileList.emplace_back(std::move(std::make_shared<Projectile>(spawnLoc,
 					m_TransformComponent->GetVelocityVec(), m_TransformComponent->GetDirection(), m_Team, m_TransformComponent->GetAngle())));
 
 				previousTime = currentTime;
