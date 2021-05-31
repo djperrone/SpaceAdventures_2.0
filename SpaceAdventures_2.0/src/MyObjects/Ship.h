@@ -15,6 +15,7 @@ public:
 	virtual void InitComponents(int xPos, int yPos, int width, int height, float scale,float angle, float speed, float xVel, float yVel, float health, float damage) override;
 
 	virtual void FireGun();
+
 	std::vector<std::shared_ptr<Projectile>>& GetProjectileList()
 	{
 		return m_Gun->GetProjectileList();
@@ -26,10 +27,7 @@ public:
 
 protected:
 
-
-
 	ProjectileComponent* m_Gun;
-
 
 private:
 

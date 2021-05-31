@@ -101,8 +101,6 @@ void Player::Update()
 
 	}
 
-
 	m_TextureComponent->Update();
 	m_Gun->Update();
-
 }
