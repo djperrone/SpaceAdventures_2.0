@@ -1,4 +1,9 @@
+
+#include "sapch.h"
 #include "CollisionManager.h"
+
+#include "ObjectTemplates/Actor.h"
+#include "MyObjects/Asteroid.h"
 
 
 CollisionManager::CollisionManager(std::list<std::shared_ptr<Actor>>* objList, std::list<std::unique_ptr<Asteroid>>* asteroidList)

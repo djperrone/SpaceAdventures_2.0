@@ -1,6 +1,5 @@
 #pragma once
 #include "MyObjects/Ship.h"
-#include <time.h>
 
 class UFO : public Ship
 {

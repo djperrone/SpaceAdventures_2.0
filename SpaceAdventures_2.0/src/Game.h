@@ -1,8 +1,6 @@
 #pragma once
 
 #include "SDL.h"
-//#include "SDL_image.h"
-
 #include "GameManagers/GameManager.h"
 
 class Game

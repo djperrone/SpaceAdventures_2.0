@@ -11,10 +11,7 @@ enum class ComponentType
 };
 
 #define COMPONENT_CLASS_TYPE(type) static ComponentType GetStaticType() {return ComponentType::##type;}\
-								virtual ComponentType GetComponentType() const override {return GetStaticType();}
-								//virtual const char* GetName() const override {return #type;}
-
-//#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;}
+								virtual ComponentType GetComponentType() const override {return GetStaticType();}	
 
 
 class Component
@@ -26,5 +23,5 @@ public:
 	virtual void Update() {}
 	virtual void Draw() {}
 	virtual ~Component() {}
-	//virtual void Update() = 0;
+	
 };

@@ -1,4 +1,7 @@
+#include "sapch.h"
+
 #include "ObjectManager.h"
+
 
 
 
@@ -26,55 +29,28 @@ ObjectManager::ObjectManager(SDL_Event* event)
 
 void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 {
-	//renderer->Render(testB.get());
-	//renderer->Render(m_Player.get());
+	
 
 	if (m_Player->IsReloading())
 	{
 		renderer->Render(m_ReloadIcon.get());
-
-	}
-
-	for (auto& obj : m_ObjectList)
-	{
-		//if(obj.get()->GetHealth()>0)
-		/*if (obj->GetTag() == Tag::Player)
-		{
-			continue;
-		}
-		if (obj->GetTag() == Tag::Ship)
-		{
-			continue;
-		}*/
-		//renderer->Render(obj.get());
-		//std::cout << obj->GetImageName() << std::endl;		
 	}
 
 	for (auto& obj : m_ProjectileList)
-	{
-		//if(obj.get()->GetHealth()>0)
-		renderer->Render(obj.get());
-		//std::cout << obj->GetImageName() << std::endl;
+	{		
+		renderer->Render(obj.get());		
 	}
 
 	for (auto& obj : m_AsteroidList)
-	{
-		//if(obj.get()->GetHealth()>0)
-		renderer->Render(obj.get());
-		//std::cout << obj->GetImageName() << std::endl;
+	{		
+		renderer->Render(obj.get());		
 	}
 	for (auto& obj : m_ShipList)
-	{
-		//if(obj.get()->GetHealth()>0)
-		renderer->Render(obj.get());
-		//std::cout << obj->GetImageName() << std::endl;
+	{		
+		renderer->Render(obj.get());		
 	}
 
-	//renderer->Render(GetPlayer());
-
-	renderer->Render(m_MouseController.get());
-
-	//std::cout << m_ObjectList.size() << std::endl;
+	renderer->Render(m_MouseController.get());	
 }
 
 Player* ObjectManager::GetPlayer() const
@@ -86,26 +62,12 @@ void ObjectManager::Tick()
 {
 	if (!m_Player->IsAlive())
 	{
-		std::cout << "player dead!\n";
-		
-		exit;
-	}
-	
+		std::cout << "player dead!\n";		
+	}	
 
 	m_Spawner->SpawnAsteroid();
-	m_Spawner->SpawnUFO();
+	m_Spawner->SpawnUFO();	
 	
-	if (m_ShipList.size() <3)
-	{
-
-
-		//m_AsteroidList.emplace_back(std::move(std::make_unique<Asteroid>()));
-		//std::cout << "test in objmanager" << m_ObjectList.size() << std::endl;
-		//std::cout << "player health " << m_Player.get()->GetHealth() << std::endl;
-
-		//m_Spawner->Spawn<Asteroid>();
-		//m_Spawner->SpawnUFO(100, 100);
-	}
 	m_CollisionManager->Tick();
 	m_InputController->UpdateLocation(*m_Event);
 	m_MouseController->Tick();
@@ -113,25 +75,23 @@ void ObjectManager::Tick()
 	
 	Update();
 	LoadAllProjectiles();
-	//m_Player->Update();
-
 }
 
 void ObjectManager::Update()
 {
 	CleanList();
-	for (auto& obj : m_ObjectList)
-	{
-		/*if (obj->GetTag() == Tag::Player)
-		{
-			continue;
-		}
-		if (obj->GetTag() == Tag::Ship)
-		{
-			continue;
-		}*/
-		//obj->Update();
-	}
+	//for (auto& obj : m_ObjectList)
+	//{
+	//	/*if (obj->GetTag() == Tag::Player)
+	//	{
+	//		continue;
+	//	}
+	//	if (obj->GetTag() == Tag::Ship)
+	//	{
+	//		continue;
+	//	}*/
+	//	//obj->Update();
+	//}
 
 	for (auto& obj : m_ProjectileList)
 	{
@@ -202,12 +162,8 @@ void ObjectManager::CleanList()
 }
 
 void ObjectManager::LoadAllProjectiles()
-{
-
-	//std::cout << "projectile list size " << m_ProjectileManager->GetProjectileList().size() << std::endl;
+{	
 	m_ProjectileManager->LoadAllProjectiles(m_ShipList);
-	//std::cout <<"obj manager proj list size "<< m_ProjectileManager->GetProjectileList().size() << std::endl;
-	//m_ObjectList.insert(m_ObjectList.end(), m_ProjectileManager->GetProjectileList().begin(), m_ProjectileManager->GetProjectileList().begin());
 	auto list = m_ProjectileManager->GetProjectileList();
 	std::copy(list.begin(), list.end(), std::back_inserter(m_ObjectList));
 	std::copy(list.begin(), list.end(), std::back_inserter(m_ProjectileList));
@@ -218,9 +174,7 @@ bool ObjectManager::IsWithinBounds(Actor* tempObject)
 {
 	if (tempObject->GetXPosition() < -100 || tempObject->GetYPosition() > dimensions.HEIGHT +200 ||
 		tempObject->GetXPosition() > dimensions.WIDTH  || tempObject->GetYPosition() < -200)
-	{
-		//std::cout<<(tempObject->GetImageName());
-		//tempObject.setHealth(0);
+	{	
 		return false;
 	}
 

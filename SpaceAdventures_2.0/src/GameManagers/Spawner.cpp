@@ -1,4 +1,10 @@
+#include "sapch.h"
+
 #include "Spawner.h"
+#include "MyObjects/Asteroid.h"
+#include "MyObjects/Ship.h"
+#include "MyObjects/UFO.h"
+
 
 
 Spawner::Spawner(std::list<std::shared_ptr<Actor>>* objectList, std::list<std::shared_ptr<Ship>>* shipList, std::list<std::unique_ptr<Asteroid>>* asteroidList)
@@ -17,10 +23,8 @@ void Spawner::SpawnAsteroid()
 		 m_AsteroidList->emplace_back(std::move(std::make_unique<Asteroid>(randx,-100)));
 		 std::cout << "asteorielist size " << m_AsteroidList->size() << std::endl;
 		previousTime = currentTime;
-	}
-	
+	}	
 }
-
 
 void Spawner::SpawnUFO()
 {
@@ -38,15 +42,10 @@ void Spawner::SpawnUFO()
 	}
 }
 
-void Spawner::SpawnUFO(int x, int y)
-{
-	//int randx = rand() % 800;
-	//int y = 0;
-	//std::cout << "overloaded ufo spawn\n";
-	//time(&ufoCurrentTime);
+void Spawner::SpawnUFO(float x, float y)
+{	
 	if (m_ShipList->size() < 3)
-	{
-		
+	{		
 		std::shared_ptr<UFO> tempUFO = std::make_shared<UFO>(x, y);
 		m_ObjList->push_back(tempUFO);
 		m_ShipList->push_back(std::move(tempUFO));

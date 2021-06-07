@@ -1,8 +1,7 @@
 #pragma once
 #include "SDL.h"
-#include "MyObjects/Player.h"
 
-class GameObject;
+class Player;
 class KeyboardController
 {
 public:

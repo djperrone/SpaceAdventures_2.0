@@ -1,17 +1,10 @@
+#include "sapch.h"
 #include "Game.h"
 
-#include <string>
-#include <iostream>
-
-
-
-//SDL_Renderer* Game::renderer = nullptr;
 
 SDL_Event Game::event;
 
 bool Game::isRunning = false;
-
-
 
 Game::Game()
 {
@@ -20,8 +13,6 @@ Game::Game()
 
 Game::~Game()
 {}
-
-
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
@@ -51,20 +42,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}
-	// parameters are filepath to picture, xloc, yloc, scale	
-	
-	//player = new Player("D:/Dev/Asteroid_old/GameEngine/GameEngine/assets/ship.png", 0, 0,4);
 	
 	m_GameManager = std::make_unique<GameManager>(this,renderer, &event);
-	
-	
-
-	
-
 }
-
-//COLLISION GROUPS
-
 
 void Game::handleEvents()
 {	
@@ -82,35 +62,14 @@ void Game::handleEvents()
 
 void Game::update()
 {
-	cnt++;
-	//std::cout << cnt << std::endl;
-	//player->Update();
-	//asteroid->Update();
-	m_GameManager->Tick();
-	
+	cnt++;	
+	m_GameManager->Tick();	
 }
-
-
 
 void Game::render()
 {
-	SDL_RenderClear(renderer);
-	// order of render groupings
-	//render map tiles, characters
-
-	// top is background, bottom goes to foreground
-	
-	//player->Render();
-	//gameManager->asteroidVec[0]->Render();
-	/*for (auto a : gameManager->asteroidVec)
-	{
-		a->Render();
-	}*/
-
-
-	//steroid->Render();
+	SDL_RenderClear(renderer);	
 	m_GameManager->Render();
-
 	SDL_RenderPresent(renderer);	
 }
 

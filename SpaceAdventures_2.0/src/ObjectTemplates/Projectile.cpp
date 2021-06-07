@@ -1,3 +1,4 @@
+#include "sapch.h"
 #include "Projectile.h"
 #include "Vector2D.h"
 
@@ -49,8 +50,8 @@ void Projectile::Update()
 {
 	//std::cout << "angle " << GetAngle() << std::endl;
 
-	float yRad = sin(GetAngle() * PI / 180.0f);
-	float xRad = cos(GetAngle() * PI / 180.0f);
+	float yRad = sin(GetAngle() * 3.14159 / 180.0f);
+	float xRad = cos(GetAngle() * 3.14159 / 180.0f);
 
 	SetYVelocity(yRad);
 	SetXVelocity(xRad);

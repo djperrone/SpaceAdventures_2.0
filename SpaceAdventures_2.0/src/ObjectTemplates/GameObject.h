@@ -1,8 +1,16 @@
 #pragma once
 
-#include "Vector3D.h"
+#include <SDL.h>
+
+
+
+#include "Vector2D.h"
 #include "ECS/ComponentManager.h"
-#include "SDL.h"
+#include "ECS/TransformComponent.h"
+#include "ECS/TextureComponent.h"
+#include "ECS/ColliderComponent.h"
+#include "ECS/CombatComponent.h"
+
 
 enum class Tag
 {
@@ -22,61 +30,48 @@ enum class Team
 class GameObject
 {
 public:
-	//GameObject() {}	
-	virtual ~GameObject() { std::cout << "destroyed gameobject\n"; }
+	GameObject()
+	:m_ColliderComponent(nullptr),m_ComponentManager(nullptr),m_TextureComponent(nullptr),m_TransformComponent(nullptr){}	
+	virtual ~GameObject() { }
 
 	virtual void InitComponents() {}
 	virtual void InitComponents(int x, int y) {}
-	//virtual void InitComponents(float xPos, float yPos, float direction, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) {}
-	//virtual void InitComponents(float xPos, float yPos, float direction, int width, int height, float scale,float angle, float speed, float xVel, float yVel, float health, float damage) {}
-	//virtual void InitComponents(float xPos, float yPos, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage) {}
-	//virtual void InitComponents(Vector2D position, int width, int height, float scale, float speed, Vector2D velocity, float health, float damage) {}
-	//virtual void InitComponents(Vector2D position, Vector3D<int,int,float> dimensions, Vector3D<int, int, float> velocity, float health, float damage) {}
-	//virtual void InitComponents(Vector2D&& position, Vector3D<int, int, float>&& dimensions, Vector3D<int, int, float>&& velocity, float health, float damage) {}
-	//virtual void InitComponents(float xPos, float yPos, float rotation, int width, int height, float scale, float speed, float xVel, float yVel, float health, float damage);
+	
 	virtual void InitComponents(int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage) {}
-	//void Actor::InitComponents(float xPos, float yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage)
-
-
 
 	virtual void Update() = 0;	
 
-	inline const std::string& GetImageName() const { return m_ImageName; }	
+	std::string GetImageName() const;
 
-	virtual inline SDL_Rect& GetDestRect() { return m_TextureComponent->GetDestRect(); }
+	SDL_Rect& GetDestRect();
 
-	inline float GetXVelocity() const { return m_TransformComponent->GetXVelocity(); }
-	inline float GetYVelocity() const { return m_TransformComponent->GetYVelocity(); }
-	inline void SetXVelocity(float xVelocity) { m_TransformComponent->SetXVelocity(xVelocity); }
-	inline void SetYVelocity(float yVelocity) { m_TransformComponent->SetYVelocity(yVelocity); }
+	float GetXVelocity() const;
+	float GetYVelocity() const;
+	void SetXVelocity(float xVelocity);
+	void SetYVelocity(float yVelocity);
 
-	virtual inline float GetXPosition() const { return m_TransformComponent->GetXPosition(); }
-	virtual inline float GetYPosition() const { return m_TransformComponent->GetYPosition(); }
-	virtual inline void SetXPosition(int xPos) { m_TransformComponent->SetXPosition(xPos); }
-	virtual inline void SetYPosition(int yPos) { m_TransformComponent->SetYPosition(yPos); }
+	virtual float GetXPosition() const ;
+	virtual float GetYPosition() const ;
+	virtual void SetXPosition(float xPos);
+	virtual void SetYPosition(float yPos);
 
-	inline int GetWidth() const { return m_TransformComponent->GetWidth(); }
-	inline int GetHeight() const { return m_TransformComponent->GetHeight(); }
-	inline void SetWidth(int width) { m_TransformComponent->SetWidth(width); }
-	inline void SetHeight(int height) { m_TransformComponent->SetHeight(height); }
-	inline float GetSpeed() const { return m_TransformComponent->GetSpeed(); }
-	inline void SetSpeed(float speed) { m_TransformComponent->SetSpeed(speed); }
+	int GetWidth() const ;
+	int GetHeight() const;
+	void SetWidth(int width);
+	void SetHeight(int height);
+	float GetSpeed() const;
+	void SetSpeed(float speed);
 
-	inline float GetScale() const { return m_TransformComponent->GetScale(); }
-	inline void SetScale(float scale) { m_TransformComponent->SetScale(scale); }
+	float GetScale() const ;
+	void SetScale(float scale);
 
-	inline Vector2D GetPositionVec() const { return m_TransformComponent->GetPositionVec(); }
-	inline Vector2D GetVelocityVec() const { return m_TransformComponent->GetVelocityVec(); }
+	Vector2D GetPositionVec() const;
+	Vector2D GetVelocityVec() const;
 
-	inline float GetDirection() const { return m_TransformComponent->GetDirection(); }
+	float GetDirection() const;
 
-	inline float GetAngle() const { return m_TransformComponent->GetAngle(); }
-	inline void SetAngle(float angle) { m_TransformComponent->SetAngle(angle); }
-
-	
-
-	//SDL_Point GetCenter() { return { tempw, temph }; }
-
+	float GetAngle() const;
+	void SetAngle(float angle);
 
 	template <typename T>
 	T& GetComponent()
@@ -90,7 +85,6 @@ protected:
 	TextureComponent* m_TextureComponent;
 	ColliderComponent* m_ColliderComponent;
 	std::unique_ptr<ComponentManager> m_ComponentManager;
-
 	
 
 private:

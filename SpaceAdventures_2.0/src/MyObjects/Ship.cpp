@@ -1,5 +1,5 @@
+#include "sapch.h"
 #include "Ship.h"
-
 
 void Ship::InitComponents(int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage)
 {

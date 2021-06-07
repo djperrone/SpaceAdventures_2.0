@@ -7,8 +7,10 @@ class Ship : public Actor
 {
 public:
 
-	Ship() {}
-	Ship(int x, int y, Team team) {}
+	Ship()
+	:m_Gun(nullptr){}
+	Ship(int x, int y, Team team) 
+	:m_Gun(nullptr) {}
 	
 	virtual ~Ship() {}
 

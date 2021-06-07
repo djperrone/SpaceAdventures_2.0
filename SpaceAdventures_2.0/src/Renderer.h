@@ -1,28 +1,18 @@
 #pragma once
 
-#include <unordered_map>
-
 #include "SDL.h"
 #include "SDL_image.h"
 
-#include "ObjectTemplates/GameObject.h"
-
-//class GameObject;
-
-//class TextureManager;
+class GameObject;
 
 class Renderer
 {
 private:
 	SDL_Renderer* m_Renderer;
-
-	std::unordered_map<std::string, SDL_Texture*> m_TextureCache;
-	//TextureManager* m_TextureManager;
-
+	std::unordered_map<std::string, SDL_Texture*> m_TextureCache;	
 	SDL_Texture* LoadTexture(const char* filename);
-	void Draw(SDL_Texture* tex, SDL_Rect src, SDL_Rect dest);
-public:
-	//should be a list eventually
+	
+public:	
 	Renderer(SDL_Renderer* renderer);
 	void Render(GameObject* object);
 	

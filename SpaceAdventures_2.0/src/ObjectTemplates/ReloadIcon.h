@@ -1,7 +1,6 @@
 #pragma once
-#include "SDL.h"
-#include "ObjectTemplates/Actor.h"
 
+#include "ObjectTemplates/Actor.h"
 
 class ReloadIcon : public Actor
 {

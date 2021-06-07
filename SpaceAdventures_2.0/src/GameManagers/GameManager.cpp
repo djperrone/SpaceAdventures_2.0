@@ -1,5 +1,6 @@
-#include "GameManager.h"
 
+#include "sapch.h"
+#include "GameManager.h"
 #include "Game.h"
 
 GameManager::GameManager(Game* game, SDL_Renderer* renderer, SDL_Event* event)

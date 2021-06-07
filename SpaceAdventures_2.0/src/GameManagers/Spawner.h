@@ -1,29 +1,17 @@
 #pragma once
-#include <list>
-
-#include "ObjectTemplates/GameObject.h"
-#include "MyObjects/Asteroid.h"
-#include "MyObjects/Ship.h"
-#include "MyObjects/UFO.h"
 #include "Dimensions.h"
-#include <vector>
-
-
 
 class Actor;
 class Asteroid;
 class Ship;
 class Spawner
 {
-public:
-	//Spawner(std::list<GameObject*>* objList);
+public:	
 	Spawner(std::list<std::shared_ptr<Actor>>* objectList, std::list<std::shared_ptr<Ship>>* shipList, std::list<std::unique_ptr<Asteroid>>* asteroidList);
 
 	void SpawnAsteroid();
 	void SpawnUFO();
-	void SpawnUFO(int x, int y);
-
-
+	void SpawnUFO(float x, float y);
 
 	template <typename T>
 	void Spawn()
@@ -47,15 +35,14 @@ public:
 private:
 	std::list <std::shared_ptr<Actor>>* m_ObjList;
 	std::list <std::shared_ptr<Ship>>* m_ShipList;
-	std::list <std::unique_ptr<Asteroid>>* m_AsteroidList;
-	//std::list <GameObject*>* m_ObjList_raw;
+	std::list <std::unique_ptr<Asteroid>>* m_AsteroidList;	
 	Dimensions m_Dimensions;
 
-	time_t currentTime;
-	time_t previousTime;
+	time_t currentTime = 0;
+	time_t previousTime = 0;
 
-	time_t ufoCurrentTime;
-	time_t ufoPreviousTime;
+	time_t ufoCurrentTime = 0;
+	time_t ufoPreviousTime = 0;
 	double UFO_SPAWN_RATE = 5000;
 
 	double ASTEROID_SPAWN_RATE = 1000;

@@ -25,6 +25,9 @@ project "SpaceAdventures_2.0"
 	targetdir ("bin/%{cfg.buildcfg}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "sapch.h"
+	pchsource "SpaceAdventures_2.0/src/sapch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

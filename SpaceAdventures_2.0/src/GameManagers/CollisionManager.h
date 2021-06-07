@@ -1,9 +1,6 @@
 #pragma once
-#include <list>
-#include <memory>
-#include "ObjectTemplates/Actor.h"
-#include "MyObjects/Asteroid.h"
-
+class Asteroid;
+class Actor;
 
 class CollisionManager
 {
@@ -15,12 +12,10 @@ public:
 	void HandleCollisionEvent(Actor* current, Actor* other);
 	bool IsOnSameTeam(Actor* current, Actor* other);
 
-
 protected:
 	
 private:
 	std::list<std::shared_ptr<Actor>>* m_ObjectList;
-	std::list<std::unique_ptr<Asteroid>>* m_AsteroidList;
-	//std::iterator<std::list<std::shared_ptr<Actor>> it;
+	std::list<std::unique_ptr<Asteroid>>* m_AsteroidList;	
 };
 

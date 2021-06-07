@@ -1,3 +1,4 @@
+#include "sapch.h"
 #include "CombatComponent.h"
 #include "ObjectTemplates/Actor.h"
 

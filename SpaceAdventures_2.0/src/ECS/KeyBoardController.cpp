@@ -1,4 +1,6 @@
+#include "sapch.h"
 #include "KeyboardController.h"
+#include "MyObjects/Player.h"
 
 KeyboardController::KeyboardController(Player* player)
 	:m_Player(player) {}
@@ -9,8 +11,7 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 
 	if (state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_S])
 	{
-		w = true;
-		//m_Player->GetComponent<TransformComponent>()->velocity.y = -1;
+		w = true;		
 		m_Player->SetYVelocity(-1);
 	}	
 	
@@ -27,8 +28,7 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 	}
 
 	if (!state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_A])
-	{
-		//d = true;
+	{		
 		m_Player->SetXVelocity(0);
 	}
 	
@@ -52,7 +52,6 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 
 			m_Player->FireGun();
 		}
-
 	}
 
 	if (e.type == SDL_MOUSEBUTTONUP)
