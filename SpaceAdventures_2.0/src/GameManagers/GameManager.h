@@ -3,25 +3,22 @@
 #include "ObjectManager.h"
 #include "SDL.h"
 #include "Game.h"
-
 #include "GameState/GameStateMachine.h"
+
+class Gamestate;
+class GameStateMachine;
 
 class GameManager
 {
-
 public:
-
-	GameManager(Game* game, SDL_Renderer* renderer, SDL_Event* event);
-	void Tick();
+	GameManager(SDL_Renderer* renderer, SDL_Event* event);
+	void Update();
 	void Render();	
-	void ChangeState(Game::State state);
+	void SetState(GameState* state);
 
-private:
-	
-	Game* m_Game;
+private:		
 	std::shared_ptr<Renderer> m_Renderer;
 	SDL_Event* m_Event;
-
 	std::unique_ptr<GameStateMachine> m_StateMachine;
 };
 

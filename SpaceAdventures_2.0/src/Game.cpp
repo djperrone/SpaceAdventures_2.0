@@ -15,7 +15,7 @@ Game::Game()
 Game::~Game()
 {}
 
-void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
+void Game::Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
 	int flags = 0;
 	if (fullscreen)
@@ -42,13 +42,11 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	else
 	{
 		isRunning = false;
-	}
-	
-	m_GameManager = std::make_unique<GameManager>(this,renderer, &event);
-	GameState = State::MainMenu;
+	}	
+	m_GameManager = std::make_unique<GameManager>(renderer, &event);	
 }
 
-void Game::handleEvents()
+void Game::HandleEvents()
 {	
 	SDL_PollEvent(&event);
 
@@ -62,20 +60,20 @@ void Game::handleEvents()
 	}
 }
 
-void Game::update()
+void Game::Update()
 {
 	cnt++;	
-	m_GameManager->Tick();	
+	m_GameManager->Update();	
 }
 
-void Game::render()
+void Game::Render()
 {
 	SDL_RenderClear(renderer);	
 	m_GameManager->Render();
 	SDL_RenderPresent(renderer);	
 }
 
-void Game::clean()
+void Game::Clean()
 {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);

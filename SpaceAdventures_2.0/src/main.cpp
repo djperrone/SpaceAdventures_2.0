@@ -1,25 +1,16 @@
 #include "sapch.h"
 #include "game.h"
 
-
-Game* game = nullptr;
-
-
-void GameLoop(Game* game);
+void GameLoop();
 
 
 int main(int argc, char** argv)	
-{	
-	
-	game = new Game();
-	GameLoop(game);
-	//game = new Game();
-	//GameLoop(game);
-	
+{			
+	GameLoop();	
 	return 0;
 }
 
-void GameLoop(Game* game)
+void GameLoop()
 {
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
@@ -27,15 +18,15 @@ void GameLoop(Game* game)
 	Uint32 frameStart;
 	int frameTime;
 
-	game = new Game();
-	game->init("Asteroid", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
-	while (game->running())
+	Game* game = new Game();
+	game->Init("Asteroid", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+	while (game->IsRunning())
 	{
 		frameStart = SDL_GetTicks();
 		//sound.Play();
-		game->handleEvents();
-		game->update();
-		game->render();
+		game->HandleEvents();
+		game->Update();
+		game->Render();
 
 		frameTime = SDL_GetTicks() - frameStart;
 
@@ -44,8 +35,8 @@ void GameLoop(Game* game)
 			SDL_Delay(frameDelay - frameTime);
 		}
 	}
-
-	game->clean();
+	game->Clean();
+	delete game;
 }
 
 

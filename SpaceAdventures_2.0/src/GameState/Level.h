@@ -7,7 +7,7 @@ class ObjectManager;
 class Level : public GameState
 {
 public:
-	STATE_CLASS_TYPE(InGame);
+	
 	Level(SDL_Event* event);
 	~Level();
 	virtual void Update() override;

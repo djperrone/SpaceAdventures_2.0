@@ -5,8 +5,7 @@
 Level::Level(SDL_Event* event)
 {
 	SDL_ShowCursor(false);
-	m_ObjectManager = std::make_unique<ObjectManager>(event);
-	
+	m_ObjectManager = std::make_unique<ObjectManager>(event);	
 }
 
 Level::~Level()

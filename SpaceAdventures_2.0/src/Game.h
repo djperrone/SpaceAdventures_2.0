@@ -6,32 +6,22 @@ class GameManager;
 
 class Game
 {
-public:
-
-	enum class State
-	{
-		None = 0,
-		MainMenu,
-		InGame,
-		PauseScreen,
-		DeathScreen
-	};
+public:	
 
 	Game();
 	~Game();
 
-	void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+	void Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
-	void handleEvents();
-	void update();
-	inline bool running() { return isRunning; }
-	void render();
-	void clean();
+	void HandleEvents();
+	void Update();
+	inline bool IsRunning() { return isRunning; }
+	void Render();
+	void Clean();
 
 
 	static SDL_Event event;
-	static bool isRunning;
-	State GameState;
+	static bool isRunning;	
 
 private:
 	SDL_Renderer* renderer;
