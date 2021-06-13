@@ -16,21 +16,17 @@ ObjectManager::ObjectManager(SDL_Event* event)
 	m_Player = std::make_shared<Player>(m_MouseController.get());
 	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
 
-	m_ObjectList.push_back((m_Player));
+	m_ObjectList.push_back(m_Player);
 	m_ShipList.push_back(m_Player);
 	
 	m_CollisionManager = std::make_unique<CollisionManager>(&m_ObjectList, &m_AsteroidList);
 	m_Spawner = std::make_unique<Spawner>(&m_ObjectList, &m_ShipList,&m_AsteroidList);
 
-	m_ProjectileManager = std::make_unique<ProjectileManager>();
-
-	
+	m_ProjectileManager = std::make_unique<ProjectileManager>();	
 }
 
 void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 {
-	
-
 	if (m_Player->IsReloading())
 	{
 		renderer->Render(m_ReloadIcon.get());
@@ -60,26 +56,26 @@ Player* ObjectManager::GetPlayer() const
 
 void ObjectManager::Tick()
 {
-	if (!m_Player->IsAlive())
-	{
-		std::cout << "player dead!\n";		
-	}	
-
-	m_Spawner->SpawnAsteroid();
-	m_Spawner->SpawnUFO();	
 	
-	m_CollisionManager->Tick();
-	m_InputController->UpdateLocation(*m_Event);
-	m_MouseController->Tick();
-	m_ReloadIcon->Tick();
-	
-	Update();
-	LoadAllProjectiles();
 }
 
 void ObjectManager::Update()
 {
-	CleanList();
+	if (!m_Player->IsAlive())
+	{
+		std::cout << "player dead!\n";
+	}
+
+	m_Spawner->SpawnAsteroid();
+	m_Spawner->SpawnUFO();
+
+	m_CollisionManager->Tick();
+	m_InputController->UpdateLocation(*m_Event);
+	m_MouseController->Tick();
+	m_ReloadIcon->Tick();
+
+	
+	
 	//for (auto& obj : m_ObjectList)
 	//{
 	//	/*if (obj->GetTag() == Tag::Player)
@@ -108,6 +104,9 @@ void ObjectManager::Update()
 		//std::cout << "updating\n";
 		obj->Update();
 	}
+
+	LoadAllProjectiles();
+	CleanList();
 }
 
 void ObjectManager::CleanList()

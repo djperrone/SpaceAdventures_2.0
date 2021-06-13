@@ -5,13 +5,6 @@ Vector2D::Vector2D() :x(0), y(0) {}
 
 Vector2D::Vector2D(float x, float y) :x(x), y(y) {}
 
-//Vector2D&& Vector2D::Add(const Vector2D& vec)
-//{
-//	//return { this->x + vec.x, this->y + vec.y };
-//	return Vector2D(this->x + vec.x, this->y + vec.y);
-//}
-//EX OF HIS CODE
-//RETURNING RVALUES DIDNT WORK FOR SOME REASON o.O
 Vector2D& Vector2D::Add(const Vector2D& vec)
 {
 	this->x += vec.x;

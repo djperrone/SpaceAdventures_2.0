@@ -1,11 +1,22 @@
 #pragma once
 
 #include "SDL.h"
-#include "GameManagers/GameManager.h"
+
+class GameManager;
 
 class Game
 {
 public:
+
+	enum class State
+	{
+		None = 0,
+		MainMenu,
+		InGame,
+		PauseScreen,
+		DeathScreen
+	};
+
 	Game();
 	~Game();
 
@@ -13,18 +24,20 @@ public:
 
 	void handleEvents();
 	void update();
-	bool running() { return isRunning; }
+	inline bool running() { return isRunning; }
 	void render();
 	void clean();
 
 
 	static SDL_Event event;
 	static bool isRunning;
+	State GameState;
 
 private:
 	SDL_Renderer* renderer;
 	int cnt = 0;
 	std::unique_ptr<GameManager> m_GameManager;
 	SDL_Window* window;
+	
 };
 

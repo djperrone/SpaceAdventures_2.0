@@ -6,7 +6,6 @@
 MouseCursor::MouseCursor()
 {
 
-	SDL_ShowCursor(false);
 	m_ImageName = "assets/mouse_cursor.png";
 	InitComponents();
 	SDL_GetMouseState(&m_XPosition, &m_YPosition);

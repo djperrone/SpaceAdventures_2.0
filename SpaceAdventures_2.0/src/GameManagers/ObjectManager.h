@@ -1,12 +1,12 @@
 #pragma once
 
-#include "ECS/KeyboardController.h"
-#include "GameManagers/Spawner.h"
 #include "Renderer.h"
-#include "CollisionManager.h"
 #include "Dimensions.h"
+#include "GameManagers/Spawner.h"
+#include "CollisionManager.h"
 #include "ProjectileManager.h"
 
+#include "ECS/KeyboardController.h"
 #include "MyObjects/Player.h"
 #include "MyObjects/Asteroid.h"
 #include "ObjectTemplates/Projectile.h"

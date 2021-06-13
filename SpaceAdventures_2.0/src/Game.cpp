@@ -1,5 +1,6 @@
 #include "sapch.h"
 #include "Game.h"
+#include "GameManagers/GameManager.h"
 
 
 SDL_Event Game::event;
@@ -44,6 +45,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 	
 	m_GameManager = std::make_unique<GameManager>(this,renderer, &event);
+	GameState = State::MainMenu;
 }
 
 void Game::handleEvents()

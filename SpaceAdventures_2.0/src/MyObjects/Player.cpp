@@ -14,7 +14,6 @@ Player::Player(MouseCursor* mouseCursor)
 	m_Tag = Tag::Player;
 	
 	InitComponents(250, 250, 32, 32, 3.5f, 0.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
-
 }
 
 
@@ -36,8 +35,13 @@ void Player::Update()
 {
 	float dx = (m_MouseCursor->GetXPosition() - GetXPosition());
 	float dy = (m_MouseCursor->GetYPosition() - GetYPosition());
+
+	/*float dx = (m_MouseCursor->GetXPosition() + (m_MouseCursor->GetWidth() * m_MouseCursor->GetScale()) / 2 - GetXPosition() + (GetWidth() * GetScale() / 2));
+	float dy = (m_MouseCursor->GetYPosition() + (m_MouseCursor->GetHeight() * m_MouseCursor->GetScale()) / 2 - GetYPosition() + (GetHeight() * GetScale() / 2));*/
 	float angle;
 	angle = atan2(dy, dx) * (180 / 3.146f);	
+
+	//angle >= 0 ? angle : angle += 360;
 	SetAngle(angle);
 
 	Vector2D oldPos = m_TransformComponent->GetPositionVec();
@@ -52,7 +56,6 @@ void Player::Update()
 	if (currentPos.x > dimensions.WIDTH +15 - m_TransformComponent->GetWidth() * m_TransformComponent->GetScale())
 	{
 		m_TransformComponent->SetXPosition(oldPos.x);
-
 	}
 
 	if (currentPos.y < -15)
@@ -63,7 +66,6 @@ void Player::Update()
 	if (currentPos.y > dimensions.HEIGHT + 15 - m_TransformComponent->GetHeight() * m_TransformComponent->GetScale())
 	{
 		m_TransformComponent->SetYPosition(oldPos.y);
-
 	}
 
 	m_TextureComponent->Update();
