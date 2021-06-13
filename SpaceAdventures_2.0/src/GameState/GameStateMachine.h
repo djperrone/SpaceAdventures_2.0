@@ -1,9 +1,8 @@
 #pragma once
 
-#include "SDL.h"
-
 class Renderer;
 class GameState;
+union SDL_Event;
 
 class GameStateMachine
 {

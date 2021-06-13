@@ -1,6 +1,6 @@
 #pragma once
-#include "Renderer.h"
 
+class Renderer;
 
 class GameState
 {

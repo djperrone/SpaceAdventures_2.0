@@ -13,8 +13,9 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["SDL2"] = "%{wks.location}/Dependencies/SDL2/include"
 IncludeDir["SDL2_image"] = "%{wks.location}/Dependencies/SDL2_image/include"
-IncludeDir["SDL2_ttf"] = "%{wks.location}/Dependencies/SDL2_ttf/include"
 
+--include "Dependencies/SDL2"
+--include "Dependencies/SDL2_image"
 
 project "SpaceAdventures_2.0"
 	location "SpaceAdventures_2.0"
@@ -23,6 +24,9 @@ project "SpaceAdventures_2.0"
 
 	targetdir ("bin/%{cfg.buildcfg}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "sapch.h"
+	pchsource "SpaceAdventures_2.0/src/sapch.cpp"
 
 	files
 	{
@@ -36,23 +40,20 @@ project "SpaceAdventures_2.0"
 		--"Dependencies/SDL2/include",
 		--"Dependencies/SDL2_image",
 		"%{IncludeDir.SDL2}",
-		"%{IncludeDir.SDL2_image}",
-		"%{IncludeDir.SDL2_ttf}"	
+		"%{IncludeDir.SDL2_image}"		
 	}
 
 	libdirs
 	{
 		"%{wks.location}/Dependencies/SDL2/lib/x86",
 		"%{wks.location}/Dependencies/SDL2_image/lib/x86",
-		"%{wks.location}/Dependencies/SDL2_ttf/lib/x86",
 	}
 
 	links
 	{
 		"SDL2.lib",
 		"SDL2main.lib",
-		"SDL2_image.lib",
-		"SDL2_ttf.lib"
+		"SDL2_image.lib"
 	}
 	
 	filter { "configurations:Debug" }

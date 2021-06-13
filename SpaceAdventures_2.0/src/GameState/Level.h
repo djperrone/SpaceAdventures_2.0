@@ -1,8 +1,10 @@
 #pragma once
 #include "GameState.h"
-#include "Renderer.h"
+
 
 class ObjectManager;
+class Renderer;
+union SDL_Event;
 
 class Level : public GameState
 {

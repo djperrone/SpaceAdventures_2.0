@@ -2,6 +2,8 @@
 #include "Level.h"
 #include "GameManagers/ObjectManager.h"
 
+class Renderer;
+
 Level::Level(SDL_Event* event)
 {
 	SDL_ShowCursor(false);
