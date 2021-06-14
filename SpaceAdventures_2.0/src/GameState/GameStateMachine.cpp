@@ -5,6 +5,7 @@
 #include "MainMenu.h"
 #include "Level.h"
 #include "DeathScreen.h"
+#include "PauseMenu.h"
 
 GameStateMachine::GameStateMachine(SDL_Event* e)
 	: m_Event(e)
@@ -33,6 +34,21 @@ void GameStateMachine::AddLevelState()
 	//m_CurrentState.reset(new Level(m_Event));
 	//m_CurrentState.reset();
 	//m_CurrentState->Update();
+}
+
+void GameStateMachine::PauseGame(Player* player)
+{	
+	m_PreviousState.reset(new PauseMenu(this,m_Event, player));
+	m_CurrentState.swap(m_PreviousState);
+}
+
+void GameStateMachine::UnPauseGame()
+{
+	m_CurrentState->OnExit();
+	m_PreviousState->OnEnter();
+	IsMouseClicked = true;
+	m_CurrentState.swap(m_PreviousState);	
+	//m_PreviousState.reset();
 }
 
 GameState* GameStateMachine::GetState()

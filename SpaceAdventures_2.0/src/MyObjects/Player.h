@@ -14,6 +14,7 @@ public:
 	virtual void Update() override;
 
 	~Player();
+	bool Paused = false;
 
 private:
 	Dimensions dimensions;

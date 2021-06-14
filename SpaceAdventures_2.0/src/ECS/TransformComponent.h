@@ -13,7 +13,7 @@ public:
 
 	~TransformComponent()
 	{
-		std::cout << "Deleted transform component\n";
+		/*std::cout << "Deleted transform component\n";*/
 	}
 
 	void Update() override

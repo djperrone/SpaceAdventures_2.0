@@ -18,7 +18,7 @@ DeathScreen::DeathScreen(GameStateMachine* stateMachine, SDL_Event* event)
 	: m_StateMachine(stateMachine), m_Event(event)
 {
 	std::cout << "Death Screen\n";
-	IsMouseClicked = false;
+	//IsMouseClicked = false;
 	OnEnter();
 }
 

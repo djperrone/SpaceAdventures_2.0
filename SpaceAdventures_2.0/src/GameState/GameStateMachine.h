@@ -2,6 +2,7 @@
 
 class Renderer;
 class GameState;
+class Player;
 #include "SDL.h"
 
 class GameStateMachine
@@ -11,6 +12,8 @@ public:
 	~GameStateMachine();
 	void SetState(GameState* newState);
 	void AddLevelState();
+	void PauseGame(Player* player);
+	void UnPauseGame();
 	GameState* GetState();
 	void Update();
 	void Render(std::shared_ptr<Renderer>& renderer);

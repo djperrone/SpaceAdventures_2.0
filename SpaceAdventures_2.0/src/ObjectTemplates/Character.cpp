@@ -7,7 +7,7 @@ Character::Character()
 {
 }
 
-Character::~Character() { std::cout << "desoyed Character\n"; }
+Character::~Character() { /*std::cout << "desoyed Character\n";*/ }
 
 void Character::InitComponents(int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage)
 {

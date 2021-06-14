@@ -6,7 +6,7 @@ Actor::Actor()
 {	
 }
 
-Actor::~Actor() { std::cout << "desoyed Actor\n"; }
+Actor::~Actor() { /*std::cout << "desoyed Actor\n";*/ }
 
 void Actor::InitComponents(const char* fileName, float xPos, float yPos, int width, int height, float scale, float angle)
 {

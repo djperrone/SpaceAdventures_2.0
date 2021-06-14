@@ -21,7 +21,7 @@ void Spawner::SpawnAsteroid()
 		int randx = rand() % 800;
 
 		 m_AsteroidList->emplace_back(std::move(std::make_unique<Asteroid>(randx,-100)));
-		 std::cout << "asteorielist size " << m_AsteroidList->size() << std::endl;
+		// std::cout << "asteorielist size " << m_AsteroidList->size() << std::endl;
 		previousTime = currentTime;
 	}	
 }

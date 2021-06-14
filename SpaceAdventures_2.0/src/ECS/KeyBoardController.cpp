@@ -18,6 +18,7 @@ KeyboardController::~KeyboardController()
 
 void KeyboardController::UpdateLocation(SDL_Event& e)
 {
+	
 	const Uint8* state = SDL_GetKeyboardState(NULL);
 
 	if (state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_S])
@@ -93,8 +94,7 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
-		SDL_Quit();
-		exit(0);
+		m_Player->Paused = true;
 	}
 
 	

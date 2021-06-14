@@ -5,6 +5,7 @@ enum class ButtonType
 {
 	None = 0,
 	Play,
+	PauseMenu,
 	MainMenu,
 	Exit
 };

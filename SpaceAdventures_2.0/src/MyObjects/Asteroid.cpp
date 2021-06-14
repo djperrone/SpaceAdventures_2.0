@@ -3,7 +3,7 @@
 
 Asteroid::Asteroid()
 {
-	std::cout << "Asteroid!\n";
+	//std::cout << "Asteroid!\n";
 	int randx = rand() % 800;
 	m_ImageName = "assets/Asteroid1.png";	
 
@@ -22,7 +22,7 @@ Asteroid::Asteroid()
 Asteroid::Asteroid(int x, int y)
 {
 	m_Team = Team::Enemy;
-	std::cout << "Asteroid!" << static_cast<std::size_t>(m_Team) << std::endl;
+	//std::cout << "Asteroid!" << static_cast<std::size_t>(m_Team) << std::endl;
 
 	m_ImageName = "assets/Asteroid1.png";
 	if (m_Team == Team::Enemy)
