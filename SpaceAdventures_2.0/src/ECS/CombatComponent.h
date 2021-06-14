@@ -1,19 +1,15 @@
 #pragma once
-
-class Actor;
 #include "Component.h"
+class Character;
 
 class CombatComponent : public Component
 {
 public:
 	CombatComponent()
-		:m_Health(1), m_Damage(0) {}
-	
+		:m_Health(1), m_Damage(0) {}	
 
 	CombatComponent(float health, float damage)
-		: m_Health(health), m_Damage(damage) {
-		
-	}
+		: m_Health(health), m_Damage(damage) {}
 
 	inline void TakeDamage(float damage)
 	{
@@ -21,7 +17,7 @@ public:
 	}
 	COMPONENT_CLASS_TYPE(CombatComponent)
 
-	void Attack(Actor* actor);	
+	void Attack(Character* Character);	
 
 	inline float GetHealth() const { return m_Health; }
 	inline float GetDamage() const { return m_Damage; }

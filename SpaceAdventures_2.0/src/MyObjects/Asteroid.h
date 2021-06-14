@@ -1,7 +1,7 @@
 #pragma once
-#include "ObjectTemplates/Actor.h"
+#include "ObjectTemplates/Character.h"
 
-class Asteroid : public Actor
+class Asteroid : public Character
 {
 public:
 	Asteroid();

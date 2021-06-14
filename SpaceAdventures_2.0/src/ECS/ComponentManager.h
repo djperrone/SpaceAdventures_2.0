@@ -2,10 +2,6 @@
 
 #include "Component.h"
 
-#include <unordered_map>
-#include <array>
-#include <memory>
-
 class ComponentManager
 {
 private:

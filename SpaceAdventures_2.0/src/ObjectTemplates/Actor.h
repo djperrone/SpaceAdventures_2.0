@@ -1,49 +1,49 @@
 #pragma once
 #include "GameObject.h"
+
 #include "ECS/ComponentManager.h"
 #include "ECS/ColliderComponent.h"
 #include "ECS/CombatComponent.h"
+#include "ECS/MovementComponent.h"
 
 
 class Actor : public GameObject
 {
 
 public:
-	Actor();
-	Actor(int x, int y);
-	Actor(const std::string& texturesheet, int x, int y);
+	Actor();	
 	virtual ~Actor();
 
-	virtual void Update() override;		
+	virtual void Update() override;	
+	virtual void UpdateLocation();
+
+	virtual void Actor::InitComponents(const char* fileName, float xPos, float yPos, int width, int height, float scale, float angle) override;
+
 	
-	void InitComponents(int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage) override;
+	//virtual void InitComponents(const char* fileName, int xPos, int yPos, int width, int height, float scale, float angle);
+	virtual void InitComponents(const char* fileName, int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage);
+
+	/*float GetXVelocity() const;
+	float GetYVelocity() const;
+	void SetXVelocity(float xVelocity);
+	void SetYVelocity(float yVelocity);
+	float GetSpeed() const;
+	void SetSpeed(float speed);
+	Vector2D GetVelocityVec() const;*/
 
 	float GetLeftBound() const;	
 	float GetRightBound()const;
 	float GetUpperBound()const;
-	float GetLowerBound()const;
-	
-	inline float GetHealth() const { return m_CombatComponent->GetHealth(); }
-	inline float GetDamage() const { return m_CombatComponent->GetDamage(); }
+	float GetLowerBound()const;	
 
-	inline void TakeDamage(float damage) { m_CombatComponent->TakeDamage(damage); }
-	inline void Attack(Actor* actor) { m_CombatComponent->Attack(actor); } 
-	inline bool IsAlive() const { return GetHealth() > 0; }
+	//Team GetTeam()const;
+	Tag GetTag() const;
 
-	inline Team GetTeam()const { return m_Team; }
-
-	inline Tag GetTag() const { return m_Tag; }
-
-
-protected:
-
-	CombatComponent* m_CombatComponent;
-	Team m_Team;
-	Tag m_Tag = Tag::None;
-	
+protected:	
+	ColliderComponent* m_ColliderComponent;	
+	Tag m_Tag = Tag::None;	
 
 private:
-	
 	
 
 };

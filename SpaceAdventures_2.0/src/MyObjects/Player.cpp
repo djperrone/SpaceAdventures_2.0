@@ -1,8 +1,7 @@
 #include "sapch.h"
 #include "Player.h"
-#include "ObjectTemplates/MouseCursor.h"
 
-Player::Player(MouseCursor* mouseCursor)
+Player::Player(Character* mouseCursor)
 	:m_MouseCursor(mouseCursor)
 {
 	//m_MouseCursor = mouseCursor;
@@ -14,6 +13,7 @@ Player::Player(MouseCursor* mouseCursor)
 	m_Tag = Tag::Player;
 	
 	InitComponents(250, 250, 32, 32, 3.5f, 0.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
+	InitGun();
 }
 
 
@@ -33,6 +33,7 @@ Player::~Player() { std::cout << "destroyed player\n"; }
 
 void Player::Update()
 {
+	
 	float dx = (m_MouseCursor->GetXPosition() - GetXPosition());
 	float dy = (m_MouseCursor->GetYPosition() - GetYPosition());
 
@@ -45,7 +46,7 @@ void Player::Update()
 	SetAngle(angle);
 
 	Vector2D oldPos = m_TransformComponent->GetPositionVec();
-	m_TransformComponent->Update();
+	UpdateLocation();
 	Vector2D currentPos = m_TransformComponent->GetPositionVec();
 
 	if (currentPos.x < -15)
@@ -67,7 +68,7 @@ void Player::Update()
 	{
 		m_TransformComponent->SetYPosition(oldPos.y);
 	}
-
+	
 	m_TextureComponent->Update();
 	m_Gun->Update();
 }

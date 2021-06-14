@@ -1,13 +1,13 @@
 #pragma once
 #include "Dimensions.h"
 
-class Actor;
+class Character;
 class Asteroid;
 class Ship;
 class Spawner
 {
 public:	
-	Spawner(std::list<std::shared_ptr<Actor>>* objectList, std::list<std::shared_ptr<Ship>>* shipList, std::list<std::unique_ptr<Asteroid>>* asteroidList);
+	Spawner(std::list<std::shared_ptr<Character>>* objectList, std::list<std::shared_ptr<Ship>>* shipList, std::list<std::unique_ptr<Asteroid>>* asteroidList);
 
 	void SpawnAsteroid();
 	void SpawnUFO();
@@ -33,7 +33,7 @@ public:
 	}
 
 private:
-	std::list <std::shared_ptr<Actor>>* m_ObjList;
+	std::list <std::shared_ptr<Character>>* m_ObjList;
 	std::list <std::shared_ptr<Ship>>* m_ShipList;
 	std::list <std::unique_ptr<Asteroid>>* m_AsteroidList;	
 	Dimensions m_Dimensions;

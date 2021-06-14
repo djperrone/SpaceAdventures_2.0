@@ -1,14 +1,12 @@
-
 #include "sapch.h"
+#include "SDL.h"
+
 #include "ProjectileComponent.h"
-
-#include <time.h>
 #include "TransformComponent.h"
+#include "MovementComponent.h"
 
-
-
-ProjectileComponent::ProjectileComponent(TransformComponent* transform, Team& team)
-	:m_TransformComponent(transform), m_Team(team)
+ProjectileComponent::ProjectileComponent(TransformComponent* transform, MovementComponent* movement, Team& team)
+	:m_TransformComponent(transform), m_MovementComponent(movement), m_Team(team)
 {
 	previousTime = SDL_GetTicks();
 	previousTime -= fireRate;
@@ -34,7 +32,6 @@ void ProjectileComponent::Update()
 			reloading = false;
 		}
 	}
-
 }
 
 void ProjectileComponent::FireGun()
@@ -56,7 +53,7 @@ void ProjectileComponent::FireGun()
 			spawnLoc.y += (m_TransformComponent->GetHeight() * m_TransformComponent->GetScale()) / 2.0f;
 
 			m_ProjectileList.emplace_back(std::move(std::make_shared<Projectile>(spawnLoc,
-				m_TransformComponent->GetVelocityVec(), m_TransformComponent->GetDirection(), m_Team, m_TransformComponent->GetAngle())));
+				m_MovementComponent->GetVelocityVec(), m_Team, m_TransformComponent->GetAngle())));
 
 			previousTime = currentTime;
 

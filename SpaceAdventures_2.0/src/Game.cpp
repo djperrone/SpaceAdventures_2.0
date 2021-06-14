@@ -4,6 +4,8 @@
 
 
 SDL_Event Game::event;
+SDL_Window* Game::window;
+SDL_Renderer* Game::renderer;
 
 bool Game::isRunning = false;
 
@@ -24,16 +26,16 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		std::cout << "Subsystems initialized!..." << std::endl;
 
-		window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
-		if (window)
+		Game::window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+		if (Game::window)
 		{
 			std::cout << "Window Created!" << std::endl;
 		}
 
-		renderer = SDL_CreateRenderer(window, -1, 0);
+		renderer = SDL_CreateRenderer(Game::window, -1, 0);
 		if (renderer)
 		{
-			SDL_SetRenderDrawColor(renderer, 0, 0, 0,255);
+			SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0,255);
 			std::cout << "Renderer Created!" << std::endl;
 		}
 
@@ -43,7 +45,7 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}	
-	m_GameManager = std::make_unique<GameManager>(renderer, &event);	
+	m_GameManager = std::make_unique<GameManager>(Game::renderer, &event);	
 }
 
 void Game::HandleEvents()

@@ -1,9 +1,9 @@
 #pragma once
-#include "ObjectTemplates/Actor.h"
+#include "ObjectTemplates/Character.h"
 #include "ECS/ProjectileComponent.h"
-#include "ObjectTemplates/Projectile.h"
+#include "MyObjects/Projectile.h"
 
-class Ship : public Actor
+class Ship : public Character
 {
 public:
 
@@ -14,8 +14,7 @@ public:
 	
 	virtual ~Ship() {}
 
-	virtual void InitComponents(int xPos, int yPos, int width, int height, float scale,float angle, float speed, float xVel, float yVel, float health, float damage) override;
-
+	virtual void InitGun();
 	virtual void FireGun();
 
 	std::vector<std::shared_ptr<Projectile>>& GetProjectileList()

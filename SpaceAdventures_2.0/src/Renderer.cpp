@@ -1,5 +1,7 @@
 #include "sapch.h"
 #include "Renderer.h"
+#include "SDL.h"
+#include "SDL_image.h"
 #include "ObjectTemplates/GameObject.h"
 
 Renderer::Renderer(SDL_Renderer* renderer)

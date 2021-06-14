@@ -1,12 +1,17 @@
 #include "sapch.h"
 
 #include "ObjectManager.h"
+#include "MyObjects/ReloadIcon.h"
+#include "MyObjects/MouseCursor.h"
+#include "MyObjects/Player.h"
+#include "MyObjects/Asteroid.h"
+#include "MyObjects/Projectile.h"
 
 
 
 
 ObjectManager::ObjectManager(SDL_Event* event)
-	: m_Event(event)
+	: m_Event(event), isFirst(true)
 {
 	std::cout << "constructed objmanager!\n";
 	
@@ -54,10 +59,6 @@ Player* ObjectManager::GetPlayer() const
 	return m_Player.get();
 }
 
-void ObjectManager::Tick()
-{
-	
-}
 
 void ObjectManager::Update()
 {
@@ -69,25 +70,9 @@ void ObjectManager::Update()
 	m_Spawner->SpawnAsteroid();
 	m_Spawner->SpawnUFO();
 
-	m_CollisionManager->Tick();
 	m_InputController->UpdateLocation(*m_Event);
-	m_MouseController->Tick();
-	m_ReloadIcon->Tick();
-
-	
-	
-	//for (auto& obj : m_ObjectList)
-	//{
-	//	/*if (obj->GetTag() == Tag::Player)
-	//	{
-	//		continue;
-	//	}
-	//	if (obj->GetTag() == Tag::Ship)
-	//	{
-	//		continue;
-	//	}*/
-	//	//obj->Update();
-	//}
+	m_MouseController->Update();
+	m_ReloadIcon->Update();	
 
 	for (auto& obj : m_ProjectileList)
 	{
@@ -105,6 +90,7 @@ void ObjectManager::Update()
 		obj->Update();
 	}
 
+	m_CollisionManager->Tick();
 	LoadAllProjectiles();
 	CleanList();
 }
@@ -169,7 +155,7 @@ void ObjectManager::LoadAllProjectiles()
 	m_ProjectileManager->ClearProjectileList();
 }
 
-bool ObjectManager::IsWithinBounds(Actor* tempObject)
+bool ObjectManager::IsWithinBounds(Character* tempObject)
 {
 	if (tempObject->GetXPosition() < -100 || tempObject->GetYPosition() > dimensions.HEIGHT +200 ||
 		tempObject->GetXPosition() > dimensions.WIDTH  || tempObject->GetYPosition() < -200)

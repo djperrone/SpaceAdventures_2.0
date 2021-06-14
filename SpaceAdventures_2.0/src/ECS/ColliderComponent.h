@@ -1,6 +1,6 @@
 #pragma once
-
 #include "Component.h"
+
 class TransformComponent;
 
 class ColliderComponent : public Component

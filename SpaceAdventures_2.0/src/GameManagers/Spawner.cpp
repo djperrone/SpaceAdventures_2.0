@@ -7,7 +7,7 @@
 
 
 
-Spawner::Spawner(std::list<std::shared_ptr<Actor>>* objectList, std::list<std::shared_ptr<Ship>>* shipList, std::list<std::unique_ptr<Asteroid>>* asteroidList)
+Spawner::Spawner(std::list<std::shared_ptr<Character>>* objectList, std::list<std::shared_ptr<Ship>>* shipList, std::list<std::unique_ptr<Asteroid>>* asteroidList)
 	: m_ObjList(objectList), m_ShipList(shipList), m_AsteroidList(asteroidList)
 {
 	time(&previousTime);

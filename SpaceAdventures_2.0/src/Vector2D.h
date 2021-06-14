@@ -2,6 +2,17 @@
 
 //IF THERE IS AN ERROR HERE I RETURN RVALUES INSTEAD OF LVALUES,....REWATCH #9 AND COPY HIS CODE
 
+class Vector2i
+{
+public:
+	int x, y;
+	Vector2i()
+		:x(0), y(0) {}
+
+	Vector2i(int x, int y)
+		:x(x), y(y) {}
+};
+
 class Vector2D
 {
 public:

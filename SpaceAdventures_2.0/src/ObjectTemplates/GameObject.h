@@ -1,16 +1,10 @@
 #pragma once
 
 #include <SDL.h>
-
-
-
 #include "Vector2D.h"
 #include "ECS/ComponentManager.h"
 #include "ECS/TransformComponent.h"
 #include "ECS/TextureComponent.h"
-#include "ECS/ColliderComponent.h"
-#include "ECS/CombatComponent.h"
-
 
 enum class Tag
 {
@@ -30,25 +24,20 @@ enum class Team
 class GameObject
 {
 public:
-	GameObject()
-	:m_ColliderComponent(nullptr),m_ComponentManager(nullptr),m_TextureComponent(nullptr),m_TransformComponent(nullptr){}	
+	//GameObject();
+	
 	virtual ~GameObject() { }
 
 	virtual void InitComponents() {}
 	virtual void InitComponents(int x, int y) {}
 	
-	virtual void InitComponents(int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage) {}
+	virtual void InitComponents(const char* fileName, float xPos, float yPos, int width, int height, float scale, float angle);
 
 	virtual void Update() = 0;	
 
 	std::string GetImageName() const;
 
-	SDL_Rect& GetDestRect();
-
-	float GetXVelocity() const;
-	float GetYVelocity() const;
-	void SetXVelocity(float xVelocity);
-	void SetYVelocity(float yVelocity);
+	SDL_Rect& GetDestRect();	
 
 	virtual float GetXPosition() const ;
 	virtual float GetYPosition() const ;
@@ -59,19 +48,17 @@ public:
 	int GetHeight() const;
 	void SetWidth(int width);
 	void SetHeight(int height);
-	float GetSpeed() const;
-	void SetSpeed(float speed);
+	
 
 	float GetScale() const ;
 	void SetScale(float scale);
 
 	Vector2D GetPositionVec() const;
-	Vector2D GetVelocityVec() const;
-
-	float GetDirection() const;
 
 	float GetAngle() const;
 	void SetAngle(float angle);
+
+
 
 	template <typename T>
 	T& GetComponent()
@@ -82,8 +69,7 @@ public:
 protected:	
 	std::string m_ImageName;	
 	TransformComponent* m_TransformComponent;
-	TextureComponent* m_TextureComponent;
-	ColliderComponent* m_ColliderComponent;
+	TextureComponent* m_TextureComponent;	
 	std::unique_ptr<ComponentManager> m_ComponentManager;
 	
 

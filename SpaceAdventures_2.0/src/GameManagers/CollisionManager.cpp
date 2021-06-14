@@ -1,15 +1,22 @@
 
 #include "sapch.h"
+#include "Vector2D.h"
 #include "CollisionManager.h"
 
-#include "ObjectTemplates/Actor.h"
+#include "ObjectTemplates/Character.h"
+#include "ObjectTemplates/GameObject.h"
 #include "MyObjects/Asteroid.h"
 
 
-CollisionManager::CollisionManager(std::list<std::shared_ptr<Actor>>* objList, std::list<std::unique_ptr<Asteroid>>* asteroidList)
+CollisionManager::CollisionManager(std::list<std::shared_ptr<Character>>* objList, std::list<std::unique_ptr<Asteroid>>* asteroidList)
 	: m_ObjectList(objList), m_AsteroidList(asteroidList)
 {
 
+}
+
+CollisionManager::CollisionManager()
+	: m_AsteroidList(nullptr), m_ObjectList(nullptr)
+{
 }
 
 void CollisionManager::Tick()
@@ -68,21 +75,21 @@ void CollisionManager::Tick()
 
 }
 
-void CollisionManager::HandleCollisionEvent(Actor* current, Actor* other)
+void CollisionManager::HandleCollisionEvent(Character* current, Character* other)
 {
 	std::cout << "collission detected!\n";
 	current->Attack(other);
 	//other->Attack(current);
 }
 
-bool CollisionManager::IsOnSameTeam(Actor* current, Actor* other)
+bool CollisionManager::IsOnSameTeam(Character* current, Character* other)
 {
 	//std::cout << "current team: " << static_cast<std::size_t>(current->GetTeam()) << ", other team: " << static_cast<std::size_t>(other->GetTeam()) << std::endl;
 	return current->GetTeam() == other->GetTeam();
 }
 
 
-bool CollisionManager::IsColliding(Actor* current, Actor* other)
+bool CollisionManager::IsColliding(Character* current, Character* other)
 {
 	if (current->GetRightBound() >= other->GetLeftBound() &&
 		other->GetRightBound() >= current->GetLeftBound() &&
@@ -92,5 +99,17 @@ bool CollisionManager::IsColliding(Actor* current, Actor* other)
 		return true;
 	}
 
+	return false;
+}
+
+bool CollisionManager::IsColliding(Actor* current, Vector2i pos)
+{
+	if (pos.x >= current->GetLeftBound() &&
+		pos.x <= current->GetRightBound() &&
+		pos.y >= current->GetLowerBound() &&
+		pos.y <= current->GetUpperBound())
+	{
+		return true;
+	}
 	return false;
 }

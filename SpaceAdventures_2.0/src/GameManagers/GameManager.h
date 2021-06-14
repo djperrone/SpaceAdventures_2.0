@@ -1,12 +1,12 @@
 #pragma once
-#include "Renderer.h"
+
 #include "ObjectManager.h"
-#include "SDL.h"
-#include "Game.h"
 #include "GameState/GameStateMachine.h"
 
-class Gamestate;
+class GameState;
 class GameStateMachine;
+class Renderer;
+union SDL_event;
 
 class GameManager
 {
@@ -14,7 +14,7 @@ public:
 	GameManager(SDL_Renderer* renderer, SDL_Event* event);
 	void Update();
 	void Render();	
-	void SetState(GameState* state);
+	//void SetState(GameState* state);
 
 private:		
 	std::shared_ptr<Renderer> m_Renderer;

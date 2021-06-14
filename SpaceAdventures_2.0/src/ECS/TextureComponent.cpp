@@ -2,7 +2,7 @@
 #include "TextureComponent.h"
 #include "TransformComponent.h"
 
-TextureComponent::TextureComponent(const char* imageFile, TransformComponent* transform)
+TextureComponent::TextureComponent(const std::string& imageFile, TransformComponent* transform)
 	:m_FileName(imageFile), m_Transform(transform)
 {
 	Init();
@@ -32,3 +32,4 @@ void TextureComponent::Update()
 	m_DestRect.w = static_cast<int>(m_SrcRect.w * m_Transform->GetScale());
 	m_DestRect.h = static_cast<int>(m_SrcRect.h * m_Transform->GetScale());
 }
+

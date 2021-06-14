@@ -1,8 +1,8 @@
 #include "sapch.h"
 #include "CombatComponent.h"
-#include "ObjectTemplates/Actor.h"
+#include "ObjectTemplates/Character.h"
 
-void CombatComponent::Attack(Actor* actor)
+void CombatComponent::Attack(Character* Character)
 {
-	actor->TakeDamage(GetDamage());
+	Character->TakeDamage(GetDamage());
 }

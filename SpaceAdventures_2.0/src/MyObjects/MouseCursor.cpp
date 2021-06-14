@@ -13,12 +13,12 @@ MouseCursor::MouseCursor()
 	SetYPosition(static_cast<float>(m_YPosition));
 }
 
-void MouseCursor::Tick()
+void MouseCursor::Update()
 {
 	SDL_GetMouseState(&m_XPosition, &m_YPosition);
 	SetXPosition(static_cast<float>(m_XPosition));
 	SetYPosition(static_cast<float>(m_YPosition));
-	m_TransformComponent->Update();
+	//UpdateLocation();
 	m_TextureComponent->Update();
 }
 
@@ -27,7 +27,7 @@ void MouseCursor::InitComponents()
 {
 	m_ComponentManager = std::make_unique<ComponentManager>();
 
-	m_ComponentManager->AddComponent<TransformComponent>(16, 16, 1);
+	m_ComponentManager->AddComponent<TransformComponent>(0.0f,0.0f,16, 16, 1);
 	m_TransformComponent = &m_ComponentManager->GetComponent<TransformComponent>();
 
 	m_ComponentManager->AddComponent<TextureComponent>(m_ImageName.c_str(), m_TransformComponent);

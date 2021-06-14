@@ -1,10 +1,15 @@
 #pragma once
 
 #include <iostream>
+
 #include <string>
 #include <vector>
-#include <memory>
 #include <list>
+#include <array>
 #include <unordered_map>
+
+#include <memory>
 #include <time.h>
 #include <cmath>
+
+#include "SDL.H"

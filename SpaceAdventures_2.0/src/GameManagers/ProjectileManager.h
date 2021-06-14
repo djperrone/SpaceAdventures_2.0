@@ -1,5 +1,5 @@
 #pragma once
-#include "ObJectTemplates/Projectile.h"
+#include "MyObjects/Projectile.h"
 
 class Ship;
 

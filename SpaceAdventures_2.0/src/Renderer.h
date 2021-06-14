@@ -1,9 +1,7 @@
 #pragma once
 
-#include "SDL.h"
-#include "SDL_image.h"
-
 class GameObject;
+struct SDL_Renderer;
 
 class Renderer
 {

@@ -17,17 +17,17 @@ public:
 	void Update();
 	inline bool IsRunning() { return isRunning; }
 	void Render();
-	void Clean();
+	static void Clean();
 
 
 	static SDL_Event event;
 	static bool isRunning;	
+	static SDL_Renderer* renderer;
+	static SDL_Window* window;
 
 private:
-	SDL_Renderer* renderer;
 	int cnt = 0;
 	std::unique_ptr<GameManager> m_GameManager;
-	SDL_Window* window;
 	
 };
 

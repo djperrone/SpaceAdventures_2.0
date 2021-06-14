@@ -1,13 +1,13 @@
 #pragma once
 
-#include "ObjectTemplates/Actor.h"
+#include "ObjectTemplates/Character.h"
 
-class MouseCursor : public Actor
+class MouseCursor : public Character
 {
 public:
 
 	MouseCursor();		
-	void Tick();
+	virtual void Update() override;
 
 	virtual void InitComponents() override;	
 

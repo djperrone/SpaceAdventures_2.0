@@ -12,7 +12,7 @@ Projectile::~Projectile()
 	std::cout << "destroyed projectile\n";
 }
 
-Projectile::Projectile(Vector2D position, Vector2D velocity, float direction, Team team, float angle)
+Projectile::Projectile(Vector2D position, Vector2D velocity, Team team, float angle)
 {
 	if (team == Team::Friend)
 	{
@@ -56,7 +56,7 @@ void Projectile::Update()
 	SetYVelocity(yRad);
 	SetXVelocity(xRad);
 	
-	m_TransformComponent->Update();
+	UpdateLocation();
 	m_TextureComponent->Update();
 }
 

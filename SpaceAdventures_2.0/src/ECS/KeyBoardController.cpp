@@ -1,9 +1,20 @@
 #include "sapch.h"
 #include "KeyboardController.h"
 #include "MyObjects/Player.h"
+#include "GameState/GameState.h"
+
+
 
 KeyboardController::KeyboardController(Player* player)
-	:m_Player(player) {}
+	:m_Player(player)
+	{
+		IsMouseClicked = true;
+	}
+
+KeyboardController::~KeyboardController()
+{
+	IsMouseClicked = false;
+}
 
 void KeyboardController::UpdateLocation(SDL_Event& e)
 {
@@ -45,19 +56,24 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
-		if (!clicked)
+		if (!IsMouseClicked)
 		{
-			clicked = true;
-			std::cout << "clicked~\n";
+			std::cout << "clieked bool " << IsMouseClicked << std::endl;
+			std::cout << "FIREGUNTRUE~\n";
 
 			m_Player->FireGun();
+			IsMouseClicked = true;
 		}
 	}
 
 	if (e.type == SDL_MOUSEBUTTONUP)
 	{
-		//std::cout << "Unclicked~\n";
-		clicked = false;
+		if (IsMouseClicked)
+		{
+			std::cout << "Unclickedcontroller~\n";
+			IsMouseClicked = false;
+		}
+		
 	}
 	
 	if (state[SDL_SCANCODE_R])
