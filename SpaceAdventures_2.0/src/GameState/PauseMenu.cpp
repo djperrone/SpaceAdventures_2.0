@@ -82,12 +82,10 @@ void PauseMenu::Update()
 	{
 		if (IsMouseClicked)
 		{
-			std::cout << "MENUUNCLICKED~\n";
+			std::cout << "unclick pause menu~\n";
 			IsMouseClicked = false;
 		}
-	}
-
-	
+	}	
 }
 
 void PauseMenu::HandleEvents()

@@ -54,7 +54,7 @@ void DeathScreen::Update()
 		if (!IsMouseClicked)
 		{
 			IsMouseClicked = true;
-			std::cout << "DEATHSCREENclicked~\n";
+			std::cout << "DEATHSCREEN clicked~\n";
 
 			for (const auto& item : m_ButtonList)
 			{
