@@ -15,6 +15,7 @@ public:
 	void FireGun();	
 	void ClearGun();
 	inline std::vector<std::shared_ptr<Projectile>>& GetProjectileList() { return m_ProjectileList; }
+	void LoadProjectile();
 
 	bool reloading;
 protected:

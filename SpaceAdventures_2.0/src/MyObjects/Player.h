@@ -1,6 +1,7 @@
 #pragma once
 #include "MyObjects/Ship.h"
 #include "Dimensions.h"
+#include "InputHandler/InputController.h"
 
 class Character;
 
@@ -16,7 +17,13 @@ public:
 	~Player();
 	bool Paused = false;
 
+	void MoveUp();
+	void MoveDown();
+	void MoveLeft();
+	void MoveRight();
+
 private:
+	InputController* m_InputController;
 	Dimensions dimensions;
 	Character* m_MouseCursor;
 };

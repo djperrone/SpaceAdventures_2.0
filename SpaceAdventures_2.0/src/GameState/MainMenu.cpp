@@ -1,10 +1,6 @@
 #include "sapch.h"
 #include "MainMenu.h"
-#include "UI/StaticSprite.h"
-#include "UI/Button.h"
-#include "Renderer.h"
-#include "GameManagers/CollisionManager.h"
-#include "GameStateMachine.h"
+
 #include "Level.h"
 #include "DeathScreen.h"
 #include "Game.h"
@@ -14,6 +10,10 @@
 //{
 //	OnEnter();
 //}
+
+MainMenu::MainMenu()
+{
+}
 
 MainMenu::MainMenu(GameStateMachine* stateMachine, SDL_Event* event)
 	:m_StateMachine(stateMachine), m_Event(event)
@@ -36,6 +36,10 @@ void MainMenu::OnEnter()
 	m_SpriteList.emplace_back(std::move(title));
 	m_ButtonList.emplace_back(std::move(playButton));
 	m_ButtonList.emplace_back(std::move(exitButton));
+}
+
+void MainMenu::OnExit()
+{
 }
 
 void MainMenu::Update()

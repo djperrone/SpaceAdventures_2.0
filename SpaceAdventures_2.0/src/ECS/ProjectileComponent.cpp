@@ -67,3 +67,7 @@ void ProjectileComponent::ClearGun()
 {
 	m_ProjectileList.clear();
 }
+
+void ProjectileComponent::LoadProjectile()
+{
+}

@@ -1,10 +1,5 @@
 #include "sapch.h"
 #include "PauseMenu.h"
-#include "UI/StaticSprite.h"
-#include "UI/Button.h"
-#include "Renderer.h"
-#include "GameManagers/CollisionManager.h"
-#include "GameStateMachine.h"
 #include "Level.h"
 #include "DeathScreen.h"
 #include "Game.h"
@@ -16,9 +11,15 @@
 //	OnEnter();
 //}
 
-PauseMenu::PauseMenu(GameStateMachine* stateMachine, SDL_Event* event, Player* player)
-	:m_StateMachine(stateMachine), m_Event(event), m_Player(player)
+PauseMenu::PauseMenu()
 {
+}
+
+PauseMenu::PauseMenu(GameStateMachine* stateMachine, SDL_Event* event, Player* player)
+	: m_Player(player), MainMenu(stateMachine, event)
+{
+	//m_StateMachine = stateMachine;
+	//m_Event = event;
 	IsMouseClicked = false;
 	SDL_ShowCursor(true);
 	OnEnter();
@@ -65,7 +66,7 @@ void PauseMenu::Update()
 				{
 					switch (item->m_ButtonType)
 					{
-					case ButtonType::Play:IsMouseClicked = true; m_StateMachine->UnPauseGame();
+					case ButtonType::Play: IsMouseClicked = true; m_StateMachine->UnPauseGame();
 						return;
 						
 					case ButtonType::Exit: 

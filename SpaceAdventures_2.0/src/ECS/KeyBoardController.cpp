@@ -24,35 +24,35 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 	if (state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_S])
 	{
 		w = true;		
-		m_Player->SetYVelocity(-1);
+		m_Player->MoveUp();
 	}	
 	
-	if (state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_D])
+	if (state[SDL_SCANCODE_A])
 	{
 		a = true;
-		m_Player->SetXVelocity(-1);
+		m_Player->MoveLeft();
 	}	
 
-	if (state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_A])
+	if (state[SDL_SCANCODE_D])
 	{	
 		d = true;
-		m_Player->SetXVelocity(1);
+		m_Player->MoveRight();
 	}
 
 	if (!state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_A])
 	{		
-		m_Player->SetXVelocity(0);
+		//m_Player->SetXVelocity(0);
 	}
 	
 	if (state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_W])
 	{
 		s = true;
-		m_Player->SetYVelocity(1);
+		m_Player->MoveDown();
 	}
 	if (!state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_W])
 	{
 		s = true;
-		m_Player->SetYVelocity(0);
+		//m_Player->SetYVelocity(0);
 	}
 
 	if (e.type == SDL_MOUSEBUTTONDOWN)

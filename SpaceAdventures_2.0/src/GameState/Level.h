@@ -14,6 +14,7 @@ public:
 	Level(GameStateMachine* stateMachine, SDL_Event* event);
 	~Level();
 	virtual void OnEnter() override;
+	virtual void OnExit() override;
 	virtual void OnUnPause();
 	virtual void Update() override;
 	virtual void HandleEvents() override;

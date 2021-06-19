@@ -31,6 +31,35 @@ Player::Player(std::string imageFile, int x, int y)
 
 Player::~Player() { std::cout << "destroyed player\n"; }
 
+void Player::MoveUp()
+{
+	//SetYVelocity(-1);
+	SetYPosition(GetYPosition() + -1 * GetSpeed());
+
+}
+
+void Player::MoveDown()
+{
+	//SetYVelocity(1);
+	SetYPosition(GetYPosition() + 1 * GetSpeed());
+
+
+}
+
+void Player::MoveLeft()
+{
+	//SetXVelocity(-1);
+	SetXPosition(GetXPosition() + -1 * GetSpeed());
+
+}
+
+void Player::MoveRight()
+{
+	//SetXVelocity(1);
+	SetXPosition(GetXPosition() + 1 * GetSpeed());
+
+}
+
 void Player::Update()
 {
 	

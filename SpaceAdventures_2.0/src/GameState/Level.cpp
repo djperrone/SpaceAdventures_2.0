@@ -29,6 +29,10 @@ void Level::OnEnter()
 	IsMouseClicked = true;
 }
 
+void Level::OnExit()
+{
+}
+
 void Level::OnUnPause()
 {
 	

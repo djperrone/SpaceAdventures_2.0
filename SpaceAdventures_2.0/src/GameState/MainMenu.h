@@ -1,26 +1,27 @@
 #pragma once
 #include "GameState.h"
+#include "GameStateMachine.h"
 #include "SDL.h"
 #include "Dimensions.h"
-
-class CollisionManager;
-class StaticSprite;
-class Button;
-class Renderer;
+#include "GameManagers/CollisionManager.h"
+#include "UI/StaticSprite.h"
+#include "UI/Button.h"
+#include "Renderer.h"
 
 class MainMenu : public GameState
 {
 public:
-	//MainMenu(SDL_Event* event);
+	MainMenu();
 	MainMenu(GameStateMachine* stateMachine, SDL_Event* event);
 	~MainMenu();
 	virtual void OnEnter() override;
+	virtual void OnExit() override;
 	virtual void Update() override;
 	virtual void HandleEvents() override;
 
 	virtual void Render(std::shared_ptr<Renderer>& renderer) override;
 
-private:
+protected:
 	std::vector<std::unique_ptr<StaticSprite>> m_SpriteList;
 	std::vector<std::unique_ptr<Button>> m_ButtonList;
 	std::unique_ptr<CollisionManager> m_CollisionManager;

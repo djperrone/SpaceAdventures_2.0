@@ -15,7 +15,7 @@ DeathScreen::DeathScreen()
 }
 
 DeathScreen::DeathScreen(GameStateMachine* stateMachine, SDL_Event* event)
-	: m_StateMachine(stateMachine), m_Event(event)
+	: MainMenu(stateMachine, event)
 {
 	std::cout << "Death Screen\n";
 	//IsMouseClicked = false;
@@ -41,6 +41,10 @@ void DeathScreen::OnEnter()
 	m_ButtonList.emplace_back(std::move(exitButton));
 
 	
+}
+
+void DeathScreen::OnExit()
+{
 }
 
 void DeathScreen::Update()

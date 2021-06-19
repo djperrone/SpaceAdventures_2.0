@@ -16,6 +16,7 @@ public:
 	Button();
 	Button(const char* fileName, ButtonType type, float xPos, float yPos, int width, int height, float scale);
 	virtual ~Button();
+	//virtual void OnClicked();
 	virtual void Update() override;
 	void HandleEvent();
 	ButtonType m_ButtonType;

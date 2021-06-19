@@ -12,11 +12,17 @@ public:
 	~GameStateMachine();
 	void SetState(GameState* newState);
 	void AddLevelState();
-	void PauseGame(Player* player);
-	void UnPauseGame();
+	
 	GameState* GetState();
 	void Update();
 	void Render(std::shared_ptr<Renderer>& renderer);
+
+	void CreateNewLevel();
+	void CreateMainMenu();
+	void CreateDeathScreen();
+	void PauseGame(Player* player);
+	void UnPauseGame();
+
 
 	void  Print() { std::cout << "hello ther~!\n"; }
 

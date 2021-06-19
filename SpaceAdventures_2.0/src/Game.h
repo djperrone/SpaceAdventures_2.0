@@ -24,6 +24,7 @@ public:
 	static bool isRunning;	
 	static SDL_Renderer* renderer;
 	static SDL_Window* window;
+	//static InputHandler* inputHandler;
 
 private:
 	int cnt = 0;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL.h>
-#include "Vector2D.h"
+#include "Math/Vector2d.h"
 #include "ECS/ComponentManager.h"
 #include "ECS/TransformComponent.h"
 #include "ECS/TextureComponent.h"
