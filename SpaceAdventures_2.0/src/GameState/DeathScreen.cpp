@@ -66,10 +66,10 @@ void DeathScreen::Update()
 				{
 					switch (item->m_ButtonType)
 					{
-					case ButtonType::Play: m_StateMachine->SetState(new Level(m_StateMachine, m_Event));
+					case ButtonType::Play: m_StateMachine->CreateNewLevel();
 						return;
 						break;
-					case ButtonType::MainMenu: m_StateMachine->SetState(new MainMenu(m_StateMachine, m_Event));
+					case ButtonType::MainMenu: m_StateMachine->CreateMainMenu();
 						return;
 					case ButtonType::Exit:
 						Game::Clean();

@@ -8,26 +8,23 @@ class InputController
 public:
 	//auto& BindKeyMapping = std::bind;
 	template <typename... T>
-	void BindKeyMappings(SDL_Scancode code, T&&... args)
+	void BindKeyMapping(SDL_Scancode code, T&&... args)
 	{
 		//return std::bind(args...);
-		m_InputMap.insert(code, std::bind(args...));
+		m_InputMap[code] = static_cast<Command>(std::bind(args...));
 	}
 
-	virtual void Update();
-	virtual bool IsPressed(SDL_Scancode code);
-	virtual bool WasPressed(SDL_Scancode code);
+	//virtual void Update();
+	//virtual bool IsPressed(SDL_Scancode code);
+	//virtual bool WasPressed(SDL_Scancode code);
 
-	virtual std::unordered_map<SDL_Scancode, Command*>& GetInputMappings();
-	virtual const std::unordered_map<SDL_Scancode, Command*>& GetInputMappings() const;
+	virtual std::unordered_map<SDL_Scancode, Command>& GetInputMappings();
+	virtual const std::unordered_map<SDL_Scancode, Command>& GetInputMappings() const;
 
-	
-
-
-private:	
+protected:	
 	const Uint8* m_CurrentKeyBoardState;
 	const Uint8* m_PreviousKeyBoardState;
-	std::unordered_map<SDL_Scancode, Command*> m_InputMap;
+	std::unordered_map<SDL_Scancode, Command> m_InputMap;
 };
 
 class PlayerController : public InputController

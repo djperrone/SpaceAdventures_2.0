@@ -10,7 +10,7 @@
 
 
 
-ObjectManager::ObjectManager(SDL_Event* event)
+ObjectManager::ObjectManager(SDL_Event* event, InputController* inputController)
 	: m_Event(event), isFirst(true)
 {
 	std::cout << "constructed objmanager!\n";
@@ -18,7 +18,7 @@ ObjectManager::ObjectManager(SDL_Event* event)
 	m_MouseController = std::make_unique<MouseCursor>();
 	m_ReloadIcon = std::make_unique<ReloadIcon>();
 
-	m_Player = std::make_shared<Player>(m_MouseController.get());
+	m_Player = std::make_shared<Player>(m_MouseController.get(), inputController);
 	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
 
 	m_ObjectList.push_back(m_Player);

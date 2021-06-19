@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "GameStateMachine.h"
+#include "InputHandler/InputController.h"
 
 
 class GamePlayManager;;
@@ -11,7 +12,7 @@ class Level : public GameState
 {
 public:
 	
-	Level(GameStateMachine* stateMachine, SDL_Event* event);
+	Level(GameStateMachine* stateMachine, SDL_Event* event, InputController* inputController);
 	~Level();
 	virtual void OnEnter() override;
 	virtual void OnExit() override;
@@ -25,4 +26,5 @@ private:
 	std::unique_ptr<GamePlayManager> m_GamePlayManager;
 	SDL_Event* m_Event;
 	GameStateMachine* m_StateMachine;
+	InputController* m_InputController;
 };

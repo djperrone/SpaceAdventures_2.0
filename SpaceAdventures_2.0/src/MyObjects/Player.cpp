@@ -1,8 +1,8 @@
 #include "sapch.h"
 #include "Player.h"
 
-Player::Player(Character* mouseCursor)
-	:m_MouseCursor(mouseCursor)
+Player::Player(Character* mouseCursor, InputController* inputController)
+	:m_MouseCursor(mouseCursor), m_InputController(inputController)
 {
 	//m_MouseCursor = mouseCursor;
 	std::cout << "player!\n";
@@ -14,6 +14,8 @@ Player::Player(Character* mouseCursor)
 	
 	InitComponents(250, 250, 32, 32, 3.5f, 0.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
 	InitGun();
+	SetupPlayerInput();
+	m_PreviousPosition = m_TransformComponent->GetPositionVec();
 }
 
 
@@ -42,8 +44,6 @@ void Player::MoveDown()
 {
 	//SetYVelocity(1);
 	SetYPosition(GetYPosition() + 1 * GetSpeed());
-
-
 }
 
 void Player::MoveLeft()
@@ -74,30 +74,45 @@ void Player::Update()
 	//angle >= 0 ? angle : angle += 360;
 	SetAngle(angle);
 
-	Vector2D oldPos = m_TransformComponent->GetPositionVec();
-	UpdateLocation();
+	//Vector2D oldPos = m_TransformComponent->GetPositionVec();
+	//UpdateLocation();
 	Vector2D currentPos = m_TransformComponent->GetPositionVec();
 
-	if (currentPos.x < -15)
+	if (currentPos.x < -15 || currentPos.x > dimensions.WIDTH + 15 - m_TransformComponent->GetWidth() * m_TransformComponent->GetScale() ||
+		currentPos.y < -15 || currentPos.y > dimensions.HEIGHT + 15 - m_TransformComponent->GetHeight() * m_TransformComponent->GetScale())
 	{
-		m_TransformComponent->SetXPosition(oldPos.x);		
+		m_TransformComponent->SetXPosition(m_PreviousPosition.x);
+		m_TransformComponent->SetYPosition(m_PreviousPosition.y);
 	}
 
-	if (currentPos.x > dimensions.WIDTH +15 - m_TransformComponent->GetWidth() * m_TransformComponent->GetScale())
+	/*else if (currentPos.x > dimensions.WIDTH +15 - m_TransformComponent->GetWidth() * m_TransformComponent->GetScale())
 	{
-		m_TransformComponent->SetXPosition(oldPos.x);
+		m_TransformComponent->SetXPosition(m_PreviousPosition.x);
+	}*/
+
+	/*else if (currentPos.y < -15)
+	{
+		m_TransformComponent->SetYPosition(m_PreviousPosition.y);
 	}
 
-	if (currentPos.y < -15)
+	else if (currentPos.y > dimensions.HEIGHT + 15 - m_TransformComponent->GetHeight() * m_TransformComponent->GetScale())
 	{
-		m_TransformComponent->SetYPosition(oldPos.y);
-	}
+		m_TransformComponent->SetYPosition(m_PreviousPosition.y);
+	}*/
+	else 
+	{
+		m_PreviousPosition = currentPos;
 
-	if (currentPos.y > dimensions.HEIGHT + 15 - m_TransformComponent->GetHeight() * m_TransformComponent->GetScale())
-	{
-		m_TransformComponent->SetYPosition(oldPos.y);
 	}
 	
 	m_TextureComponent->Update();
 	m_Gun->Update();
+}
+
+void Player::SetupPlayerInput()
+{
+	m_InputController->BindKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, this);
+	m_InputController->BindKeyMapping(SDL_SCANCODE_A, &Player::MoveLeft, this);
+	m_InputController->BindKeyMapping(SDL_SCANCODE_S, &Player::MoveDown, this);
+	m_InputController->BindKeyMapping(SDL_SCANCODE_D, &Player::MoveRight, this);
 }

@@ -4,11 +4,12 @@ class Renderer;
 class GameState;
 class Player;
 #include "SDL.h"
+#include "InputHandler/InputHandler.h"
 
 class GameStateMachine
 {
 public:
-	GameStateMachine(SDL_Event* e);
+	GameStateMachine(SDL_Event* e, std::shared_ptr<InputHandler> inputHandler);
 	~GameStateMachine();
 	void SetState(GameState* newState);
 	void AddLevelState();
@@ -23,13 +24,13 @@ public:
 	void PauseGame(Player* player);
 	void UnPauseGame();
 
-
 	void  Print() { std::cout << "hello ther~!\n"; }
 
 private:
 	std::unique_ptr<GameState> m_CurrentState;
 	std::unique_ptr<GameState> m_PreviousState;
 	SDL_Event* m_Event;
+	std::shared_ptr<InputHandler> m_InputHandler;
 	//std::unordered_map<StateType, std::unique_ptr<GameState>> m_GameStateMap;
 	/*StateType m_CurrentState;*/
 };

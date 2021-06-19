@@ -9,7 +9,8 @@ GameManager::GameManager(SDL_Renderer* renderer, SDL_Event* event)
 {	
 	
 	m_Renderer = std::make_shared<Renderer>(renderer);
-	m_StateMachine = std::make_unique<GameStateMachine>(event);
+	m_InputHandler = std::make_shared<InputHandler>();
+	m_StateMachine = std::make_unique<GameStateMachine>(event, m_InputHandler);
 	std::cout<<"game manager!\n";
 }
 
@@ -26,5 +27,6 @@ void GameManager::Render()
 void GameManager::Update()
 {
 	m_StateMachine->Update();
+	//m_InputHandler->Update();
 }
 

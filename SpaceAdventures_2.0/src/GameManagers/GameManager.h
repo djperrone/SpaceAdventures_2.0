@@ -2,6 +2,7 @@
 
 #include "ObjectManager.h"
 #include "GameState/GameStateMachine.h"
+#include "InputHandler/InputHandler.h"
 
 class GameState;
 class GameStateMachine;
@@ -20,6 +21,7 @@ private:
 	std::shared_ptr<Renderer> m_Renderer;
 	SDL_Event* m_Event;
 	std::unique_ptr<GameStateMachine> m_StateMachine;
+	std::shared_ptr<InputHandler> m_InputHandler;	
 };
 
 

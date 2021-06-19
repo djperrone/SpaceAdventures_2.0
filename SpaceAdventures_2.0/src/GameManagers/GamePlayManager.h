@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include "InputHandler/InputController.h"
 
 class ObjectManager;
 class Renderer;
@@ -9,7 +10,7 @@ class GamePlayManager
 {
 public:
 	GamePlayManager();
-	GamePlayManager(SDL_Event* e);
+	GamePlayManager(SDL_Event* e, InputController* inputController);
 	~GamePlayManager();
 	void Update();
 	void HandleEvents();

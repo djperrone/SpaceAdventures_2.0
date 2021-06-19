@@ -21,39 +21,39 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 	
 	const Uint8* state = SDL_GetKeyboardState(NULL);
 
-	if (state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_S])
-	{
-		w = true;		
-		m_Player->MoveUp();
-	}	
-	
-	if (state[SDL_SCANCODE_A])
-	{
-		a = true;
-		m_Player->MoveLeft();
-	}	
+	//if (state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_S])
+	//{
+	//	w = true;		
+	//	m_Player->MoveUp();
+	//}	
+	//
+	//if (state[SDL_SCANCODE_A])
+	//{
+	//	a = true;
+	//	m_Player->MoveLeft();
+	//}	
 
-	if (state[SDL_SCANCODE_D])
-	{	
-		d = true;
-		m_Player->MoveRight();
-	}
+	//if (state[SDL_SCANCODE_D])
+	//{	
+	//	d = true;
+	//	m_Player->MoveRight();
+	//}
 
-	if (!state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_A])
-	{		
-		//m_Player->SetXVelocity(0);
-	}
-	
-	if (state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_W])
-	{
-		s = true;
-		m_Player->MoveDown();
-	}
-	if (!state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_W])
-	{
-		s = true;
-		//m_Player->SetYVelocity(0);
-	}
+	//if (!state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_A])
+	//{		
+	//	//m_Player->SetXVelocity(0);
+	//}
+	//
+	//if (state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_W])
+	//{
+	//	s = true;
+	//	m_Player->MoveDown();
+	//}
+	//if (!state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_W])
+	//{
+	//	s = true;
+	//	//m_Player->SetYVelocity(0);
+	//}
 
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{

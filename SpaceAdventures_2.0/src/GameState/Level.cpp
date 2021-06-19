@@ -8,13 +8,13 @@
 
 class Renderer;
 
-Level::Level(GameStateMachine* stateMachine, SDL_Event* event)
-	: m_StateMachine(stateMachine), m_Event(event)
+Level::Level(GameStateMachine* stateMachine, SDL_Event* event, InputController* inputController)
+	: m_StateMachine(stateMachine), m_Event(event), m_InputController(inputController)
 {
 	std::cout << "level state\n";
 	SDL_ShowCursor(false);
 	//IsMouseClicked = true;
-	m_GamePlayManager = std::make_unique<GamePlayManager>(event);
+	m_GamePlayManager = std::make_unique<GamePlayManager>(event, m_InputController);
 }
 
 Level::~Level()
@@ -42,7 +42,8 @@ void Level::Update()
 {	
 	if (!m_GamePlayManager->GetPlayer()->IsAlive())
 	{
-		m_StateMachine->SetState(new DeathScreen(m_StateMachine, m_Event));
+		//m_StateMachine->SetState(new DeathScreen(m_StateMachine, m_Event));
+		m_StateMachine->CreateDeathScreen();
 		SDL_ShowCursor(true);
 		return;
 	}

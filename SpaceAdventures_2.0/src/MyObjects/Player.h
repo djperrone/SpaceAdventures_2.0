@@ -9,10 +9,11 @@ class Player : public Ship
 {
 
 public:	
-	Player(Character* mouseCursor);
+	Player(Character* mouseCursor, InputController* inputController);
 	Player(std::string imageFile, int x, int y);
 
 	virtual void Update() override;
+	void SetupPlayerInput();
 
 	~Player();
 	bool Paused = false;
@@ -26,5 +27,7 @@ private:
 	InputController* m_InputController;
 	Dimensions dimensions;
 	Character* m_MouseCursor;
+	Vector2D m_PreviousPosition;
+
 };
 

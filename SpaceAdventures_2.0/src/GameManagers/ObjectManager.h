@@ -7,7 +7,7 @@
 #include "ProjectileManager.h"
 #include "MyObjects/Asteroid.h"
 #include "ECS/KeyboardController.h"
-
+#include "InputHandler/InputController.h"
 //class Asteroid;
 class Player;
 class Projectile;
@@ -20,7 +20,7 @@ class KeyboardController;
 class ObjectManager
 {
 public:
-	ObjectManager(SDL_Event* event);
+	ObjectManager(SDL_Event* event, InputController* inputController);
 	void Render(std::shared_ptr<Renderer>& renderer);
 	void Tick();
 	void Update();
