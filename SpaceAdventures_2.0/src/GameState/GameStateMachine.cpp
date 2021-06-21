@@ -64,7 +64,7 @@ void GameStateMachine::Update()
 {
 	m_InputHandler->Update();
 	m_CurrentState->Update();
-	std::cout <<"MAP SIZE " << m_InputHandler->GetInputController()->GetInputMappings().size() << std::endl;;
+	//std::cout <<"MAP SIZE " << m_InputHandler->GetInputController()->GetInputMappings().size() << std::endl;;
 }
 
 void GameStateMachine::Render(std::shared_ptr<Renderer>& renderer)

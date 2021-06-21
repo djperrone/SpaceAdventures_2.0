@@ -34,7 +34,7 @@ void ProjectileComponent::Update()
 	}
 }
 
-void ProjectileComponent::FireGun()
+bool ProjectileComponent::FireGun()
 {
 
 	if (!reloading)
@@ -42,6 +42,7 @@ void ProjectileComponent::FireGun()
 		if (m_UseCount >= m_MagazineSize)
 		{
 			Reload();
+			return false;
 		}
 
 
@@ -59,9 +60,9 @@ void ProjectileComponent::FireGun()
 
 			m_UseCount++;
 		}
-
+		return true;
 	}
-
+	return false;
 }
 void ProjectileComponent::ClearGun()
 {

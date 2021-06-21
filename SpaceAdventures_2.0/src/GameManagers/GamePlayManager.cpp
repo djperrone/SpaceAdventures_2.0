@@ -17,6 +17,7 @@ GamePlayManager::~GamePlayManager()
 
 void GamePlayManager::Update()
 {
+	
 	m_ObjectManager->Update();
 }
 

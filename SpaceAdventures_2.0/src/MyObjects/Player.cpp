@@ -33,6 +33,11 @@ Player::Player(std::string imageFile, int x, int y)
 
 Player::~Player() { std::cout << "destroyed player\n"; }
 
+bool Player::FireGun()
+{
+	return m_Gun->FireGun();
+}
+
 void Player::MoveUp()
 {
 	//SetYVelocity(-1);
@@ -111,8 +116,10 @@ void Player::Update()
 
 void Player::SetupPlayerInput()
 {
-	m_InputController->BindKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, this);
-	m_InputController->BindKeyMapping(SDL_SCANCODE_A, &Player::MoveLeft, this);
-	m_InputController->BindKeyMapping(SDL_SCANCODE_S, &Player::MoveDown, this);
-	m_InputController->BindKeyMapping(SDL_SCANCODE_D, &Player::MoveRight, this);
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, this);
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_A, &Player::MoveLeft, this);
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_S, &Player::MoveDown, this);
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_D, &Player::MoveRight, this);
+
+	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &Player::FireGun, this);
 }

@@ -50,7 +50,7 @@ void PauseMenu::Update()
 	}*/
 	
 
-	if (m_Event->type == SDL_MOUSEBUTTONDOWN)
+	if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
 	{
 		Vector2i mousePos = Vector2i();
 		SDL_GetMouseState(&mousePos.x, &mousePos.y);
@@ -79,7 +79,7 @@ void PauseMenu::Update()
 		}
 	}
 
-	if (m_Event->type == SDL_MOUSEBUTTONUP)
+	if (EventListener::Event.type == SDL_MOUSEBUTTONUP)
 	{
 		if (IsMouseClicked)
 		{

@@ -1,35 +1,40 @@
 #pragma once
-#include <queue>
-#include "InputEvent.h"
-
-// Move mouse cursor to input?
-// make functions in gamestatemachine and player
-// remove gamestate machine and player from all menus
-// make renderer global static
-// All events will take no parameters
-// std::function<void(T&>;
-// InputEvent class will store templated function
-// InputHandler has list of events (events not templated) -> event will have function RunEvent - could have helper class
-// auto func1 = std::bind(&Entity::Print, e, 5);
-// 
+#include <SDL.h>
 
 class InputListener
 {
 public:
-	inline static InputListener* GetInputHandler() { return s_Instance; }
-	inline static void CreateInputHandler() { if (s_Instance == nullptr) s_Instance = new InputListener(); }
-	inline void PushInputEvent(InputEvent* event) { s_InputQueue.push(event); }
-	void HandleEvents()
+	//InputListener() {}
+
+	static void CreateInputListener()
 	{
-		while (!s_InputQueue.empty())
-		{
-			s_InputQueue.front()->Execute();
-			s_InputQueue.pop();
-		}
+		if (s_Instance == nullptr)
+			s_Instance = new InputListener();
+	}
+	static InputListener* GetInputListener()
+	{		
+		if (s_Instance == nullptr)
+			s_Instance = new InputListener();
+		return s_Instance;
 	}
 
+	static SDL_Event GetEvent()
+	{
+		return m_Event;
+	}
+
+	static void PollEvents()
+	{
+		SDL_PollEvent(&m_Event);
+
+		/*switch (m_Event.type)
+		{		
+		default:
+			break;
+		}*/
+	}
+	static bool IsMouseClicked;
+	static SDL_Event m_Event;
 private:
 	static InputListener* s_Instance;
-	static std::queue<InputEvent*> s_InputQueue;
-
 };

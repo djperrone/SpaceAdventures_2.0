@@ -7,9 +7,9 @@ void Ship::InitGun()
 	m_Gun = &m_ComponentManager->GetComponent<ProjectileComponent>();
 }
 
-void Ship::FireGun()
+bool Ship::FireGun()
 {
-	m_Gun->FireGun();
+	return m_Gun->FireGun();
 }
 
 void Ship::Update()

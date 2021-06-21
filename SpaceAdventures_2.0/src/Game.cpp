@@ -50,7 +50,8 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 
 void Game::HandleEvents()
 {	
-	SDL_PollEvent(&event);
+	EventListener::PollEvents();
+	/*SDL_PollEvent(&event);
 
 	switch (event.type)
 	{
@@ -59,7 +60,7 @@ void Game::HandleEvents()
 		break;
 	default:
 		break;
-	}
+	}*/
 }
 
 void Game::Update()

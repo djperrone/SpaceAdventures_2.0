@@ -15,7 +15,7 @@ public:
 	virtual ~Ship() {}
 
 	virtual void InitGun();
-	virtual void FireGun();
+	virtual bool FireGun();
 
 	std::vector<std::shared_ptr<Projectile>>& GetProjectileList()
 	{

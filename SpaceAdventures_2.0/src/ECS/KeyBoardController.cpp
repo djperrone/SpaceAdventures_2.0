@@ -55,7 +55,7 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 	//	//m_Player->SetYVelocity(0);
 	//}
 
-	if (e.type == SDL_MOUSEBUTTONDOWN)
+	/*if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if (!IsMouseClicked)
 		{
@@ -74,7 +74,7 @@ void KeyboardController::UpdateLocation(SDL_Event& e)
 			std::cout << "Unclickedcontroller~\n";
 			IsMouseClicked = false;
 		}		
-	}
+	}*/
 	
 	if (state[SDL_SCANCODE_R])
 	{

@@ -32,6 +32,6 @@ Asteroid::Asteroid(int x, int y)
 	}
 }
 
-Asteroid::~Asteroid() { std::cout<<"destroyed asteroid\n"; }
+Asteroid::~Asteroid() { /*std::cout<<"destroyed asteroid\n";*/ }
 
 

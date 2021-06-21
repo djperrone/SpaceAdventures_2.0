@@ -12,7 +12,7 @@ public:
 	ProjectileComponent(TransformComponent* transform, MovementComponent* movement, Team& team);
 	void Reload();		
 	virtual void Update() override;
-	void FireGun();	
+	bool FireGun();	
 	void ClearGun();
 	inline std::vector<std::shared_ptr<Projectile>>& GetProjectileList() { return m_ProjectileList; }
 	void LoadProjectile();

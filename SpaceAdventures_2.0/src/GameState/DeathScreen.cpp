@@ -10,6 +10,8 @@
 #include "MainMenu.h"
 #include "Renderer.h"
 
+#include "InputHandler/EventListener.h"
+
 DeathScreen::DeathScreen()
 {
 }
@@ -49,7 +51,7 @@ void DeathScreen::OnExit()
 
 void DeathScreen::Update()
 {
-	if (m_Event->type == SDL_MOUSEBUTTONDOWN)
+	if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
 	{
 		Vector2i mousePos = Vector2i();
 		SDL_GetMouseState(&mousePos.x, &mousePos.y);

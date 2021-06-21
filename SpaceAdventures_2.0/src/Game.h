@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDL.h"
+#include "InputHandler/EventListener.h"
 
 class GameManager;
 

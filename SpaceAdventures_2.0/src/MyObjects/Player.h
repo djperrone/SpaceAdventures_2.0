@@ -18,6 +18,9 @@ public:
 	~Player();
 	bool Paused = false;
 
+	virtual bool FireGun() override;
+
+
 	void MoveUp();
 	void MoveDown();
 	void MoveLeft();
