@@ -31,6 +31,11 @@ private:
 	std::unique_ptr<GameState> m_PreviousState;
 	SDL_Event* m_Event;
 	std::shared_ptr<InputHandler> m_InputHandler;
+
+	std::shared_ptr<PlayerController> m_PlayerController;
+	std::shared_ptr<UIController> m_UIController;
+	std::shared_ptr<InputController> m_CurrentController;
+	
 	//std::unordered_map<StateType, std::unique_ptr<GameState>> m_GameStateMap;
 	/*StateType m_CurrentState;*/
 };

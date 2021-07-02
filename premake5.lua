@@ -1,5 +1,6 @@
 workspace "SpaceAdventures_2.0"
 	architecture "x86"
+	cppdialect "C++17"
 
 	configurations
 	{

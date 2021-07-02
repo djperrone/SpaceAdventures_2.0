@@ -12,6 +12,9 @@ GameStateMachine::GameStateMachine(SDL_Event* e, std::shared_ptr<InputHandler> i
 {
 	std::cout << "initialized gamestate\n";	
 	m_InputHandler->SetInputModeToUI();
+	//m_PlayerController = std::make_unique<PlayerController>();
+	//m_UIController = std::make_unique<UIController>();
+	//m_InputHandler->SetController(m_UIController.get());
 	m_CurrentState = std::make_unique<MainMenu>(this, e);
 	//m_CurrentState = std::make_unique<Level>(e);
 	//m_PreviousState = std::make_unique<Level>(e);
@@ -40,6 +43,8 @@ void GameStateMachine::AddLevelState()
 void GameStateMachine::PauseGame(Player* player)
 {	
 	//m_InputHandler->SetInputModeToUI();
+	//m_InputHandler->SetController(m_UIController.get());
+
 	m_PreviousState.reset(new PauseMenu(this,m_Event, player));
 	
 	m_CurrentState.swap(m_PreviousState);
@@ -50,8 +55,10 @@ void GameStateMachine::UnPauseGame()
 	m_CurrentState->OnExit();
 	m_PreviousState->OnEnter();
 	IsMouseClicked = true;
+	//m_InputHandler->SetController(m_PlayerController.get());
 	//m_InputHandler->SetInputModeToGame();
 	m_CurrentState.swap(m_PreviousState);	
+	
 	m_PreviousState.reset();
 }
 
@@ -75,17 +82,23 @@ void GameStateMachine::Render(std::shared_ptr<Renderer>& renderer)
 void GameStateMachine::CreateNewLevel()
 {
 	m_InputHandler->SetInputModeToGame();
+	//m_InputHandler->SetController(m_PlayerController.get());
+
 	m_CurrentState.reset(new Level(this, m_Event, m_InputHandler->GetInputController()));
 }
 
 void GameStateMachine::CreateMainMenu()
 {
 	m_InputHandler->SetInputModeToUI();
+	//m_InputHandler->SetController(m_UIController.get());
+
 	m_CurrentState.reset(new MainMenu(this, m_Event));//, m_InputHandler->GetInputController()));
 }
 
 void GameStateMachine::CreateDeathScreen()
 {
+	//m_InputHandler->SetController(m_UIController.get());
+
 	m_InputHandler->SetInputModeToUI();
 	m_CurrentState.reset(new DeathScreen(this, m_Event));// , m_InputHandler->GetInputController()));
 }

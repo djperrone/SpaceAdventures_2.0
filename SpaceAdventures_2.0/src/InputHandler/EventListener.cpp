@@ -1,12 +1,16 @@
 #include "sapch.h"
 #include "EventListener.h"
+#include "InputHandler.h"
 
 SDL_Event EventListener::Event;
 bool EventListener::IsMouseClicked;
 bool EventListener::IsMouseRepeating;
 
+//InputHandler* inputHandler = new InputHandler();
+
 void EventListener::PollEvents()
 {
+	//inputHandler->Update();
 	while (SDL_PollEvent(&EventListener::Event))
 	{
 		if (EventListener::IsMouseClicked)
@@ -46,11 +50,12 @@ void EventListener::PollEvents()
 			if (EventListener::Event.key.repeat == 0)
 			{
 				std::cout << "KeyDown EventLister\n";
+				EventListener::Event.key.keysym.scancode == SDL_SCANCODE_R ? std::cout << "R PRESSED!\n" : std::cout << "";
 				//break;
 			}
 			else
 			{
-				std::cout << "KeyRepeat EventLister\n";
+				//std::cout << "KeyRepeat EventLister\n";
 				//break;
 			}
 

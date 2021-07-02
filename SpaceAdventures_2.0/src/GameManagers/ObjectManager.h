@@ -6,7 +6,6 @@
 #include "CollisionManager.h"
 #include "ProjectileManager.h"
 #include "MyObjects/Asteroid.h"
-#include "ECS/KeyboardController.h"
 #include "InputHandler/InputController.h"
 //class Asteroid;
 class Player;
@@ -15,14 +14,13 @@ class Spawner;
 class CollissionManager;
 class Renderer;
 union SDL_Event;
-class KeyboardController;
+//class KeyboardController;
 
 class ObjectManager
 {
 public:
 	ObjectManager(SDL_Event* event, InputController* inputController);
-	void Render(std::shared_ptr<Renderer>& renderer);
-	void Tick();
+	void Render(std::shared_ptr<Renderer>& renderer);	
 	void Update();
 	void CleanList();
 	void LoadAllProjectiles();
@@ -34,7 +32,7 @@ private:
 	std::unique_ptr<CollisionManager> m_CollisionManager;
 	std::shared_ptr<Player> m_Player;
 	SDL_Event* m_Event;
-	std::unique_ptr<KeyboardController> m_InputController;
+	//std::unique_ptr<KeyboardController> m_InputController;
 	std::unique_ptr<Character> m_MouseController;
 	std::unique_ptr<Spawner> m_Spawner;
 	Dimensions dimensions;

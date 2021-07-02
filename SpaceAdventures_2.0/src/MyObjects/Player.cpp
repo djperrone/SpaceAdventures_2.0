@@ -67,7 +67,8 @@ void Player::MoveRight()
 
 void Player::Update()
 {
-	
+
+	//std::cout << "paused: " << Paused << std::endl;
 	float dx = (m_MouseCursor->GetXPosition() - GetXPosition());
 	float dy = (m_MouseCursor->GetYPosition() - GetYPosition());
 
@@ -114,6 +115,19 @@ void Player::Update()
 	m_Gun->Update();
 }
 
+bool Player::Reload()
+{
+	std::cout << "relloading!\n";
+	m_Gun->Reload();
+	return true;
+}
+
+void Player::Pause()
+{
+	Paused = true;
+}
+
+
 void Player::SetupPlayerInput()
 {
 	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, this);
@@ -121,5 +135,12 @@ void Player::SetupPlayerInput()
 	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_S, &Player::MoveDown, this);
 	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_D, &Player::MoveRight, this);
 
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_ESCAPE, &Player::Pause, this);
 	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &Player::FireGun, this);
+
+	//m_InputController->BindActionKeyMapping(InputControlCodes::LEFT_MOUSE_BUTTON, SDL_MOUSEBUTTONDOWN, &Player::FireGun, this);
+	//m_InputController->BindActionKeyMapping(MouseButton::Left, SDL_MOUSEBUTTONDOWN, &Player::FireGun, this);
+	//m_InputController->BindActionKeyMapping(SDL_SCANCODE_R, SDL_KEYDOWN, &Player::Reload, this);
+
+	// m_InputController->BindActionKeyMapping(SDL_BUTTON/KEY, INPUTEVENTTYPE, FUNCTION, THIS)
 }

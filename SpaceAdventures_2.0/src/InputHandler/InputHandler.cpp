@@ -5,7 +5,6 @@
 
 #include "Command.h"
 
-
 InputHandler::InputHandler()
 {	
 	m_CurrentKeyBoardState = SDL_GetKeyboardState(NULL);
@@ -13,12 +12,30 @@ InputHandler::InputHandler()
 
 void InputHandler::SetInputModeToGame()
 {
+	SDL_FlushEvents(0, 255);
 	m_InputController.reset(new PlayerController());
+}
+
+void InputHandler::SetController(InputController* controller)
+{
+	m_InputController.reset(controller);
 }
 
 void InputHandler::SetInputModeToUI()
 {
+	SDL_FlushEvents(0, 255);
+
 	m_InputController.reset(new UIController());
+}
+
+InputController* InputHandler::GetInputController() const
+{
+	return m_InputController.get();
+}
+
+bool InputHandler::IsPressed(SDL_Scancode key)
+{
+	return m_CurrentKeyBoardState[key];
 }
 
 void InputHandler::Update()
@@ -28,33 +45,145 @@ void InputHandler::Update()
 		if (IsPressed(key))
 		{
 			command.Execute();
-		}
+		} 
 	}
 
-	for (auto [type, commandVec] : m_InputController->GetActionInputMappings())
+	for (auto& [event, commandVec] : m_InputController->GetActionInputBindingsVec())
 	{
-		if (type == EventListener::Event.type)//InputListener::m_Event.type)
+		if (EventListener::Event.type == event)
 		{
 			for (auto action : commandVec)
 			{
-				if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
+				if (action.Execute())
 				{
-					if (!EventListener::IsMouseRepeating)
-					{
-						if (action.Execute());
-						std::cout << "Exevute\n";
-						return;
-					}
-				}
-				else 
-				{
-					if(action.Execute());
-					std::cout << "Exevute\n";
 					return;
 				}
 			}
+		}		
+	}
+
+	//auto& map = m_InputController->GetActionInputMappings();
+	//if (map[EventListener::Event.type])
+	//{
+
+	//}
+	/*if (EventListener::Event.type == SDL_KEYDOWN)
+	{
+
+	}
+	switch (EventListener::Event.type)
+	{
+	case SDL_KEYDOWN:
+	}*/
+
+	/*if (EventListener::Event.type == SDL_KEYDOWN)
+	{
+
+	}*/
+	//auto& map = m_InputController->GetActionInputMappings();
+	//if (map.find(static_cast<SDL_EventType>(EventListener::Event.type)) != map.end())
+	//{
+	//	//map[static_cast<SDL_EventType>(EventListener::Event.type)].
+	//}
+	auto mouseActionMap = m_InputController->GetMouseActionInputMappings();
+	auto KeyActionMap = m_InputController->GetKeyActionInputMappings();	
+	//std::cout << "KEY MAP SIZE INPUTHANDLER " << KeyActionMap.size() << std::endl;
+
+	/*if (KeyActionMap.find(SDL_KEYDOWN) != KeyActionMap.end())
+	{
+		std::cout << "KEYDOWN EVENT INPUTHANDLER\n";
+		auto innerMap = KeyActionMap[SDL_KEYDOWN];
+		if (innerMap.find(SDL_SCANCODE_R) != innerMap.end())
+		{
+			std::cout << "INPUT HANDLER R PRESESED\n";
+			innerMap[SDL_SCANCODE_R].Execute();
+		}
+	}*/
+
+	/*for (auto& [event, map] : m_InputController->GetMouseActionInputMappings())
+	{
+		if (EventListener::Event.type == event)
+		{
+			if (map.find(EventListener::Event.button.button) != map.end())
+			{
+				map[EventListener::Event.button.button].Execute();
+			}
 		}
 	}
+
+	for (auto& [event, map] : m_InputController->GetKeyActionInputMappings())
+	{
+		if (EventListener::Event.type == event)
+		{
+			if (map.find(EventListener::Event.key.keysym.scancode) != map.end())
+			{
+				map[EventListener::Event.key.keysym.scancode].Execute();
+			}
+		}
+	}*/
+
+	//switch (EventListener::Event.type)
+	//{
+	//case SDL_KEYDOWN:
+	//	std::cout << "KEYDOWN CASE\n";
+	//	if (KeyActionMap.find(SDL_KEYDOWN) != KeyActionMap.end())
+	//	{
+	//		std::cout << "KEYDOWN EVENT INPUTHANDLER\n";
+	//		auto innerMap = KeyActionMap[SDL_KEYDOWN];
+	//		if (innerMap.find(SDL_SCANCODE_R) != innerMap.end())
+	//		{
+	//			std::cout << "INPUT HANDLER R PRESESED\n";
+	//			innerMap[SDL_SCANCODE_R].Execute();
+	//		}
+	//	}
+	//	break;
+	//case SDL_MOUSEBUTTONDOWN:
+	//	std::cout << "MOUSEDOWN CASE\n";
+
+	//	if (mouseActionMap.find(SDL_MOUSEBUTTONDOWN) != mouseActionMap.end())
+	//	{
+	//		auto innerMap = mouseActionMap[SDL_MOUSEBUTTONDOWN];
+	//		if (innerMap.find(SDL_BUTTON_LEFT) != innerMap.end())
+	//		{
+	//			innerMap[SDL_BUTTON_LEFT].Execute();
+	//		}
+	//	}
+	//	break;
+
+	//case SDL_MOUSEBUTTONUP:
+	//	break;	
+
+	//case SDL_KEYUP:
+	//	break;
+	//}
+
+
+	
+	//for (auto [type, keymap] : m_InputController->GetActionInputBindingsVec())
+	//{
+	//	if (type == EventListener::Event.type)//InputListener::m_Event.type)
+	//	{
+	//		for (auto& [key, command] : keymap)
+	//		{
+
+	//			if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
+	//			{
+	//				if (!EventListener::IsMouseRepeating)
+	//				{
+	//					if (action.Execute());
+	//					std::cout << "Exevute\n";
+	//					return;
+	//				}
+	//			}
+	//			else 
+	//			{
+	//				if(action.Execute());
+	//				std::cout << "Exevute\n";
+	//				return;
+	//			}
+	//		}
+	//	}
+	//}
 
 	/*if (m_InputController->GetActionInputMappings().find(EventListener::Event) != m_InputController->GetActionInputMappings().end())
 	{
@@ -120,12 +249,3 @@ void InputHandler::Update()
 	//}
 }
 
-InputController* InputHandler::GetInputController() const
-{
-	return m_InputController.get();
-}
-
-bool InputHandler::IsPressed(SDL_Scancode key)
-{
-	return m_CurrentKeyBoardState[key];
-}

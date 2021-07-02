@@ -2,6 +2,8 @@
 #include "InputController.h"
 
 using EventType = SDL_EventType;
+//using ActionInputMap = std::unordered_map<EventType, std::unordered_map<InputControlCodes, ActionInputCommand >>;
+
 
 std::unordered_map<SDL_Scancode, AxisInputCommand>& InputController::GetAxisInputMappings()
 {
@@ -14,12 +16,22 @@ const std::unordered_map<SDL_Scancode, AxisInputCommand>& InputController::GetAx
 
 }
 
-std::unordered_map<SDL_EventType, std::vector<ActionInputCommand>>& InputController::GetActionInputMappings()
+std::unordered_map<EventType, std::unordered_map<SDL_Scancode, ActionInputCommand>> InputController::GetKeyActionInputMappings() const
 {
-	return m_ActionBindings;
-
+	return m_KeyActionBindings;
 }
-//const std::unordered_map<EventType, ActionInputCommand>& InputController::GetActionInputMappings() const
+
+std::unordered_map<EventType, std::unordered_map<Uint8, ActionInputCommand>> InputController::GetMouseActionInputMappings() const
+{
+	return m_MouseActionBindings;
+}
+
+//ActionInputMap& InputController::GetActionInputMappings()
+//{
+//	return m_ActionInputMap;
+//
+//}
+////const std::unordered_map<EventType, ActionInputCommand>& InputController::GetActionInputMappings() const
 //{
 //	return m_ActionInputMap;
 //

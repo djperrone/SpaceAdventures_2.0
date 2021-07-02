@@ -18,8 +18,7 @@ ObjectManager::ObjectManager(SDL_Event* event, InputController* inputController)
 	m_MouseController = std::make_unique<MouseCursor>();
 	m_ReloadIcon = std::make_unique<ReloadIcon>();
 
-	m_Player = std::make_shared<Player>(m_MouseController.get(), inputController);
-	m_InputController = std::make_unique<KeyboardController>(m_Player.get());
+	m_Player = std::make_shared<Player>(m_MouseController.get(), inputController);	
 
 	m_ObjectList.push_back(m_Player);
 	m_ShipList.push_back(m_Player);
@@ -54,10 +53,7 @@ void ObjectManager::Render(std::shared_ptr<Renderer>& renderer)
 	renderer->Render(m_MouseController.get());	
 }
 
-Player* ObjectManager::GetPlayer() const
-{
-	return m_Player.get();
-}
+
 
 
 void ObjectManager::Update()
@@ -69,8 +65,7 @@ void ObjectManager::Update()
 
 	m_Spawner->SpawnAsteroid();
 	m_Spawner->SpawnUFO();
-
-	m_InputController->UpdateLocation(*m_Event);
+	
 	m_MouseController->Update();
 	m_ReloadIcon->Update();	
 
@@ -164,6 +159,11 @@ bool ObjectManager::IsWithinBounds(Character* tempObject)
 	}
 
 	return true;
+}
+
+Player* ObjectManager::GetPlayer() const
+{
+	return m_Player.get();
 }
 
 
