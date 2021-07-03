@@ -15,12 +15,11 @@ PauseMenu::PauseMenu()
 {
 }
 
-PauseMenu::PauseMenu(GameStateMachine* stateMachine, SDL_Event* event, Player* player)
-	: m_Player(player), MainMenu(stateMachine, event)
+PauseMenu::PauseMenu(GameStateMachine* stateMachine, SDL_Event* event, InputController* controller, Player* player)
+	: m_Player(player)//, MainMenu(stateMachine, event,controller)
 {
-	//m_StateMachine = stateMachine;
-	//m_Event = event;
-	IsMouseClicked = false;
+	m_InputController = controller;
+	m_StateMachine = stateMachine;
 	SDL_ShowCursor(true);
 	OnEnter();
 }
@@ -34,12 +33,19 @@ void PauseMenu::OnEnter()
 	m_CollisionManager = std::make_unique<CollisionManager>();
 	Dimensions dimensions;
 	std::unique_ptr<StaticSprite> title = std::make_unique<StaticSprite>("assets/title.png", -100.0f, 100.0f, 1000, 100, 1.0f);
-	std::unique_ptr<Button> playButton = std::make_unique<Button>("assets/ResumeButton.png",ButtonType::Play, 150.0f, 225.0f, 500, 100, 1);
-	std::unique_ptr<Button> exitButton = std::make_unique<Button>("assets/ExitButton.png", ButtonType::Exit, 150.0f, 350.0f, 500,100,1);
-
+	std::unique_ptr<Button> playButton = std::make_unique<Button>("assets/PlayButton.png", ButtonType::Play, 150.0f, 225.0f, 500, 100, 1);
+	std::unique_ptr<Button> mainMenuButton = std::make_unique<Button>("assets/MainMenu.png", ButtonType::MainMenu, 150.0f, 350.0f, 500, 100, 1);
+	std::unique_ptr<Button> exitButton = std::make_unique<Button>("assets/ExitButton.png", ButtonType::Exit, 150.0f, 475.0f, 500, 100, 1);
+	//m_InputController->Reset();
 	m_SpriteList.emplace_back(std::move(title));
 	m_ButtonList.emplace_back(std::move(playButton));
+	m_ButtonList.emplace_back(std::move(mainMenuButton));
 	m_ButtonList.emplace_back(std::move(exitButton));
+
+	//-----------------------------------------------------
+	m_InputController->Reset();
+
+	InitController();	
 }
 
 void PauseMenu::Update()
@@ -48,49 +54,44 @@ void PauseMenu::Update()
 	{
 		item->Update();
 	}*/
-	
-
-	if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
-	{
-		Vector2i mousePos = Vector2i();
-		SDL_GetMouseState(&mousePos.x, &mousePos.y);
 		
-		if (!IsMouseClicked)
-		{
-			IsMouseClicked = true;
-			std::cout << "clickedPauseMenu~\n";
+}
 
-			for (const auto& item : m_ButtonList)
+void PauseMenu::InitController()
+{
+	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &PauseMenu::ButtonEvent, this);
+}
+
+bool PauseMenu::ButtonEvent()
+{
+	Vector2i mousePos = Vector2i();
+	SDL_GetMouseState(&mousePos.x, &mousePos.y);		
+
+	for (const auto& item : m_ButtonList)
+	{
+		if (m_CollisionManager->IsColliding(item.get(), mousePos))
+		{
+			switch (item->m_ButtonType)
 			{
-				if (m_CollisionManager->IsColliding(item.get(), mousePos))
-				{
-					switch (item->m_ButtonType)
-					{
-					case ButtonType::Play: IsMouseClicked = true; m_StateMachine->UnPauseGame();
-						return;
-						
-					case ButtonType::Exit: 
-						Game::Clean();						
-						exit(0);
-						break;
-					}
-				}
+			case ButtonType::Play: IsMouseClicked = true; m_StateMachine->UnPauseGame();
+				return true;
+
+			case ButtonType::MainMenu: m_StateMachine->CreateMainMenu();
+				return true;
+
+			case ButtonType::Exit:
+				m_StateMachine->CreateMainMenu();
+				return true;
 			}
 		}
 	}
-
-	if (EventListener::Event.type == SDL_MOUSEBUTTONUP)
-	{
-		if (IsMouseClicked)
-		{
-			std::cout << "unclick pause menu~\n";
-			IsMouseClicked = false;
-		}
-	}	
+	
+	return false;
 }
 
 void PauseMenu::HandleEvents()
 {
+
 }
 
 void PauseMenu::OnExit()

@@ -15,7 +15,7 @@ public:
 	void Update();
 	void HandleEvents();
 	void Render(std::shared_ptr<Renderer>& renderer);
-	Player* GetPlayer() const;
+	Player* GetPlayer();
 
 private:
 	std::unique_ptr<ObjectManager> m_ObjectManager;

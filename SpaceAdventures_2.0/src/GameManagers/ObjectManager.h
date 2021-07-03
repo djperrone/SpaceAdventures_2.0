@@ -26,7 +26,7 @@ public:
 	void LoadAllProjectiles();
 
 	bool IsWithinBounds(Character* Character);
-	Player* GetPlayer() const ;
+	Player* GetPlayer();
 
 private:
 	std::unique_ptr<CollisionManager> m_CollisionManager;

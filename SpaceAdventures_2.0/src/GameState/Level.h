@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "GameStateMachine.h"
 #include "InputHandler/InputController.h"
+#include "MyObjects/Player.h"
 
 
 class GamePlayManager;;
@@ -16,10 +17,12 @@ public:
 	~Level();
 	virtual void OnEnter() override;
 	virtual void OnExit() override;
-	virtual void OnUnPause();
+	virtual void OnUnPause() override;
 	virtual void Update() override;
 	virtual void HandleEvents() override;
 	virtual void Render(std::shared_ptr<Renderer>& renderer) override;
+	virtual void InitController() override;
+	//void InitController(Player* player);
 
 private:
 	//std::unique_ptr<ObjectManager> m_ObjectManager;
@@ -27,4 +30,5 @@ private:
 	SDL_Event* m_Event;
 	GameStateMachine* m_StateMachine;
 	InputController* m_InputController;
+	Player* m_Player;
 };

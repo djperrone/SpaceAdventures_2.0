@@ -17,9 +17,10 @@ MainMenu::MainMenu()
 {
 }
 
-MainMenu::MainMenu(GameStateMachine* stateMachine, SDL_Event* event)
-	:m_StateMachine(stateMachine), m_Event(event)
+MainMenu::MainMenu(GameStateMachine* stateMachine, SDL_Event* event, InputController* controller)
+	:m_StateMachine(stateMachine), m_Event(event), m_InputController(controller)
 {
+
 	OnEnter();
 }
 
@@ -38,10 +39,44 @@ void MainMenu::OnEnter()
 	m_SpriteList.emplace_back(std::move(title));
 	m_ButtonList.emplace_back(std::move(playButton));
 	m_ButtonList.emplace_back(std::move(exitButton));
+
+	m_InputController->Reset();
+	std::cout << "main menu\n";
+	InitController();
 }
 
 void MainMenu::OnExit()
 {
+}
+
+void MainMenu::InitController()
+{
+	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &MainMenu::ButtonEvent, this);
+}
+
+bool MainMenu::ButtonEvent()
+{
+	
+	Vector2i mousePos = Vector2i();
+	SDL_GetMouseState(&mousePos.x, &mousePos.y);
+
+	for (const auto& item : m_ButtonList)
+	{
+		if (m_CollisionManager->IsColliding(item.get(), mousePos))
+		{
+			switch (item->m_ButtonType)
+			{
+			case ButtonType::Play: m_StateMachine->CreateNewLevel();
+				return true;
+			case ButtonType::Exit:
+				Game::Clean();
+				exit(0);
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
 
 void MainMenu::Update()
@@ -52,7 +87,7 @@ void MainMenu::Update()
 	}*/
 	
 
-	if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
+	/*if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
 	{
 		Vector2i mousePos = Vector2i();
 		SDL_GetMouseState(&mousePos.x, &mousePos.y);
@@ -90,7 +125,7 @@ void MainMenu::Update()
 		}
 	}
 
-	
+	*/
 }
 
 void MainMenu::HandleEvents()

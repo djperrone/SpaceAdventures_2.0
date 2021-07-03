@@ -161,7 +161,7 @@ bool ObjectManager::IsWithinBounds(Character* tempObject)
 	return true;
 }
 
-Player* ObjectManager::GetPlayer() const
+Player* ObjectManager::GetPlayer()
 {
 	return m_Player.get();
 }

@@ -31,7 +31,7 @@ void GamePlayManager::Render(std::shared_ptr<Renderer>& renderer)
 	m_ObjectManager->Render(renderer);
 }
 
-Player* GamePlayManager::GetPlayer() const
+Player* GamePlayManager::GetPlayer()
 {
 	return m_ObjectManager->GetPlayer();
 }

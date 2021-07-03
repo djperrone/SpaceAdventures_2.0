@@ -9,7 +9,7 @@ class Player;
 class GameStateMachine
 {
 public:
-	GameStateMachine(SDL_Event* e, std::shared_ptr<InputHandler> inputHandler);
+	GameStateMachine(SDL_Event* e, InputController* controller);
 	~GameStateMachine();
 	void SetState(GameState* newState);
 	void AddLevelState();
@@ -26,15 +26,17 @@ public:
 
 	void  Print() { std::cout << "hello ther~!\n"; }
 
+	static bool StateHasChanged;
+
 private:
 	std::unique_ptr<GameState> m_CurrentState;
 	std::unique_ptr<GameState> m_PreviousState;
 	SDL_Event* m_Event;
-	std::shared_ptr<InputHandler> m_InputHandler;
+	
 
-	std::shared_ptr<PlayerController> m_PlayerController;
-	std::shared_ptr<UIController> m_UIController;
-	std::shared_ptr<InputController> m_CurrentController;
+	std::unique_ptr<PlayerController> m_PlayerController;
+	std::unique_ptr<UIController> m_UIController;
+	InputController* m_InputController;
 	
 	//std::unordered_map<StateType, std::unique_ptr<GameState>> m_GameStateMap;
 	/*StateType m_CurrentState;*/

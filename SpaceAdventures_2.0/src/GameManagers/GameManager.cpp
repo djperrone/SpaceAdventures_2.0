@@ -11,14 +11,12 @@
 //SDL_Event EventListener::Event;
 //bool EventListener::IsMouseClicked;
 
-GameManager::GameManager(SDL_Renderer* renderer, SDL_Event* event)
+GameManager::GameManager(SDL_Renderer* renderer, SDL_Event* event, InputController* controller)
 	: m_Event(event)
-{	
-	//InputListener::CreateInputListener();
+{		
 
 	m_Renderer = std::make_shared<Renderer>(renderer);
-	m_InputHandler = std::make_shared<InputHandler>();
-	m_StateMachine = std::make_unique<GameStateMachine>(event, m_InputHandler);
+	m_StateMachine = std::make_unique<GameStateMachine>(event, controller);
 	std::cout<<"game manager!\n";
 }
 
@@ -34,36 +32,18 @@ void GameManager::Render()
 
 void GameManager::PollEvents()
 {
-	//while (SDL_PollEvent(&EventListener::Event))
-	//{
-	//	switch (EventListener::Event.type)
-	//	{
-	//	case SDL_QUIT:
-	//		Game::isRunning = false;
-	//		break;
-	//	/*case SDL_MOUSEBUTTONDOWN: EventListener::IsMouseClicked = true;
-	//		break;
-	//	case SDL_MOUSEBUTTONUP:
-	//		EventListener::IsMouseClicked = false;
-	//		break;*/
-	//	default:
-	//		break;
-	//	}
-	//}
 
 	
 }
 
-//void GameManager::SetState(GameState* state)
-//{
-//	m_StateMachine->SetState(state);
-//}
-
 void GameManager::Update()
-{
-	//EventListener::PollEvents();
-	//s_InputListener->PollEvents();
+{	
+	
 	m_StateMachine->Update();
-	//m_InputHandler->Update();
+}
+
+InputHandler* GameManager::GetInputHandler()
+{
+	return m_InputHandler.get();
 }
 

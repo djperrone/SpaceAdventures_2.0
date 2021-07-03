@@ -13,7 +13,7 @@ public:
 	Player(std::string imageFile, int x, int y);
 
 	virtual void Update() override;
-	void SetupPlayerInput();
+	void InitController();
 
 	~Player();
 	bool Paused = false;

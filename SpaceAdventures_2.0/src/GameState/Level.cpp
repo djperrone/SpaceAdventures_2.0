@@ -15,6 +15,9 @@ Level::Level(GameStateMachine* stateMachine, SDL_Event* event, InputController* 
 	SDL_ShowCursor(false);
 	//IsMouseClicked = true;
 	m_GamePlayManager = std::make_unique<GamePlayManager>(event, m_InputController);
+	m_Player = m_GamePlayManager->GetPlayer();
+	
+	InitController();
 }
 
 Level::~Level()
@@ -27,6 +30,7 @@ void Level::OnEnter()
 {
 	SDL_ShowCursor(false);
 	IsMouseClicked = true;
+	
 }
 
 void Level::OnExit()
@@ -34,12 +38,27 @@ void Level::OnExit()
 }
 
 void Level::OnUnPause()
+{	
+	std::cout << "level unpause\n";
+	InitController();	
+}
+
+void Level::InitController()
 {
-	
+	m_InputController->Reset();
+
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, m_Player);
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_A, &Player::MoveLeft, m_Player);
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_S, &Player::MoveDown, m_Player);
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_D, &Player::MoveRight, m_Player);
+
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_ESCAPE, &Player::Pause, m_Player);
+	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &Player::FireGun, m_Player);
 }
 
 void Level::Update()
 {	
+
 	if (!m_GamePlayManager->GetPlayer()->IsAlive())
 	{
 		//m_StateMachine->SetState(new DeathScreen(m_StateMachine, m_Event));

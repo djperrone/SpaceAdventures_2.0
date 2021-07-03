@@ -2,6 +2,7 @@
 
 #include "SDL.h"
 #include "InputHandler/EventListener.h"
+#include "InputHandler/InputHandler.h"
 
 class GameManager;
 
@@ -27,9 +28,10 @@ public:
 	static SDL_Window* window;
 	//static InputHandler* inputHandler;
 
-private:
-	int cnt = 0;
 	std::unique_ptr<GameManager> m_GameManager;
+private:
+	std::unique_ptr<InputHandler> m_InputHandler;
+	int cnt = 0;
 	
 };
 

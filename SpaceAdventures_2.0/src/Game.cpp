@@ -45,12 +45,16 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}	
-	m_GameManager = std::make_unique<GameManager>(Game::renderer, &event);	
+	m_InputHandler = std::make_unique<InputHandler>();
+	m_GameManager = std::make_unique<GameManager>(Game::renderer, &event, m_InputHandler->GetInputController());	
 }
 
 void Game::HandleEvents()
 {	
-	EventListener::PollEvents();
+	m_InputHandler->Update();
+
+	//EventListener::PollEvents();
+	//SDL_FlushEvents(0, 2000);
 	/*SDL_PollEvent(&event);
 
 	switch (event.type)

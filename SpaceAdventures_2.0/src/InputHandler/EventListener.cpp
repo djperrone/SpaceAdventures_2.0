@@ -1,6 +1,7 @@
 #include "sapch.h"
 #include "EventListener.h"
 #include "InputHandler.h"
+#include "GameManagers/GameManager.h"
 
 SDL_Event EventListener::Event;
 bool EventListener::IsMouseClicked;
@@ -13,6 +14,14 @@ void EventListener::PollEvents()
 	//inputHandler->Update();
 	while (SDL_PollEvent(&EventListener::Event))
 	{
+		/*if (GameStateMachine::StateHasChanged)
+		{
+
+			SDL_FlushEvents(0, 2000);
+			return;
+			
+		}*/
+		
 		if (EventListener::IsMouseClicked)
 		{
 			if (EventListener::Event.type != SDL_MOUSEBUTTONUP)
@@ -31,12 +40,21 @@ void EventListener::PollEvents()
 			break;
 		case SDL_MOUSEBUTTONDOWN: 
 			
-			EventListener::IsMouseClicked = true;
-			if (!EventListener::IsMouseRepeating)
+			if (EventListener::IsMouseClicked == false && EventListener::IsMouseRepeating == false) 
 			{
-				std::cout << "Mouse Down EventLister - \n";
 
+				EventListener::IsMouseClicked = true;
+				if (!EventListener::IsMouseRepeating)
+				{
+					std::cout << "Mouse Down EventLister - \n";
+
+				}
 			}
+			else
+			{
+				SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
+			}
+			
 			
 			break;
 		case SDL_MOUSEBUTTONUP:
@@ -70,4 +88,7 @@ void EventListener::PollEvents()
 			break;
 		}
 	}
+	//SDL_PumpEvents();
+//	SDL_FlushEvents(0, 2000);
+
 }

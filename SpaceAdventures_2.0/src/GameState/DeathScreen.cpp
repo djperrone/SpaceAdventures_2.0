@@ -16,10 +16,11 @@ DeathScreen::DeathScreen()
 {
 }
 
-DeathScreen::DeathScreen(GameStateMachine* stateMachine, SDL_Event* event)
-	: MainMenu(stateMachine, event)
+DeathScreen::DeathScreen(GameStateMachine* stateMachine, SDL_Event* event, InputController* controller) 
 {
 	std::cout << "Death Screen\n";
+	m_StateMachine = stateMachine;
+	m_InputController = controller;
 	//IsMouseClicked = false;
 	OnEnter();
 }
@@ -41,8 +42,46 @@ void DeathScreen::OnEnter()
 	m_ButtonList.emplace_back(std::move(playButton));
 	m_ButtonList.emplace_back(std::move(mainMenuButton));
 	m_ButtonList.emplace_back(std::move(exitButton));
+	m_InputController->Reset();
+	InitController();
 
 	
+}
+
+void DeathScreen::InitController()
+{
+	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &DeathScreen::ButtonEvent, this);
+}
+
+bool DeathScreen::ButtonEvent()
+{
+
+	Vector2i mousePos = Vector2i();
+	SDL_GetMouseState(&mousePos.x, &mousePos.y);
+
+
+	for (const auto& item : m_ButtonList)
+	{
+		if (m_CollisionManager->IsColliding(item.get(), mousePos))
+		{
+			switch (item->m_ButtonType)
+			{
+			case ButtonType::Play: m_StateMachine->CreateNewLevel();
+				return true;
+				
+			case ButtonType::MainMenu: m_StateMachine->CreateMainMenu();
+				return true;
+			case ButtonType::Exit:
+				Game::Clean();
+				exit(0);
+				return true;
+			}
+		}
+	}
+
+	return false;
+
+
 }
 
 void DeathScreen::OnExit()
@@ -51,46 +90,10 @@ void DeathScreen::OnExit()
 
 void DeathScreen::Update()
 {
-	if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
-	{
-		Vector2i mousePos = Vector2i();
-		SDL_GetMouseState(&mousePos.x, &mousePos.y);
-
-
-		if (!IsMouseClicked)
-		{
-			IsMouseClicked = true;
-			std::cout << "DEATHSCREEN clicked~\n";
-
-			for (const auto& item : m_ButtonList)
-			{
-				if (m_CollisionManager->IsColliding(item.get(), mousePos))
-				{
-					switch (item->m_ButtonType)
-					{
-					case ButtonType::Play: m_StateMachine->CreateNewLevel();
-						return;
-						break;
-					case ButtonType::MainMenu: m_StateMachine->CreateMainMenu();
-						return;
-					case ButtonType::Exit:
-						Game::Clean();
-						exit(0);
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	if (m_Event->type == SDL_MOUSEBUTTONUP)
-	{
-		if (IsMouseClicked)
-		{
-			std::cout << "UNCLICKED DAETHSCREEN~\n";
-			IsMouseClicked = false;
-		}
-	}
+	
+		
+	
+	
 }
 
 void DeathScreen::HandleEvents()

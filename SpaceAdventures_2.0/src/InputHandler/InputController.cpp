@@ -26,6 +26,12 @@ std::unordered_map<EventType, std::unordered_map<Uint8, ActionInputCommand>> Inp
 	return m_MouseActionBindings;
 }
 
+void InputController::Reset()
+{
+	m_ActionBindings.clear();
+	m_AxisInputMap.clear();
+}
+
 //ActionInputMap& InputController::GetActionInputMappings()
 //{
 //	return m_ActionInputMap;
