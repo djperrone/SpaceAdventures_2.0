@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SDL.h"
-#include "InputHandler/EventListener.h"
 #include "InputHandler/InputHandler.h"
 
 class GameManager;
@@ -25,8 +24,7 @@ public:
 	static SDL_Event event;
 	static bool isRunning;	
 	static SDL_Renderer* renderer;
-	static SDL_Window* window;
-	//static InputHandler* inputHandler;
+	static SDL_Window* window;	
 
 	std::unique_ptr<GameManager> m_GameManager;
 private:

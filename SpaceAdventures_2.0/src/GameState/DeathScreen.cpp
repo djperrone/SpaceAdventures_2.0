@@ -16,7 +16,7 @@ DeathScreen::DeathScreen()
 {
 }
 
-DeathScreen::DeathScreen(GameStateMachine* stateMachine, SDL_Event* event, InputController* controller) 
+DeathScreen::DeathScreen(GameStateMachine* stateMachine, InputController* controller) 
 {
 	std::cout << "Death Screen\n";
 	m_StateMachine = stateMachine;

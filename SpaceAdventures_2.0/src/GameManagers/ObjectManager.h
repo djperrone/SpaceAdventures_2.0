@@ -19,7 +19,7 @@ union SDL_Event;
 class ObjectManager
 {
 public:
-	ObjectManager(SDL_Event* event, InputController* inputController);
+	ObjectManager(InputController* inputController);
 	void Render(std::shared_ptr<Renderer>& renderer);	
 	void Update();
 	void CleanList();
@@ -30,8 +30,7 @@ public:
 
 private:
 	std::unique_ptr<CollisionManager> m_CollisionManager;
-	std::shared_ptr<Player> m_Player;
-	SDL_Event* m_Event;
+	std::shared_ptr<Player> m_Player;	
 	//std::unique_ptr<KeyboardController> m_InputController;
 	std::unique_ptr<Character> m_MouseController;
 	std::unique_ptr<Spawner> m_Spawner;

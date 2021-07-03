@@ -6,9 +6,9 @@ GamePlayManager::GamePlayManager()
 {
 }
 
-GamePlayManager::GamePlayManager(SDL_Event* e, InputController* inputController)
+GamePlayManager::GamePlayManager(InputController* inputController)
 {
-	m_ObjectManager = std::make_unique<ObjectManager>(e, inputController);
+	m_ObjectManager = std::make_unique<ObjectManager>(inputController);
 }
 
 GamePlayManager::~GamePlayManager()

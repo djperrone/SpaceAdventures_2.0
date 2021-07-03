@@ -1,7 +1,6 @@
 #pragma once
 #include "GameState.h"
 #include "GameStateMachine.h"
-#include "SDL.h"
 #include "Dimensions.h"
 #include "GameManagers/CollisionManager.h"
 #include "UI/StaticSprite.h"
@@ -14,7 +13,7 @@ class MainMenu : public GameState
 {
 public:
 	MainMenu();
-	MainMenu(GameStateMachine* stateMachine, SDL_Event* event, InputController* controller);
+	MainMenu(GameStateMachine* stateMachine, InputController* controller);
 	~MainMenu();
 	virtual void OnEnter() override;
 	virtual void OnExit() override;
@@ -34,5 +33,5 @@ protected:
 	SDL_Event* m_Event;
 	GameStateMachine* m_StateMachine;
 	InputController* m_InputController;
-	//bool clicked = true;
+	
 };

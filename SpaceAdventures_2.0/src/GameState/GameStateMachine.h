@@ -9,10 +9,10 @@ class Player;
 class GameStateMachine
 {
 public:
-	GameStateMachine(SDL_Event* e, InputController* controller);
+	GameStateMachine(InputController* controller);
 	~GameStateMachine();
 	void SetState(GameState* newState);
-	void AddLevelState();
+	
 	
 	GameState* GetState();
 	void Update();
@@ -22,9 +22,7 @@ public:
 	void CreateMainMenu();
 	void CreateDeathScreen();
 	void PauseGame(Player* player);
-	void UnPauseGame();
-
-	void  Print() { std::cout << "hello ther~!\n"; }
+	void UnPauseGame();	
 
 	static bool StateHasChanged;
 

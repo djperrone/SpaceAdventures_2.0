@@ -17,8 +17,8 @@ MainMenu::MainMenu()
 {
 }
 
-MainMenu::MainMenu(GameStateMachine* stateMachine, SDL_Event* event, InputController* controller)
-	:m_StateMachine(stateMachine), m_Event(event), m_InputController(controller)
+MainMenu::MainMenu(GameStateMachine* stateMachine, InputController* controller)
+	:m_StateMachine(stateMachine), m_InputController(controller)
 {
 
 	OnEnter();
@@ -81,51 +81,7 @@ bool MainMenu::ButtonEvent()
 
 void MainMenu::Update()
 {
-	/*for (const auto& item : m_SpriteList)
-	{
-		item->Update();
-	}*/
-	
 
-	/*if (EventListener::Event.type == SDL_MOUSEBUTTONDOWN)
-	{
-		Vector2i mousePos = Vector2i();
-		SDL_GetMouseState(&mousePos.x, &mousePos.y);
-		
-		if (!IsMouseClicked)
-		{
-			IsMouseClicked = true;
-			std::cout << "clickedMAINMENU~\n";
-
-			for (const auto& item : m_ButtonList)
-			{
-				if (m_CollisionManager->IsColliding(item.get(), mousePos))
-				{
-					switch (item->m_ButtonType)
-					{
-					case ButtonType::Play: m_StateMachine->CreateNewLevel();
-						return;
-						break;
-					case ButtonType::Exit: 
-						Game::Clean();						
-						exit(0);
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	if (EventListener::Event.type == SDL_MOUSEBUTTONUP)
-	{
-		if (IsMouseClicked)
-		{
-			std::cout << "MENUUNCLICKED~\n";
-			IsMouseClicked = false;
-		}
-	}
-
-	*/
 }
 
 void MainMenu::HandleEvents()

@@ -10,8 +10,8 @@
 
 
 
-ObjectManager::ObjectManager(SDL_Event* event, InputController* inputController)
-	: m_Event(event), isFirst(true)
+ObjectManager::ObjectManager(InputController* inputController)
+	: isFirst(true)
 {
 	std::cout << "constructed objmanager!\n";
 	

@@ -2,8 +2,6 @@
 #include "InputController.h"
 
 using EventType = SDL_EventType;
-//using ActionInputMap = std::unordered_map<EventType, std::unordered_map<InputControlCodes, ActionInputCommand >>;
-
 
 std::unordered_map<SDL_Scancode, AxisInputCommand>& InputController::GetAxisInputMappings()
 {
@@ -31,15 +29,4 @@ void InputController::Reset()
 	m_ActionBindings.clear();
 	m_AxisInputMap.clear();
 }
-
-//ActionInputMap& InputController::GetActionInputMappings()
-//{
-//	return m_ActionInputMap;
-//
-//}
-////const std::unordered_map<EventType, ActionInputCommand>& InputController::GetActionInputMappings() const
-//{
-//	return m_ActionInputMap;
-//
-//}
 

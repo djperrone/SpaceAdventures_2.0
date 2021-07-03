@@ -10,7 +10,7 @@ class GamePlayManager
 {
 public:
 	GamePlayManager();
-	GamePlayManager(SDL_Event* e, InputController* inputController);
+	GamePlayManager(InputController* inputController);
 	~GamePlayManager();
 	void Update();
 	void HandleEvents();

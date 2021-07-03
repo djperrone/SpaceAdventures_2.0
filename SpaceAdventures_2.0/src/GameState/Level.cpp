@@ -8,13 +8,12 @@
 
 class Renderer;
 
-Level::Level(GameStateMachine* stateMachine, SDL_Event* event, InputController* inputController)
-	: m_StateMachine(stateMachine), m_Event(event), m_InputController(inputController)
+Level::Level(GameStateMachine* stateMachine,InputController* inputController)
+	: m_StateMachine(stateMachine), m_InputController(inputController)
 {
 	std::cout << "level state\n";
-	SDL_ShowCursor(false);
-	//IsMouseClicked = true;
-	m_GamePlayManager = std::make_unique<GamePlayManager>(event, m_InputController);
+	SDL_ShowCursor(false);	
+	m_GamePlayManager = std::make_unique<GamePlayManager>(m_InputController);
 	m_Player = m_GamePlayManager->GetPlayer();
 	
 	InitController();

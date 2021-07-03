@@ -46,7 +46,7 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 		isRunning = false;
 	}	
 	m_InputHandler = std::make_unique<InputHandler>();
-	m_GameManager = std::make_unique<GameManager>(Game::renderer, &event, m_InputHandler->GetInputController());	
+	m_GameManager = std::make_unique<GameManager>(Game::renderer, m_InputHandler->GetInputController());	
 }
 
 void Game::HandleEvents()

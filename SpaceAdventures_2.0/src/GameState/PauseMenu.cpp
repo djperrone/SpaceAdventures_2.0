@@ -2,21 +2,15 @@
 #include "PauseMenu.h"
 #include "Level.h"
 #include "DeathScreen.h"
-#include "Game.h"
 #include "MyObjects/Player.h"
 
-//PauseMenu::PauseMenu(SDL_Event* event)
-//	: m_Event(event)
-//{
-//	OnEnter();
-//}
 
 PauseMenu::PauseMenu()
 {
 }
 
-PauseMenu::PauseMenu(GameStateMachine* stateMachine, SDL_Event* event, InputController* controller, Player* player)
-	: m_Player(player)//, MainMenu(stateMachine, event,controller)
+PauseMenu::PauseMenu(GameStateMachine* stateMachine, InputController* controller, Player* player)
+	: m_Player(player)
 {
 	m_InputController = controller;
 	m_StateMachine = stateMachine;

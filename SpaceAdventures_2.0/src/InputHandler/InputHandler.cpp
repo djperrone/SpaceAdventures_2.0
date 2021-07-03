@@ -1,10 +1,10 @@
 #include "sapch.h"
 #include "InputHandler.h"
-//#include "GameManagers/GameManager.h"
 #include "EventListener.h"
+#include "Game.h"
 
 #include "Command.h"
-#include "GameState/GameStateMachine.h"
+
 
 InputHandler::InputHandler()
 {	
@@ -60,7 +60,6 @@ void InputHandler::Update()
 		{
 			if (EventListener::Event.type == event)
 			{
-
 				for (auto& action : commandVec)
 				{
 					if (action.Execute())

@@ -2,20 +2,6 @@
 #include "Command.h"
 #include <SDL_scancode.h>
 
-#include "SDL.h"
-
-//enum class InputEventType
-
-enum class MouseButton : Uint8
-{
-	None = 0,
-	Left = SDL_BUTTON_LEFT,
-	Middle = SDL_BUTTON_MIDDLE,
-	Right = SDL_BUTTON_RIGHT	
-};
-
-
-
 
 class InputController
 {
@@ -25,21 +11,19 @@ public:
 	{
 
 	}
-
-	using EventType = SDL_EventType;
-	//using ActionInputMap = std::unordered_map<EventType, std::unordered_map<InputControlCodes, ActionInputCommand >>;
+		using EventType = SDL_EventType;
+	
 	
 	template <typename... T>
 	void BindAxisKeyMapping(SDL_Scancode code, T&&... args)
 	{
-		//return std::bind(args...);
+	
 		m_AxisInputMap[code] = static_cast<AxisInputCommand>(std::bind(args...));
 	}	
 
 	template <typename... T>
 	void BindActionKeyMapping(EventType e, T&&... args)
-	{
-		//return std::bind(args...);
+	{		
 		m_ActionBindings[e].push_back(static_cast<ActionInputCommand>(std::bind(args...)));
 	}
 
@@ -50,8 +34,6 @@ public:
 	std::unordered_map<EventType, std::unordered_map<SDL_Scancode, ActionInputCommand>> GetKeyActionInputMappings() const;
 	std::unordered_map<EventType, std::unordered_map<Uint8, ActionInputCommand>> GetMouseActionInputMappings() const;
 
-	//virtual ActionInputMap& GetActionInputMappings();
-	//virtual const std::unordered_map<EventType, ActionInputCommand>& GetActionInputMappings() const;
 	std::unordered_map<EventType, std::vector<ActionInputCommand>> GetActionInputBindingsVec()
 	{
 		return m_ActionBindings;

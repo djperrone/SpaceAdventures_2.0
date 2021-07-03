@@ -1,13 +1,12 @@
 #pragma once
 #include "GameState.h"
-#include "SDL.h"
 #include "MainMenu.h"
 
 class DeathScreen : public GameState
 {
 public:
 	DeathScreen();
-	DeathScreen(GameStateMachine* stateMachine, SDL_Event* event, InputController* controller);
+	DeathScreen(GameStateMachine* stateMachine, InputController* controller);
 	~DeathScreen();
 	virtual void OnEnter()override;
 	virtual void OnExit()override;
