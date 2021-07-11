@@ -5,6 +5,7 @@ Remaking Space Adventures in C++ using SDL
 - Added rotation to ship
 - Entity Component System for Game Objects
 - Improved input system by using hash tables and std::bind to bind keys to functions.
+- Added gamestate machine for menus and levels
 
 ## Instructions:
 - Clone Repo
