@@ -14,8 +14,7 @@ InputHandler::InputHandler()
 
 void InputHandler::SetInputModeToGame()
 {
-	m_InputController.reset(new PlayerController());
-	//m_InputController->Reset();
+	m_InputController.reset(new PlayerController());	
 }
 
 void InputHandler::SetController(InputController* controller)
@@ -25,8 +24,7 @@ void InputHandler::SetController(InputController* controller)
 
 void InputHandler::SetInputModeToUI()
 {
-	m_InputController.reset(new UIController());
-	//m_InputController->Reset();
+	m_InputController.reset(new UIController());	
 }
 
 InputController* InputHandler::GetInputController() const
@@ -54,22 +52,28 @@ void InputHandler::Update()
 		if (EventListener::Event.type == SDL_QUIT)
 		{
 			Game::isRunning = false;
-		}					
+		}
 
-		for (auto& [event, commandVec] : m_InputController->GetActionInputBindingsVec())
+		for (auto& [event, mouseBinding] : m_InputController->GetActionInputMappings())
 		{
 			if (EventListener::Event.type == event)
 			{
-				for (auto& action : commandVec)
+				if (EventListener::Event.type == SDL_KEYDOWN && EventListener::Event.key.repeat != 0)
 				{
-					if (action.Execute())
+					continue;
+				}
+				
+				for (auto& [key, command] : mouseBinding)
+				{
+					if (EventListener::Event.button.button == key)
 					{
+						command.Execute();
 
-						return;
 					}
 				}
+				
 			}
-		}
+		}		
 	}	
 }
 

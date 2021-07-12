@@ -18,6 +18,7 @@ public:
 	virtual void OnExit() = 0;
 	virtual void InitController() {}
 	virtual void OnUnPause() {}
+	virtual void OnPause() {}
 
 	virtual void Update() = 0;
 	virtual void HandleEvents() = 0;

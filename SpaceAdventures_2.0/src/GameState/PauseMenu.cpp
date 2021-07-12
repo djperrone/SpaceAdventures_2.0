@@ -53,7 +53,7 @@ void PauseMenu::Update()
 
 void PauseMenu::InitController()
 {
-	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &PauseMenu::ButtonEvent, this);
+	m_InputController->BindActionMapping(SDL_BUTTON_LEFT, SDL_MOUSEBUTTONDOWN, &PauseMenu::ButtonEvent, this);
 }
 
 bool PauseMenu::ButtonEvent()

@@ -18,6 +18,7 @@ public:
 	virtual void OnEnter() override;
 	virtual void OnExit() override;
 	virtual void OnUnPause() override;
+	virtual void OnPause() override;
 	virtual void Update() override;
 	virtual void HandleEvents() override;
 	virtual void Render(std::shared_ptr<Renderer>& renderer) override;

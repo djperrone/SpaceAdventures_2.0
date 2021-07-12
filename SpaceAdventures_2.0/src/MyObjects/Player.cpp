@@ -12,7 +12,7 @@ Player::Player(Character* mouseCursor, InputController* inputController)
 	m_Team = Team::Friend;
 	m_Tag = Tag::Player;
 	
-	InitComponents(250, 250, 32, 32, 3.5f, 0.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
+	InitComponents(350, 400, 32, 32, 3.5f, 90.0f, 4.0f, 0.0f, 0.0f, 5.0f, 1.0f);
 	InitGun();
 	InitController();
 	m_PreviousPosition = m_TransformComponent->GetPositionVec();
@@ -129,13 +129,17 @@ void Player::Pause()
 
 void Player::InitController()
 {
-	/*m_InputController->BindAxisKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, this);
+	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, this);
 	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_A, &Player::MoveLeft, this);
 	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_S, &Player::MoveDown, this);
 	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_D, &Player::MoveRight, this);
+	//m_InputController->BindAxisKeyMapping(SDL_SCANCODE_SPACE, &Player::FireGun, this);
+	//m_InputController->BindAxisKeyMapping(SDL_SCANCODE_SPACE, &Player::FireGun, this);
+	m_InputController->BindActionMapping(SDL_SCANCODE_SPACE, SDL_KEYDOWN, &Player::FireGun, this);
 
 	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_ESCAPE, &Player::Pause, this);
-	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &Player::FireGun, this);*/
+
+	m_InputController->BindActionMapping(SDL_BUTTON_LEFT, SDL_MOUSEBUTTONDOWN, &Player::FireGun, this);
 
 	//m_InputController->BindActionKeyMapping(InputControlCodes::LEFT_MOUSE_BUTTON, SDL_MOUSEBUTTONDOWN, &Player::FireGun, this);
 	//m_InputController->BindActionKeyMapping(MouseButton::Left, SDL_MOUSEBUTTONDOWN, &Player::FireGun, this);

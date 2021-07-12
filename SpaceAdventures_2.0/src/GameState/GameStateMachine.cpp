@@ -60,6 +60,7 @@ void GameStateMachine::CreateDeathScreen()
 
 void GameStateMachine::PauseGame(Player* player)
 {		
+	m_CurrentState->OnPause();
 	m_PreviousState.reset(new PauseMenu(this, m_InputController, player));
 	m_CurrentState.swap(m_PreviousState);	
 }

@@ -42,17 +42,23 @@ void Level::OnUnPause()
 	InitController();	
 }
 
-void Level::InitController()
+void Level::OnPause()
 {
 	m_InputController->Reset();
+}
 
-	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, m_Player);
-	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_A, &Player::MoveLeft, m_Player);
-	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_S, &Player::MoveDown, m_Player);
-	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_D, &Player::MoveRight, m_Player);
+void Level::InitController()
+{
+	//m_InputController->Reset();
+	m_Player->InitController();
 
-	m_InputController->BindAxisKeyMapping(SDL_SCANCODE_ESCAPE, &Player::Pause, m_Player);
-	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &Player::FireGun, m_Player);
+	//m_InputController->BindAxisKeyMapping(SDL_SCANCODE_W, &Player::MoveUp, m_Player);
+	//m_InputController->BindAxisKeyMapping(SDL_SCANCODE_A, &Player::MoveLeft, m_Player);
+	//m_InputController->BindAxisKeyMapping(SDL_SCANCODE_S, &Player::MoveDown, m_Player);
+	//m_InputController->BindAxisKeyMapping(SDL_SCANCODE_D, &Player::MoveRight, m_Player);
+
+	//m_InputController->BindAxisKeyMapping(SDL_SCANCODE_ESCAPE, &Player::Pause, m_Player);
+	//m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &Player::FireGun, m_Player);
 }
 
 void Level::Update()

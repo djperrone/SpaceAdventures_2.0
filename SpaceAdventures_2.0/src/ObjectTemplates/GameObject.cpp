@@ -1,10 +1,6 @@
 #include "sapch.h"
 #include "GameObject.h"
 
-//
-//
-//GameObject::GameObject()
-//	:m_ComponentManager(nullptr), m_TextureComponent(nullptr), m_TransformComponent(nullptr) {}
 
 
 

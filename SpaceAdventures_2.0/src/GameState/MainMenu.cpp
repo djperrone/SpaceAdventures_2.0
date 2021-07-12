@@ -51,7 +51,7 @@ void MainMenu::OnExit()
 
 void MainMenu::InitController()
 {
-	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &MainMenu::ButtonEvent, this);
+	m_InputController->BindActionMapping(SDL_BUTTON_LEFT, SDL_MOUSEBUTTONDOWN, &MainMenu::ButtonEvent, this);
 }
 
 bool MainMenu::ButtonEvent()

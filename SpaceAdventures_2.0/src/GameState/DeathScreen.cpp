@@ -50,7 +50,7 @@ void DeathScreen::OnEnter()
 
 void DeathScreen::InitController()
 {
-	m_InputController->BindActionKeyMapping(SDL_MOUSEBUTTONDOWN, &DeathScreen::ButtonEvent, this);
+	m_InputController->BindActionMapping(SDL_BUTTON_LEFT, SDL_MOUSEBUTTONDOWN, &DeathScreen::ButtonEvent, this);
 }
 
 bool DeathScreen::ButtonEvent()

@@ -35,10 +35,8 @@ void Character::InitComponents(const char* fileName, int xPos, int yPos, int wid
 
 void Character::Update()
 {
-	/*m_Position.x += m_Velocity.x * m_Speed;
-		m_Position.y += m_Velocity.y * m_Speed;*/
-	UpdateLocation();
-	//m_TransformComponent->Update();
+	
+	UpdateLocation();	
 	m_TextureComponent->Update();
 }
 

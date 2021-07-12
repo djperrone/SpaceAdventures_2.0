@@ -18,25 +18,15 @@ public:
 	virtual void UpdateLocation();
 
 	virtual void Actor::InitComponents(const char* fileName, float xPos, float yPos, int width, int height, float scale, float angle) override;
-
-	
-	//virtual void InitComponents(const char* fileName, int xPos, int yPos, int width, int height, float scale, float angle);
 	virtual void InitComponents(const char* fileName, int xPos, int yPos, int width, int height, float scale, float angle, float speed, float xVel, float yVel, float health, float damage);
 
-	/*float GetXVelocity() const;
-	float GetYVelocity() const;
-	void SetXVelocity(float xVelocity);
-	void SetYVelocity(float yVelocity);
-	float GetSpeed() const;
-	void SetSpeed(float speed);
-	Vector2D GetVelocityVec() const;*/
+
 
 	float GetLeftBound() const;	
 	float GetRightBound()const;
 	float GetUpperBound()const;
 	float GetLowerBound()const;	
 
-	//Team GetTeam()const;
 	Tag GetTag() const;
 
 protected:	
